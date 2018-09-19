@@ -1,2 +1,2 @@
-# Room-Reservation-System
+# Room-Reservation
 Project for COE125
