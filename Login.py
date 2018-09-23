@@ -19,6 +19,7 @@ class Ui_login_Form(object):
                 if self.lfh.GetPasswordByEmail(self.lineEdit_userName.text()) == -1:
                   self.label_state.setText("Invalid Credentials")
                   self.lineEdit_userName.clear()
+                  self.lineEdit_password.clear()
                 else:
                     if self.lineEdit_password.text() != self.lfh.GetPasswordByEmail(self.lineEdit_userName.text()):
                         self.label_state.setText("Incorrect Password!")
@@ -27,17 +28,18 @@ class Ui_login_Form(object):
                         self.label_state.clear()
                         self.loginMsg.setText('Login Successful!')
                         self.loginMsg.exec_()
-                        self.lineEdit_userName.clear()
-                        self.lineEdit_password.clear()
                         if self.lfh.AccountType(self.lineEdit_userName.text())=="Admin":
                             print("Admin")
                         else:
                             print("User")
+                        self.lineEdit_userName.clear()
+                        self.lineEdit_password.clear()
                         #####################################################
                         ###############add the link for Main windoww#########
                         #####################################################
         else:
             print("Program Exits")         
+            
         #Close Database
         self.lfh.CloseDatabase()
                      
