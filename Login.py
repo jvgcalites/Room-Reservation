@@ -7,6 +7,7 @@
 # WARNING! All changes made in this file will be lost!
 from PyQt5.QtWidgets import QMessageBox
 from PyQt5 import QtCore, QtGui, QtWidgets
+import signUp
 import Login_Filehandling
 class Ui_login_Form(object):
     
@@ -44,10 +45,9 @@ class Ui_login_Form(object):
         self.lfh.CloseDatabase()
                      
     def Signup_Clicked(self, login_Form):
-        #######################################################################
-        ####################OPEN SIGNUP DIALOG#################################
-        #######################################################################
-        print ("Signup")
+        #Opens SignUp Dialog
+        signUpWindow = signUp.signUp()
+        signUpWindow.exec_()
     def setupUi(self, login_Form):
         #######################################################################
         self.lfh = Login_Filehandling.Login_fileHandling()
