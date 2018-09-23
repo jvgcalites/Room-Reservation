@@ -7,10 +7,11 @@ Created on Sun Sep 23 12:36:06 2018
 
 class UserInfo:
     
-    def __init__ (self, lname, gname, mname, pw, org, studNum, contactNum ):
+    def __init__ (self, lname, gname, mname, pw, email, org, studNum, contactNum ):
         self.lastName = lname
         self.givenName = gname
         self.middleName = mname
+        self.emailAddress = email
         self.password = pw
         self.organization = org
         self.studentNumber =studNum
