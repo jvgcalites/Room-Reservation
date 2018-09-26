@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-    
+import re    
 import sys
 from Signup_Filehandling import Signup_fileHandling
 from userInfo import UserInfo
@@ -58,24 +58,49 @@ class signUp(QDialog):
         return newUser
     
     def isComplete(self):
+        x = True
         if self.lineEdit_lastName.text() == "":
-            return False
-        elif self.lineEdit_givenName.text() == "":
-            return False
-        elif self.lineEdit_middleName.text() == "":
-            return False
-        elif self.lineEdit_emailAddress.text() == "":
-            return False
-        elif self.lineEdit_password.text() == "":
-            return False
-        elif self.comboBox_organization.currentText() == "":
-            return False
-        elif self.lineEdit_studentNumber.text() == "":
-            return False
-        elif self.lineEdit_contactNum.text() == "":
-            return False
+            x = False
+        if self.lineEdit_givenName.text() == "":
+            x = False
+        if self.lineEdit_middleName.text() == "":
+            x = False
+        if self.lineEdit_emailAddress.text() == "":
+            x = False
+        if self.check_password(self.lineEdit_password.text()) == "":
+            self.lineEdit_password.clear()
+            x = False
+        if self.comboBox_organization.currentText() == "":
+            x = False
+        if self.check_studentNumber(self.lineEdit_studentNumber.text()) == "":
+            self.lineEdit_studentNumber.clear()
+            x = False
+        if self.lineEdit_contactNum.text() == "":
+            x = False
+        return x
+        
+    def check_password(self, x):
+        #minimum of 8 characters in length
+        #at least 1 character of uppercase, lowercase, and digit
+        if (len(x) < 8):
+            return ""
+        elif not re.search("[a-z]", x):
+            return ""
+        elif not re.search("[0-9]", x):
+            return ""
+        elif not re.search("[A-Z]", x):
+            return ""
         else:
-            return True
+            return x
+            print("valid password")
+    
+    def check_studentNumber(self, x):
+        #student number contains 10 digits
+        if (len(x) == 10 and x.isdigit()):
+            return x
+        else:
+            return ""
+            
         
 
         
