@@ -8,8 +8,8 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 
-class Ui_MainWindow(object):
-    def setupUi(self, MainWindow):
+class Ui_MainWindowAdmin(object):
+    def setup(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(1120, 847)
         self.centralwidget = QtWidgets.QWidget(MainWindow)
@@ -158,7 +158,7 @@ class Ui_MainWindow(object):
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
-        MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
+        MainWindow.setWindowTitle(_translate("MainWindow", "Room Reservation (Admin)"))
         self.label_4.setText(_translate("MainWindow", "Organization:"))
         self.label.setText(_translate("MainWindow", "Room: "))
         self.label_5.setText(_translate("MainWindow", "Nature of Activity:"))
@@ -228,8 +228,8 @@ if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)
     MainWindow = QtWidgets.QMainWindow()
-    ui = Ui_MainWindow()
-    ui.setupUi(MainWindow)
+    ui = Ui_MainWindowAdmin()
+    ui.setup(MainWindow)
     MainWindow.show()
     sys.exit(app.exec_())
 
