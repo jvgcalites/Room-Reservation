@@ -35,7 +35,8 @@ class signUp(QDialog):
                              self.userInfo().password,
                              self.userInfo().organization,
                              self.userInfo().studentNumber,
-                             self.userInfo().contactNumber
+                             self.userInfo().contactNumber,
+                             self.userInfo().userType
                              )
             fh.CloseDatabase()
             #show new window
@@ -44,6 +45,7 @@ class signUp(QDialog):
             msg.setStandardButtons(QMessageBox.Ok)
             msg.exec_()  
             self.close()
+
 
     def userInfo(self):
         lname = self.lineEdit_lastName.text()
@@ -54,29 +56,35 @@ class signUp(QDialog):
         org = str(self.comboBox_organization.currentText())
         studNum = self.lineEdit_studentNumber.text()
         contactNum = self.lineEdit_contactNum.text()
-        newUser = UserInfo(lname, gname, mname, email, pw, org, studNum, contactNum)
+        if self.radioButton_admin.isChecked() == True:
+            userType = self.radioButton_admin.text()
+        else:
+            userType = self.radioButton_User.text()
+        newUser = UserInfo(lname, gname, mname, email, pw, org, studNum, contactNum, userType)
         return newUser
     
     def isComplete(self):
-        x = True
+        #x = True
         if self.lineEdit_lastName.text() == "":
             x = False
-        if self.lineEdit_givenName.text() == "":
+        elif self.lineEdit_givenName.text() == "":
             x = False
-        if self.lineEdit_middleName.text() == "":
+        elif self.lineEdit_middleName.text() == "":
             x = False
-        if self.lineEdit_emailAddress.text() == "":
+        elif self.lineEdit_emailAddress.text() == "":
             x = False
-        if self.check_password(self.lineEdit_password.text()) == "":
+        elif self.check_password(self.lineEdit_password.text()) == "":
             self.lineEdit_password.clear()
             x = False
-        if self.comboBox_organization.currentText() == "":
+        elif self.comboBox_organization.currentText() == "":
             x = False
-        if self.check_studentNumber(self.lineEdit_studentNumber.text()) == "":
+        elif self.check_studentNumber(self.lineEdit_studentNumber.text()) == "":
             self.lineEdit_studentNumber.clear()
             x = False
-        if self.lineEdit_contactNum.text() == "":
+        elif self.radioButton_admin.isChecked() == False and self.radioButton_User.isChecked() == False:
             x = False
+        else:
+            x = True
         return x
         
     def check_password(self, x):
@@ -100,8 +108,7 @@ class signUp(QDialog):
             return x
         else:
             return ""
-            
-        
+ 
 
         
 

@@ -11,6 +11,7 @@ from Reservation_User import Ui_MainWindow
 from Reservation_Admin import Ui_MainWindowAdmin
 import signUp
 import Login_Filehandling
+
 class Ui_login_Form(object):
     
     def Login_Clicked(self, login_Form):
@@ -43,10 +44,6 @@ class Ui_login_Form(object):
                             window.show()
                         self.lineEdit_userName.clear()
                         self.lineEdit_password.clear()
-                        #####################################################
-                        ###############add the link for Main windoww#########
-                        #####################################################
-                    
         else:
             print("Program Exits")         
             
@@ -55,8 +52,14 @@ class Ui_login_Form(object):
                      
     def Signup_Clicked(self, login_Form):
         #Opens SignUp Dialog    
-        signUpWindow = signUp.signUp()
-        signUpWindow.exec_()
+        window = QtWidgets.QMainWindow()
+        ui = Ui_MainWindowAdmin()
+        ui.setup(window)
+        window.show()
+        #signUpWindow = signUp.signUp()
+        #signUpWindow.exec_()
+        
+        
     def setupUi(self, login_Form):
         #######################################################################
         self.lfh = Login_Filehandling.Login_fileHandling()

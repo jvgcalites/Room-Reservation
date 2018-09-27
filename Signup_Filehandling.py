@@ -1,5 +1,6 @@
 #Author Dayne Fradejas
 import sqlite3
+import numpy as np
 from pathlib import Path
 
 class Signup_fileHandling:
@@ -33,9 +34,9 @@ class Signup_fileHandling:
         
     #Returns a string if the writing of file is successfull or not
     def InsertAccount(self,lastName, givenName,middleName,emailAddress,password, organization,
-                      studentNumber, contactNumber):
+                      studentNumber, contactNumber, userType):
             with self.conn:
-                userID = self.GenerateUserID() 
+                userID = self.GenerateID(userType) 
                 ##############################Write to User Table##########################################
                 self.c.execute('INSERT INTO User VALUES (?,?,?,?,?,?,?,?)',(lastName, givenName,middleName,
                                emailAddress, organization,userID, studentNumber, contactNumber))
@@ -43,9 +44,23 @@ class Signup_fileHandling:
                 self.c.execute('INSERT INTO Login VALUES (?,?,?)',(emailAddress,password,userID))
                 ###########################################################################################
                 return "File Successfully Written!"
-    def GenerateUserID(self):
-        #Code to generate value
-        return "Admin"
+    # This function generates 10 random numbers 
+    # If userType is admin, the sum of the 10 random numbers is 50
+    # If userType is user, the sum of the 10 random numbers is 51
+    def GenerateID(self, userType):
+        #Identify if userType is admin or user
+        if userType == "Admin":
+            _sum = 50
+        else:
+            _sum = 51
+        #Generates 10 random numbers
+        n = 10
+        rnd_id = 0
+        while len(str(rnd_id)) != 10:
+            rnd_array = np.random.multinomial(_sum, np.ones(n)/n, size = 1)[0]
+            rnd_id = ''.join(str(x) for x in rnd_array)
+        return rnd_id
+
     
 '''Sample Code
 fh = Signup_fileHandling()
