@@ -1,0 +1,532 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow_User</class>
+ <widget class="QMainWindow" name="MainWindow_User">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>977</width>
+    <height>738</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QWidget" name="gridLayoutWidget">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>40</y>
+      <width>471</width>
+      <height>261</height>
+     </rect>
+    </property>
+    <layout class="QGridLayout" name="gridLayout_3">
+     <item row="0" column="1">
+      <widget class="QCalendarWidget" name="calendarWidget"/>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QTableWidget" name="tableWidget_schedule">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>330</y>
+      <width>891</width>
+      <height>371</height>
+     </rect>
+    </property>
+    <row>
+     <property name="text">
+      <string/>
+     </property>
+    </row>
+    <row>
+     <property name="text">
+      <string>7:30 - 9:00 AM</string>
+     </property>
+    </row>
+    <row>
+     <property name="text">
+      <string>9:00 - 10:30 AM</string>
+     </property>
+    </row>
+    <row>
+     <property name="text">
+      <string>10:30 - 12:00 NN</string>
+     </property>
+    </row>
+    <row>
+     <property name="text">
+      <string>12:00 - 1:30 PM</string>
+     </property>
+    </row>
+    <row>
+     <property name="text">
+      <string>1:30 - 3:00 PM</string>
+     </property>
+    </row>
+    <row>
+     <property name="text">
+      <string>3:00 - 4:30 PM</string>
+     </property>
+    </row>
+    <row>
+     <property name="text">
+      <string>4:30 - 6:00 PM</string>
+     </property>
+    </row>
+    <row>
+     <property name="text">
+      <string>7:30 - 9:00 PM</string>
+     </property>
+    </row>
+    <column>
+     <property name="text">
+      <string>Mon</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>Tue</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>Wed</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>Thu</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>Sat</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>Sun</string>
+     </property>
+    </column>
+   </widget>
+   <widget class="QPushButton" name="pushButton_Reserve">
+    <property name="geometry">
+     <rect>
+      <x>730</x>
+      <y>260</y>
+      <width>125</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>Reserve</string>
+    </property>
+   </widget>
+   <widget class="QComboBox" name="comboBox_NatureOfActivity">
+    <property name="geometry">
+     <rect>
+      <x>650</x>
+      <y>130</y>
+      <width>291</width>
+      <height>22</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <item>
+     <property name="text">
+      <string>Seminar</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Orientation</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Meeting</string>
+     </property>
+    </item>
+   </widget>
+   <widget class="QComboBox" name="comboBox_timeEnd">
+    <property name="geometry">
+     <rect>
+      <x>760</x>
+      <y>170</y>
+      <width>81</width>
+      <height>22</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <item>
+     <property name="text">
+      <string>9:00</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>10:30</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>12:00</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>13:30</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>15:00</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>16:30</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>18:00</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>19:30</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>21:00</string>
+     </property>
+    </item>
+   </widget>
+   <widget class="QComboBox" name="comboBox_Room">
+    <property name="geometry">
+     <rect>
+      <x>650</x>
+      <y>90</y>
+      <width>291</width>
+      <height>22</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <item>
+     <property name="text">
+      <string>AVR1</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>AVR2</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>AVR3</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Plenary Hall</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Seminar Room</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Gym</string>
+     </property>
+    </item>
+   </widget>
+   <widget class="QLabel" name="label_2">
+    <property name="geometry">
+     <rect>
+      <x>600</x>
+      <y>170</y>
+      <width>41</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>Time:</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_room">
+    <property name="geometry">
+     <rect>
+      <x>590</x>
+      <y>90</y>
+      <width>51</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>Room: </string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="lineEdit_Organization">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>650</x>
+      <y>50</y>
+      <width>291</width>
+      <height>22</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+   </widget>
+   <widget class="QComboBox" name="comboBox_timeStart">
+    <property name="geometry">
+     <rect>
+      <x>650</x>
+      <y>170</y>
+      <width>81</width>
+      <height>22</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <item>
+     <property name="text">
+      <string>7:30</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>9:00</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>10:30</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>12:00</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>13:30</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>15:00</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>16:30</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>18:00</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>19:30</string>
+     </property>
+    </item>
+   </widget>
+   <widget class="QLabel" name="label_3">
+    <property name="geometry">
+     <rect>
+      <x>740</x>
+      <y>170</y>
+      <width>20</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>to</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_5">
+    <property name="geometry">
+     <rect>
+      <x>510</x>
+      <y>120</y>
+      <width>141</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>Nature of Activity:</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_organization">
+    <property name="geometry">
+     <rect>
+      <x>540</x>
+      <y>50</y>
+      <width>101</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>Organization:</string>
+    </property>
+   </widget>
+   <widget class="QGroupBox" name="groupBox">
+    <property name="geometry">
+     <rect>
+      <x>650</x>
+      <y>210</y>
+      <width>301</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="title">
+     <string/>
+    </property>
+    <widget class="QRadioButton" name="radioButton_incomplete">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>10</y>
+       <width>181</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>10</pointsize>
+      </font>
+     </property>
+     <property name="text">
+      <string>Without/Incomplete</string>
+     </property>
+    </widget>
+    <widget class="QRadioButton" name="radioButton_complete">
+     <property name="geometry">
+      <rect>
+       <x>200</x>
+       <y>10</y>
+       <width>101</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>10</pointsize>
+      </font>
+     </property>
+     <property name="text">
+      <string>Complete</string>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QLabel" name="label_4">
+    <property name="geometry">
+     <rect>
+      <x>550</x>
+      <y>220</y>
+      <width>101</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>Paper State:</string>
+    </property>
+   </widget>
+   <zorder>gridLayoutWidget</zorder>
+   <zorder>tableWidget_schedule</zorder>
+   <zorder>pushButton_Reserve</zorder>
+   <zorder>comboBox_NatureOfActivity</zorder>
+   <zorder>comboBox_timeEnd</zorder>
+   <zorder>comboBox_Room</zorder>
+   <zorder>label_2</zorder>
+   <zorder>label_room</zorder>
+   <zorder>lineEdit_Organization</zorder>
+   <zorder>comboBox_timeStart</zorder>
+   <zorder>label_3</zorder>
+   <zorder>label_5</zorder>
+   <zorder>label_organization</zorder>
+   <zorder>groupBox</zorder>
+   <zorder>label_4</zorder>
+   <zorder>calendarWidget</zorder>
+   <zorder>calendarWidget</zorder>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
