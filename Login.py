@@ -7,7 +7,11 @@
 # WARNING! All changes made in this file will be lost!
 from PyQt5.QtWidgets import QMessageBox
 from PyQt5 import QtCore, QtGui, QtWidgets
+import reservation_User
+from Reservation_Admin import Ui_MainWindowAdmin
+import signUp
 import Login_Filehandling
+
 class Ui_login_Form(object):
     
     def Login_Clicked(self, login_Form):
@@ -19,6 +23,7 @@ class Ui_login_Form(object):
                 if self.lfh.GetPasswordByEmail(self.lineEdit_userName.text()) == -1:
                   self.label_state.setText("Invalid Credentials")
                   self.lineEdit_userName.clear()
+                  self.lineEdit_password.clear()
                 else:
                     if self.lineEdit_password.text() != self.lfh.GetPasswordByEmail(self.lineEdit_userName.text()):
                         self.label_state.setText("Incorrect Password!")
@@ -27,25 +32,29 @@ class Ui_login_Form(object):
                         self.label_state.clear()
                         self.loginMsg.setText('Login Successful!')
                         self.loginMsg.exec_()
+                        if self.lfh.AccountType(self.lineEdit_userName.text())=="Admin":
+                            User = reservation_User.Reservation_User()
+                            User.show()
+                            User.exec_()
+                        else:
+                            User = reservation_User.Reservation_User()
+                            User.show()
+                            User.exec_()
                         self.lineEdit_userName.clear()
                         self.lineEdit_password.clear()
-                        if self.lfh.AccountType(self.lineEdit_userName.text())=="Admin":
-                            print("Admin")
-                        else:
-                            print("User")
-                        #####################################################
-                        ###############add the link for Main windoww#########
-                        #####################################################
         else:
             print("Program Exits")         
+            
         #Close Database
         self.lfh.CloseDatabase()
                      
     def Signup_Clicked(self, login_Form):
-        #######################################################################
-        ####################OPEN SIGNUP DIALOG#################################
-        #######################################################################
-        print ("Signup")
+        #Opens SignUp Dialog
+        signUpWindow = signUp.signUp()
+        signUpWindow.exec_()
+        signUpWindow.exec_()
+        
+        
     def setupUi(self, login_Form):
         #######################################################################
         self.lfh = Login_Filehandling.Login_fileHandling()
