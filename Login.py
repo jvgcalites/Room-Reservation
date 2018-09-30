@@ -4,6 +4,7 @@
 #
 # Created by: PyQt5 UI code generator 5.9.2
 #
+<<<<<<< HEAD
 # WARNING! All changes made in this file will be lost!
 from PyQt5.QtWidgets import QMessageBox
 from PyQt5 import QtCore, QtGui, QtWidgets
@@ -13,9 +14,28 @@ import signUp
 import Login_Filehandling
 
 class Ui_login_Form(object):
+=======
+# WARNING! All changes made in this file will be lost! 
+
+from PyQt5.QtWidgets import QApplication, QDialog, QMessageBox
+from PyQt5.uic import loadUi
+import Login_Filehandling
+import signUp
+class Login(QDialog):
+>>>>>>> FRADEJAS
     
-    def Login_Clicked(self, login_Form):
-        
+    def __init__(self):
+        super(Login, self).__init__()
+        loadUi('Login.ui',self)
+        self.loginMsg = QMessageBox()
+        self.setWindowTitle('Login')
+      
+        self.lfh = Login_Filehandling.Login_fileHandling()  
+        #Button Events
+        self.pushButton_login.clicked.connect(self.Login_Clicked)
+        self.createAccount_commandLinkButton.clicked.connect(self.Signup_Clicked)
+
+    def Login_Clicked(self):
         if self.lfh.LoadDatabase() is True:
             if self.lineEdit_userName.text() == '' or self.lineEdit_password.text() == '':
                 self.label_state.setText("Please complete all fields!")
@@ -32,6 +52,7 @@ class Ui_login_Form(object):
                         self.label_state.clear()
                         self.loginMsg.setText('Login Successful!')
                         self.loginMsg.exec_()
+<<<<<<< HEAD
                         print(self.lfh.AccountType(self.lineEdit_userName.text()))
                         if self.lfh.AccountType(self.lineEdit_userName.text()) == "Admin":
                             MainWindow = QtWidgets.QMainWindow()
@@ -43,12 +64,19 @@ class Ui_login_Form(object):
                             ui = Ui_MainWindow()
                             ui.setup(window)
                             window.show()
+=======
+                        if self.lfh.AccountType(self.lineEdit_userName.text())=="Admin":
+                           print('Admin')
+                        else:
+                           print('User')
+>>>>>>> FRADEJAS
                         self.lineEdit_userName.clear()
                         self.lineEdit_password.clear()
         else:
             print("Program Exits")         
             
         #Close Database
+<<<<<<< HEAD
         self.lfh.CloseDatabase()
                      
     def Signup_Clicked(self, login_Form):
@@ -138,12 +166,18 @@ class Ui_login_Form(object):
         self.label_password.setText(_translate("login_Form", "Password"))
 
 
+=======
+        self.lfh.CloseDatabase()                     
+    def Signup_Clicked(self):
+        self.close() #Closes Login window
+        signUpWindow = signUp.signUp()
+        signUpWindow.exec_()
+    
+>>>>>>> FRADEJAS
 if __name__ == "__main__":
     import sys
-    app = QtWidgets.QApplication(sys.argv)
-    login_Form = QtWidgets.QWidget()
-    ui = Ui_login_Form()
-    ui.setupUi(login_Form)
-    login_Form.show()
+    app = QApplication(sys.argv)
+    widget = Login()
+    widget.show()
     sys.exit(app.exec_())
 
