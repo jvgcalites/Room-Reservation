@@ -8,7 +8,7 @@
 from PyQt5.QtWidgets import QMessageBox
 from PyQt5 import QtCore, QtGui, QtWidgets
 from Reservation_User import Ui_MainWindow
-from Reservation_Admin import Ui_MainWindowAdmin
+import Reservation_Admin
 import signUp
 import Login_Filehandling
 
@@ -32,11 +32,12 @@ class Ui_login_Form(object):
                         self.label_state.clear()
                         self.loginMsg.setText('Login Successful!')
                         self.loginMsg.exec_()
-                        if self.lfh.AccountType(self.lineEdit_userName.text())=="Admin":
-                            window = QtWidgets.QMainWindow()
-                            ui = Ui_MainWindowAdmin()
-                            ui.setup(window)
-                            window.show()
+                        print(self.lfh.AccountType(self.lineEdit_userName.text()))
+                        if self.lfh.AccountType(self.lineEdit_userName.text()) == "Admin":
+                            MainWindow = QtWidgets.QMainWindow()
+                            ui = Reservation_Admin.Ui_MainWindowAdmin()
+                            ui.setup(MainWindow)
+                            MainWindow.show()
                         else:
                             window = QtWidgets.QMainWindow()
                             ui = Ui_MainWindow()
@@ -51,13 +52,9 @@ class Ui_login_Form(object):
         self.lfh.CloseDatabase()
                      
     def Signup_Clicked(self, login_Form):
-        #Opens SignUp Dialog    
-        window = QtWidgets.QMainWindow()
-        ui = Ui_MainWindowAdmin()
-        ui.setup(window)
-        window.show()
-        #signUpWindow = signUp.signUp()
-        #signUpWindow.exec_()
+        #Opens SignUp Dialog
+        signUpWindow = signUp.signUp()
+        signUpWindow.exec_()
         
         
     def setupUi(self, login_Form):

@@ -29,11 +29,24 @@ class Login_fileHandling:
             print (inst)            
             return False
     #Returns a value if the user is an Admin or a User
+    """
     def AccountType(self,email):
         with self.conn:
             self.c.execute("SELECT * FROM User WHERE EmailAddress=:EmailAddress",
                            {'EmailAddress':email})
             return self.c.fetchone()[5]
+    """
+    def AccountType(self, email):
+        with self.conn:
+            self.c.execute("SELECT * FROM User WHERE EmailAddress=:EmailAddress",
+                           {'EmailAddress':email})
+            userID = self.c.fetchone()[5]
+        #adds the string of numbers from userID
+        _sum = sum(map(int,userID))
+        if _sum == 50:
+            return "Admin"
+        else:
+            return "User"
             
     def CloseDatabase(self):
         self.conn.close()
