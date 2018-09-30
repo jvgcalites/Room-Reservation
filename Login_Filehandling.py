@@ -29,13 +29,6 @@ class Login_fileHandling:
             print (inst)            
             return False
     #Returns a value if the user is an Admin or a User
-    """
-    def AccountType(self,email):
-        with self.conn:
-            self.c.execute("SELECT * FROM User WHERE EmailAddress=:EmailAddress",
-                           {'EmailAddress':email})
-            return self.c.fetchone()[5]
-    """
     def AccountType(self, email):
         with self.conn:
             self.c.execute("SELECT * FROM User WHERE EmailAddress=:EmailAddress",
