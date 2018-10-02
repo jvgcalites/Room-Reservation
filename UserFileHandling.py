@@ -7,6 +7,9 @@ Created on Tue Oct  2 17:31:33 2018
 
 import sqlite3 as db
 from pathlib import Path
+from datetime import datetime
+import calendar
+
 
 class AccountsFileHandling:
      def __init__(self):
@@ -51,6 +54,7 @@ class AccountsFileHandling:
                 timeTaken.append(time[x][6]+'-'+time[x][7])                
             return timeTaken
         
+     #returns the list of avaiable timeStart  
      def getAvailableTimeStart(self, room, day, month, year):
         timeTaken = []
         self.c.execute("SELECT * FROM Reservation WHERE Room = :Room AND Month = :Month AND Year =:Year AND Day= :Day ",
@@ -59,7 +63,8 @@ class AccountsFileHandling:
         for x in range (len(time)):
             timeTaken.append(time[x][6])   
         return sorted(list(set(self.timeStart)-set(timeTaken)))
-        
+      
+     #returns the list of available timeEnd  
      def getAvaiableTimeEnd(self, room, day, month, year):
         timeTaken = []
         self.c.execute("SELECT * FROM Reservation WHERE Room = :Room AND Month = :Month AND Year =:Year AND Day= :Day ",
@@ -69,6 +74,10 @@ class AccountsFileHandling:
             timeTaken.append(time[x][7])   
         return sorted(list(set(self.timeEnd)-set(timeTaken)))
     
+     #Returns the date format e.g Monday, Tuesday, and etc.
+     def getDayFormat(self,date):#format 2018-02-18 Year,month,day
+         return calendar.day_name[(datetime.strptime(date, '%Y-%m-%d')).weekday()]
+         
      def CloseDatabase(self):
         self.conn.close()
 #Unit Test
@@ -77,5 +86,11 @@ afh = AccountsFileHandling()
 afh.LoadDatabase()
 print(afh.getAvailableTimeStart('AVR1',18,'July',2018))
 print(afh.getAvaiableTimeEnd('AVR1',18,'July',2018))
+afh.CloseDatabase()
+
+
+afh = AccountsFileHandling()
+afh.LoadDatabase()
+print(afh.getDayFormat('2018-10-3'))
 afh.CloseDatabase()
 """
