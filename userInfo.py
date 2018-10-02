@@ -1,9 +1,5 @@
 # -*- coding: utf-8 -*-
-"""
-Created on Sun Sep 23 12:36:06 2018
 
-@author: jvgca
-"""
 import re
 from Signup_Filehandling import Signup_fileHandling
 
@@ -19,7 +15,7 @@ class UserInfo:
         self.studentNumber = ""
         self.contactNumber = ""
         self.userType = ""
-    
+    #Setters
     def SetLastName(self, lastName):
         self.lastName = lastName
     
@@ -96,7 +92,7 @@ class UserInfo:
             return False
         
     def IsComplete(self):
-
+        # Check if fields are empty
         if self.lastName == "":
             x = False
         elif self.givenName == "":
@@ -116,7 +112,7 @@ class UserInfo:
         return x
 
     def StoreInfo(self):
-        
+        #Stores attributes to database
         fh = Signup_fileHandling()
         fh.LoadDatabase()
         fh.InsertAccount(self.lastName,

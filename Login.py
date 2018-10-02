@@ -1,17 +1,10 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'Login.ui'
-#
-# Created by: PyQt5 UI code generator 5.9.2
-#
-# WARNING! All changes made in this file will be lost! 
-from User import User
-#from Reservation_Admin import Ui_MainWindowAdmin
 from PyQt5.QtWidgets import QApplication, QDialog, QMessageBox
 from PyQt5.uic import loadUi
-#from reservation_User import Reservation_User
+from User import User
 import Login_Filehandling
-import signUp
+import SignUp
 class Login(QDialog):
     
     def __init__(self):
@@ -44,11 +37,13 @@ class Login(QDialog):
                         self.loginMsg.exec_()
                         #If account type is Admin, go to admin page, else go to user page
                         if self.lfh.AccountType(self.lineEdit_userName.text())=="Admin":
+                            #INSERT HERE ADMIN PAGE
                             #user = Reservation_User()
                             #user.show()
                             #user.exec_()
                             self.close() #Closes Login Window
                         else:
+                            #USER PAGE
                             user = User(self.lineEdit_userName.text())
                             user.show()
                             user.exec_()
@@ -63,7 +58,7 @@ class Login(QDialog):
                   
     def Signup_Clicked(self):
         #self.close() #Closes Login window
-        signUpWindow = signUp.signUp()
+        signUpWindow = SignUp.SignUp()
         signUpWindow.exec_()
         
 if __name__ == "__main__":

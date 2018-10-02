@@ -1,31 +1,33 @@
 #!/usr/bin/env python
-# -*- coding: utf-8 -*-
-#import re    
+# -*- coding: utf-8 -*-    
 import sys
-from userInfo import UserInfo
 from PyQt5.QtWidgets import QApplication, QDialog, QMessageBox
 from PyQt5.uic import loadUi
+from UserInfo import UserInfo
 
-class signUp(QDialog):
+class SignUp(QDialog):
     def __init__(self):
-        super(signUp, self).__init__()
-        loadUi('signUp.ui', self)
+        super(SignUp, self).__init__()
+        loadUi('SignUp.ui', self)
         self.setWindowTitle('Sign Up')
         #Button Event
         self.pushButton_signUp.clicked.connect(self.SignUp_Done)
         
     def SignUp_Done(self):
+        #intialize object
         self.newUser = UserInfo()
+        #Set information to object
         self.PassUserInfo()
+        #Check for errors
         if self.newUser.IsComplete() == False:
             self.MessageBox("Please complete all fields", "Error")
         elif self.newUser.Check_Password() == False:
             self.MessageBox("Password must contain at least 8 characters and composed of an uppercase, lowercase, and a number", "Error")
         elif self.newUser.Check_StudentNumber() == False:
             self.MessageBox("Student number must contain 10 numbers", "Error")
-        else:
+        else: #There is no error
             self.MessageBox("New Account Created Successfully", "Success")
-            self.newUser.StoreInfo()
+            self.newUser.StoreInfo() #Store to Database
             self.CloseWindow()
               
     def PassUserInfo(self):
@@ -47,8 +49,8 @@ class signUp(QDialog):
         else:
             return ""
         
+    #Creates message box    
     def MessageBox(self, message, windowTitle):
-        
         msg = QMessageBox()
         msg.setText(message) #show passed message variable
         msg.setWindowTitle(windowTitle)
