@@ -5,10 +5,11 @@
 # Created by: PyQt5 UI code generator 5.9.2
 #
 # WARNING! All changes made in this file will be lost! 
-from Reservation_Admin import Ui_MainWindowAdmin
+from User import User
+#from Reservation_Admin import Ui_MainWindowAdmin
 from PyQt5.QtWidgets import QApplication, QDialog, QMessageBox
 from PyQt5.uic import loadUi
-import reservation_User
+#from reservation_User import Reservation_User
 import Login_Filehandling
 import signUp
 class Login(QDialog):
@@ -43,14 +44,14 @@ class Login(QDialog):
                         self.loginMsg.exec_()
                         #If account type is Admin, go to admin page, else go to user page
                         if self.lfh.AccountType(self.lineEdit_userName.text())=="Admin":
-                            User = reservation_User.Reservation_User()
-                            User.show()
-                            User.exec_()
+                            #user = Reservation_User()
+                            #user.show()
+                            #user.exec_()
                             self.close() #Closes Login Window
                         else:
-                            User = reservation_User.Reservation_User()
-                            User.show()
-                            User.exec_()
+                            user = User(self.lineEdit_userName.text())
+                            user.show()
+                            user.exec_()
                             self.close() #Closes Login Window
                         self.lineEdit_userName.clear()
                         self.lineEdit_password.clear()
