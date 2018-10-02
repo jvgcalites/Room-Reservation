@@ -42,7 +42,7 @@ class Reservation_fileHandling:
             return self.c.fetchone()[4]
         
     #Accepts room and month in string ; day and year in integer
-    def ReservedTimeIn(self, room, month, day, year):
+    def ReservedTimeStart(self, room, month, day, year):
         timeIn = [] #list
         with self.conn:
             #Scan the table, if room, month, day and year matches, append the 6th column (TimeIn) to the list
@@ -50,7 +50,7 @@ class Reservation_fileHandling:
                 timeIn.append(self.c.fetchone()[6])
         return timeIn
     
-    def ReservedTimeOut(self, room, month, day, year):
+    def ReservedTimeEnd(self, room, month, day, year):
         timeOut = []
         with self.conn:
             for row in self.c.execute("SELECT * FROM Reservation WHERE Room=? AND Month=? AND Day=? AND Year=?" , (room, month, day, year,)):

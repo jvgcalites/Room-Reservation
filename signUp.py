@@ -62,7 +62,7 @@ class SignUp(QDialog):
 
 if __name__ == '__main__': 
     app = QApplication(sys.argv)
-    widget = signUp()
+    widget = SignUp()
     widget.show()
     sys.exit(app.exec_())
    

@@ -46,7 +46,7 @@ class Login(QDialog):
                             #USER PAGE
                             user = User(self.lineEdit_userName.text())
                             user.show()
-                            user.exec_()
+                            #user.exec_()
                             self.close() #Closes Login Window
                         self.lineEdit_userName.clear()
                         self.lineEdit_password.clear()
