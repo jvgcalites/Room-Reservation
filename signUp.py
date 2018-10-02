@@ -2,7 +2,6 @@
 # -*- coding: utf-8 -*-
 #import re    
 import sys
-from Signup_Filehandling import Signup_fileHandling
 from userInfo import UserInfo
 from PyQt5.QtWidgets import QApplication, QDialog, QMessageBox
 from PyQt5.uic import loadUi
@@ -18,14 +17,15 @@ class signUp(QDialog):
     def SignUp_Done(self):
         self.newUser = UserInfo()
         self.PassUserInfo()
-        if self.newUser.isComplete() == False:
+        if self.newUser.IsComplete() == False:
             self.MessageBox("Please complete all fields", "Error")
-        elif self.newUser.check_password() == False:
+        elif self.newUser.Check_Password() == False:
             self.MessageBox("Password must contain at least 8 characters and composed of an uppercase, lowercase, and a number", "Error")
-        elif self.newUser.check_studentNumber() == True:
+        elif self.newUser.Check_StudentNumber() == False:
             self.MessageBox("Student number must contain 10 numbers", "Error")
         else:
             self.MessageBox("New Account Created Successfully", "Success")
+            self.newUser.StoreInfo()
             self.CloseWindow()
               
     def PassUserInfo(self):
@@ -38,20 +38,11 @@ class signUp(QDialog):
         self.newUser.SetStudentNumber(self.lineEdit_studentNumber.text())
         self.newUser.SetContactNumber(self.lineEdit_contactNum.text())
         self.newUser.SetUserType(self.UserType())
-        print(self.newUser.GetLastName())
-        print(self.newUser.GetGivenName())
-        print(self.newUser.GetMiddleName())
-        print(self.newUser.GetEmailAddress())
-        print(self.newUser.GetPassword())
-        print(self.newUser.GetOrganization())
-        print(self.newUser.GetStudentNumber())
-        print(self.newUser.GetContactNumber())
-        print(self.newUser.GetUserType())
-        
+
     def UserType(self):
         if self.radioButton_admin.isChecked() == True:
             return self.radioButton_admin.text()
-        elif self.radioButton_user.isChecked() == True:
+        elif self.radioButton_User.isChecked() == True:
             return self.radioButton_User.text()
         else:
             return ""

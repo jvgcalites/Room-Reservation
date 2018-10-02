@@ -5,6 +5,7 @@ Created on Sun Sep 23 12:36:06 2018
 @author: jvgca
 """
 import re
+from Signup_Filehandling import Signup_fileHandling
 
 class UserInfo:
     
@@ -73,7 +74,7 @@ class UserInfo:
     def GetUserType(self):
         return self.userType
         
-    def check_password(self):
+    def Check_Password(self):
         #minimum of 8 characters in length
         #at least 1 character of uppercase, lowercase, and digit
         if (len(self.password) < 8):
@@ -87,14 +88,14 @@ class UserInfo:
         else:
             return True
             
-    def check_studentNumber(self):
+    def Check_StudentNumber(self):
         #student number contains 10 digits
-        if (len(self.studentNumber) == 10 and self.studentNumber.isdigit()):
+        if len(self.studentNumber) == 10 and self.studentNumber.isdigit():
             return True
         else:
             return False
         
-    def isComplete(self):
+    def IsComplete(self):
 
         if self.lastName == "":
             x = False
@@ -113,3 +114,20 @@ class UserInfo:
         else:
             x = True
         return x
+
+    def StoreInfo(self):
+        
+        fh = Signup_fileHandling()
+        fh.LoadDatabase()
+        fh.InsertAccount(self.lastName,
+                         self.givenName,
+                         self.middleName,
+                         self.emailAddress,
+                         self.password,
+                         self.organization,
+                         self.studentNumber,
+                         self.contactNumber,
+                         self.userType)
+        fh.CloseDatabase()
+    
+    
