@@ -13,7 +13,7 @@
   <property name="windowTitle">
    <string>Form</string>
   </property>
-  <widget class="QLineEdit" name="lineEdit_Email">
+  <widget class="QLineEdit" name="lineEdit_StudentNumber">
    <property name="geometry">
     <rect>
      <x>30</x>
