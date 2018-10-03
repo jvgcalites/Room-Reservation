@@ -17,12 +17,12 @@ class Signup_fileHandling:
                 return self.c.fetchone()[1]
     #Load Database 
     def LoadDatabase(self):
-        my_file = Path('Records.db')
+        my_file = Path('../Database/Records.db')
         try:   #if database exists
             if not my_file.exists():
                 raise ("Database does not exsist")
             else:
-                 self.conn = sqlite3.connect('Records.db')
+                 self.conn = sqlite3.connect('../Database/Records.db')
                  self.c = self.conn.cursor()
                  return True
         except Exception as inst: #throw exception

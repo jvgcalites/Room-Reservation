@@ -21,10 +21,10 @@ class Login(QDialog):
       
         self.lfh = Login_fileHandling()  
         #Button Events
-        self.pushButton_login.clicked.connect(lambda: self.Login_Clicked(Login))
-        self.createAccount_commandLinkButton.clicked.connect(lambda: self.Signup_Clicked(Login))
+        self.pushButton_login.clicked.connect(self.Login_Clicked)
+        self.createAccount_commandLinkButton.clicked.connect(self.Signup_Clicked)
 
-    def Login_Clicked(self, Login ):
+    def Login_Clicked(self ):
         account = None
         if self.lfh.LoadDatabase() is True:
             if self.lineEdit_userName.text() == '' or self.lineEdit_password.text() == '':
@@ -57,12 +57,10 @@ class Login(QDialog):
             print("Program Exits")                    
         #Close Database
         self.lfh.CloseDatabase() 
-    def Signup_Clicked(self, Login):       
-
-        signUpWindow = signUp.signUp()
+    def Signup_Clicked(self):       
+        signUpWindow = signUp.SignUp()
         signUpWindow.exec_()
-        
-        self.close() #Closes Login window
+
     
 if __name__ == "__main__":
     import sys
