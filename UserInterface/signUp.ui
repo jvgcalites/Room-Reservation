@@ -1,0 +1,284 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Dialog</class>
+ <widget class="QDialog" name="Dialog">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>700</width>
+    <height>470</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Dialog</string>
+  </property>
+  <widget class="QGroupBox" name="groupBox">
+   <property name="geometry">
+    <rect>
+     <x>50</x>
+     <y>30</y>
+     <width>601</width>
+     <height>401</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>12</pointsize>
+     <weight>50</weight>
+     <bold>false</bold>
+    </font>
+   </property>
+   <property name="title">
+    <string>Sign Up</string>
+   </property>
+   <widget class="QComboBox" name="comboBox_organization">
+    <property name="geometry">
+     <rect>
+      <x>50</x>
+      <y>230</y>
+      <width>521</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <item>
+     <property name="text">
+      <string>Select Organization</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Honor Society of Mapua (HSM)</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Mapua Institute of Technology Student Catholic Actions (MITSCA)</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Junior Philippine Computer Society - Mapua University (JPCS - MIT)</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Institute of Electronics Engineers of the Philippines - Mapua Univeristy Chapter (IECEP-MIT)</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Mapua Integrated Computer Organization (MICRO)</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Engineering Through Imagination and Research - Academic Society (EIR-AS)</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Philippine Institute of Civil Engineers (PICE)</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>American Concrete Institute (ACI)</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>New Item</string>
+     </property>
+    </item>
+   </widget>
+   <widget class="QLineEdit" name="lineEdit_emailAddress">
+    <property name="geometry">
+     <rect>
+      <x>50</x>
+      <y>70</y>
+      <width>521</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="placeholderText">
+     <string>Email Address</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="lineEdit_password">
+    <property name="geometry">
+     <rect>
+      <x>50</x>
+      <y>110</y>
+      <width>521</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="echoMode">
+     <enum>QLineEdit::Password</enum>
+    </property>
+    <property name="placeholderText">
+     <string>Password</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="lineEdit_givenName">
+    <property name="geometry">
+     <rect>
+      <x>240</x>
+      <y>30</y>
+      <width>161</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="placeholderText">
+     <string>Given Name</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="lineEdit_middleName">
+    <property name="geometry">
+     <rect>
+      <x>400</x>
+      <y>30</y>
+      <width>171</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="placeholderText">
+     <string>Middle Name</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="lineEdit_lastName">
+    <property name="geometry">
+     <rect>
+      <x>50</x>
+      <y>30</y>
+      <width>191</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="placeholderText">
+     <string>Last Name</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="lineEdit_contactNum">
+    <property name="geometry">
+     <rect>
+      <x>50</x>
+      <y>190</y>
+      <width>521</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="placeholderText">
+     <string>Contact Number</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="lineEdit_studentNumber">
+    <property name="geometry">
+     <rect>
+      <x>50</x>
+      <y>150</y>
+      <width>521</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="placeholderText">
+     <string>Student Number</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_signUp">
+    <property name="geometry">
+     <rect>
+      <x>240</x>
+      <y>350</y>
+      <width>111</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>14</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string> Sign Up</string>
+    </property>
+   </widget>
+   <widget class="QGroupBox" name="groupBox_2">
+    <property name="geometry">
+     <rect>
+      <x>50</x>
+      <y>270</y>
+      <width>521</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <property name="title">
+     <string>Account Type</string>
+    </property>
+    <widget class="QRadioButton" name="radioButton_User">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>30</y>
+       <width>181</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Student/Professor</string>
+     </property>
+    </widget>
+    <widget class="QRadioButton" name="radioButton_admin">
+     <property name="geometry">
+      <rect>
+       <x>230</x>
+       <y>30</y>
+       <width>141</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Adminstrator</string>
+     </property>
+    </widget>
+   </widget>
+  </widget>
+ </widget>
+ <tabstops>
+  <tabstop>lineEdit_lastName</tabstop>
+  <tabstop>lineEdit_givenName</tabstop>
+  <tabstop>lineEdit_middleName</tabstop>
+  <tabstop>lineEdit_emailAddress</tabstop>
+  <tabstop>lineEdit_password</tabstop>
+  <tabstop>lineEdit_studentNumber</tabstop>
+  <tabstop>lineEdit_contactNum</tabstop>
+  <tabstop>comboBox_organization</tabstop>
+  <tabstop>radioButton_User</tabstop>
+  <tabstop>radioButton_admin</tabstop>
+  <tabstop>pushButton_signUp</tabstop>
+ </tabstops>
+ <resources/>
+ <connections/>
+</ui>
