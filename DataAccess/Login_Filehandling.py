@@ -31,9 +31,9 @@ class Login_fileHandling:
     #Returns a value if the user is an Admin or a User
     def AccountType(self, email):
         with self.conn:
-            self.c.execute("SELECT * FROM User WHERE EmailAddress=:EmailAddress",
-                           {'EmailAddress':email})
-            userID = self.c.fetchone()[5]
+            self.c.execute("SELECT * FROM Login WHERE UserName=:UserName",
+                           {'UserName':email})
+            userID = self.c.fetchone()[2]
         #adds the string of numbers from userID
         _sum = sum(map(int,userID))
         if _sum == 50:
@@ -44,3 +44,9 @@ class Login_fileHandling:
     def CloseDatabase(self):
         self.conn.close()
         
+"""
+fhl = Login_fileHandling()
+fhl.LoadDatabase()
+print(fhl.AccountType('vsfabesamis@mymail.mapua.edu.ph'))
+fhl.CloseDatabase()
+"""

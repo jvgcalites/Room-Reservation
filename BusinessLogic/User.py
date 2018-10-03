@@ -5,7 +5,6 @@
 # Created by: PyQt5 UI code generator 5.9.2
 #
 # WARNING! All changes made in this file will be lost! 
-import re
 import sys
 from PyQt5.QtWidgets import QApplication, QMessageBox, QMainWindow
 from PyQt5 import QtCore
@@ -14,16 +13,16 @@ from PyQt5.uic import loadUi
 class User(QMainWindow):
     def __init__(self):
         super(User, self).__init__()
-        loadUi('../UserInterface/User.ui',self)
+        loadUi('../UserInterface/User.ui', self)
         self.setWindowTitle('Room Reservation')
         self.loginMsg = QMessageBox()
         
         #When Date is Selected
-        self.calendarWidget.clicked.connect(self.showDate)
+        self.calendarWidget.clicked.connect(lambda: self.showDate(User))
         
-    def showDate(self):
+    def showDate(self,User):
         print(self.calendarWidget.selectedDate().toString(QtCore.Qt.ISODate))
-    def reserve_Clicked(self):
+    def reserve_Clicked(self, User):
         print("value")
         
    

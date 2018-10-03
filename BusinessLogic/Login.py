@@ -21,10 +21,11 @@ class Login(QDialog):
       
         self.lfh = Login_fileHandling()  
         #Button Events
-        self.pushButton_login.clicked.connect(self.Login_Clicked)
-        self.createAccount_commandLinkButton.clicked.connect(self.Signup_Clicked)
+        self.pushButton_login.clicked.connect(lambda: self.Login_Clicked(Login))
+        self.createAccount_commandLinkButton.clicked.connect(lambda: self.Signup_Clicked(Login))
 
-    def Login_Clicked(self):
+    def Login_Clicked(self, Login ):
+        account = None
         if self.lfh.LoadDatabase() is True:
             if self.lineEdit_userName.text() == '' or self.lineEdit_password.text() == '':
                 self.label_state.setText("Please complete all fields!")
@@ -41,29 +42,27 @@ class Login(QDialog):
                         self.label_state.clear()
                         self.loginMsg.setText('Login Successful!')
                         self.loginMsg.exec_()
+                        
                         if self.lfh.AccountType(self.lineEdit_userName.text())=="Admin":
-                            self.openAdminWindow()
+                            self.adminWindow = Admin.Admin()       
+                            self.adminWindow.exec_()    
+                            self.close()
                         else:                          
-                            self.openUserWindow()
-#                           self.close() #Closes Login window
+                            self.userWindow = User.User()
+                            self.userWindow.show()
+                            self.close()
                         self.lineEdit_userName.clear()
                         self.lineEdit_password.clear()
         else:
             print("Program Exits")                    
         #Close Database
-        self.lfh.CloseDatabase()                     
-    def openAdminWindow(self):
-        adminWindow = Admin.Admin()
-        adminWindow.show()      
-        self.close()
-    def openUserWindow(self):
-        userWindow = User.User()
-        userWindow.show() 
-        self.close()
-    def Signup_Clicked(self):
-        self.close() #Closes Login window
+        self.lfh.CloseDatabase() 
+    def Signup_Clicked(self, Login):       
+
         signUpWindow = signUp.signUp()
         signUpWindow.exec_()
+        
+        self.close() #Closes Login window
     
 if __name__ == "__main__":
     import sys
