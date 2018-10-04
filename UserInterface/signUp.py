@@ -2,13 +2,13 @@
 # -*- coding: utf-8 -*-    
 import sys
 sys.path.append('../')
-from BusinessLogic.userInfo import UserInfo
+from BusinessLogic.SignupBL import SignupBL
 from PyQt5.QtWidgets import QApplication, QDialog, QMessageBox
 from PyQt5.uic import loadUi
 
-class SignUp(QDialog):
+class Ui_SignUp(QDialog):
     def __init__(self):
-        super(SignUp, self).__init__()
+        super(Ui_SignUp, self).__init__()
         loadUi('../UserInterface/SignUp.ui', self)
         self.setWindowTitle('Sign Up')
         #Button Event
@@ -16,7 +16,7 @@ class SignUp(QDialog):
         
     def SignUp_Done(self):
         #intialize object
-        self.newUser = UserInfo()
+        self.newUser = SignupBL()
         #Set information to object
         self.PassUserInfo()
         #Check for errors
@@ -63,7 +63,7 @@ class SignUp(QDialog):
 
 if __name__ == '__main__': 
     app = QApplication(sys.argv)
-    widget = SignUp()
+    widget = Ui_SignUp()
     widget.show()
     sys.exit(app.exec_())
    

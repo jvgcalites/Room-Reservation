@@ -7,14 +7,17 @@ class Login_fileHandling:
     def __init__(self):
          self.conn = ''
          self.c = ''
-    def GetPasswordByEmail(self, email):
+         
+    def getPasswordByUserName(self, userName):
+        self.LoadDatabase()
         with self.conn: #if there is a connection to the database
-            self.c.execute("SELECT * FROM Login WHERE UserName=:UserName",{'UserName':email})
+            self.c.execute("SELECT * FROM Login WHERE UserName=:UserName",{'UserName':userName})
             if not self.c.fetchall(): #if no value is returned
-                return -1
+                return ''
             else:
-                self.c.execute("SELECT * FROM Login WHERE UserName=:UserName",{'UserName':email})
+                self.c.execute("SELECT * FROM Login WHERE UserName=:UserName",{'UserName':userName})
                 return self.c.fetchone()[1]
+        self.CloseDatabase()
     #Load Database 
     def LoadDatabase(self):
         my_file = Path('../Database/Records.db')
@@ -29,18 +32,15 @@ class Login_fileHandling:
             print (inst)            
             return False
     #Returns a value if the user is an Admin or a User
-    def AccountType(self, email):
+    def getUserId(self, userName):
+        self.LoadDatabase()
         with self.conn:
             self.c.execute("SELECT * FROM Login WHERE UserName=:UserName",
-                           {'UserName':email})
+                           {'UserName':userName})
             userID = self.c.fetchone()[2]
-        #adds the string of numbers from userID
-        _sum = sum(map(int,userID))
-        if _sum == 50:
-            return "Admin"
-        else:
-            return "User"
-            
+        return userID
+        self.CloseDatabase()
+    
     def CloseDatabase(self):
         self.conn.close()
         
