@@ -288,6 +288,12 @@
    </property>
   </widget>
   <widget class="QPushButton" name="pushButton_RemoveAccount">
+<<<<<<< HEAD:Accounts.ui
+=======
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+>>>>>>> FRADEJAS:UserInterface/Accounts.ui
    <property name="geometry">
     <rect>
      <x>440</x>
@@ -301,6 +307,12 @@
    </property>
   </widget>
   <widget class="QPushButton" name="pushButton_ActivateEditMode">
+<<<<<<< HEAD:Accounts.ui
+=======
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+>>>>>>> FRADEJAS:UserInterface/Accounts.ui
    <property name="geometry">
     <rect>
      <x>280</x>

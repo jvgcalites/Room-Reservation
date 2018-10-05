@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 
+<<<<<<< HEAD:User.py
 from Reservation_Filehandling import Reservation_fileHandling
 from PyQt5.QtWidgets import QApplication, QMessageBox, QMainWindow
 from PyQt5.uic import loadUi
@@ -76,4 +77,38 @@ if __name__ == "__main__":
     widget.show()
     sys.exit(app.exec_())
 """
+=======
+# Form implementation generated from reading ui file 'Login.ui'
+#
+# Created by: PyQt5 UI code generator 5.9.2
+#
+# WARNING! All changes made in this file will be lost! 
+import sys
+from PyQt5.QtWidgets import QApplication, QMessageBox, QMainWindow
+from PyQt5 import QtCore
+from PyQt5.uic import loadUi
+
+class User(QMainWindow):
+    def __init__(self):
+        super(User, self).__init__()
+        loadUi('../UserInterface/User.ui', self)
+        self.setWindowTitle('Room Reservation')
+        self.loginMsg = QMessageBox()
+        
+        #When Date is Selected
+        self.calendarWidget.clicked.connect(lambda: self.showDate(User))
+        
+    def showDate(self,User):
+        print(self.calendarWidget.selectedDate().toString(QtCore.Qt.ISODate))
+    def reserve_Clicked(self, User):
+        print("value")
+        
+   
+    
+if __name__ == "__main__":
+    app = QApplication(sys.argv)
+    widget = User()
+    widget.show()
+    sys.exit(app.exec_())
+>>>>>>> FRADEJAS:UserInterface/User.py
 
