@@ -19,61 +19,7 @@ class SignupBL:
         self.studentNumber = ""
         self.contactNumber = ""
         self.userType = ""
-    #Setters
-    def SetLastName(self, lastName):
-        self.lastName = lastName
-    
-    def SetGivenName(self, givenName):
-        self.givenName = givenName
-        
-    def SetMiddleName(self, middleName):
-        self.middleName = middleName
-        
-    def SetEmailAddress(self, emailAddress):
-        self.emailAddress = emailAddress
-        
-    def SetPassword(self, password):
-        self.password = password
-        
-    def SetOrganization(self, organization):
-        self.organization = organization
-        
-    def SetStudentNumber(self, studentNumber):
-        self.studentNumber = studentNumber
-        
-    def SetContactNumber(self, contactNumber):
-        self.contactNumber = contactNumber
-    
-    def SetUserType(self, userType):
-        self.userType = userType
-    #Getters    
-    def GetLastName(self):
-        return self.lastName
-    
-    def GetGivenName(self):
-        return self.givenName
-        
-    def GetMiddleName(self):
-        return self.middleName
-        
-    def GetEmailAddress(self):
-        return self.emailAddress
-        
-    def GetPassword(self):
-        return self.password
-        
-    def GetOrganization(self):
-        return self.organization
-        
-    def GetStudentNumber(self):
-        return self.studentNumber
-        
-    def GetContactNumber(self):
-        return self.contactNumber
-    
-    def GetUserType(self):
-        return self.userType
-        
+
     def Check_Password(self):
         #minimum of 8 characters in length
         #at least 1 character of uppercase, lowercase, and digit
@@ -155,7 +101,7 @@ class SignupBL:
         else:
             return 'Saved Successfully'
         fh.CloseDatabase()
- """       
+"""       
 s = SignupBL()
 print(s.checkRedunduncy('useri','admin@gmail.com','Joshuja Vincent'))
 """
