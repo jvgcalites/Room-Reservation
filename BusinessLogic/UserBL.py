@@ -73,17 +73,19 @@ class UserBL:
                 timeTaken = timeTaken + self.getTimeEnd(time[x][6], time[x][7]) 
                 return sorted(list(set(self.timeEnd)-set(timeTaken)))
     
+     #Returns the array of the time between time start and timeEnd
      def getTimeTaken(self, timeStart, timeEnd):
         timeTaken = []
         for x in range(self.timeStart.index(timeStart), self.timeEnd.index(timeEnd)+1):
             timeTaken.append(self.timeStart[x]+'-'+self.timeEnd[x])
         return timeTaken
-    
+    #Returns the array of the time start between time start and timeEnd
      def getTimeStart(self,timeStart,timeEnd):
         timeTaken = []
         for x in range(self.timeStart.index(timeStart), self.timeEnd.index(timeEnd)+1):
             timeTaken.append(self.timeStart[x])
         return timeTaken
+    #Returns the array of the time end between time start and timeEnd
      def getTimeEnd(self,timeStart,timeEnd):
         timeTaken = []
         for x in range(self.timeStart.index(timeStart), self.timeEnd.index(timeEnd)+1):
