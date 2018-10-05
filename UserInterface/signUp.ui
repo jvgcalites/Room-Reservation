@@ -273,9 +273,6 @@
       <height>31</height>
      </rect>
     </property>
-    <property name="text">
-     <string/>
-    </property>
     <property name="placeholderText">
      <string>Username</string>
     </property>
@@ -286,9 +283,7 @@
   <tabstop>lineEdit_lastName</tabstop>
   <tabstop>lineEdit_givenName</tabstop>
   <tabstop>lineEdit_middleName</tabstop>
-  <tabstop>lineEdit_userName</tabstop>
   <tabstop>lineEdit_emailAddress</tabstop>
-  <tabstop>lineEdit_emailAddress_2</tabstop>
   <tabstop>lineEdit_password</tabstop>
   <tabstop>lineEdit_studentNumber</tabstop>
   <tabstop>lineEdit_contactNum</tabstop>
@@ -296,16 +291,6 @@
   <tabstop>radioButton_User</tabstop>
   <tabstop>radioButton_admin</tabstop>
   <tabstop>pushButton_signUp</tabstop>
-  <tabstop>comboBox_organization_2</tabstop>
-  <tabstop>lineEdit_password_2</tabstop>
-  <tabstop>lineEdit_givenName_2</tabstop>
-  <tabstop>lineEdit_middleName_2</tabstop>
-  <tabstop>lineEdit_lastName_2</tabstop>
-  <tabstop>lineEdit_contactNum_2</tabstop>
-  <tabstop>lineEdit_studentNumber_2</tabstop>
-  <tabstop>pushButton_signUp_2</tabstop>
-  <tabstop>radioButton_User_2</tabstop>
-  <tabstop>radioButton_admin_2</tabstop>
  </tabstops>
  <resources/>
  <connections/>

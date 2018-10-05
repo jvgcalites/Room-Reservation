@@ -7,7 +7,8 @@
 # WARNING! All changes made in this file will be lost! 
 import sys
 sys.path.append('../')
-from DataAccess.AccountsFilehandling import AccountsFileHandling
+from BusinessLogic.AccountsBL import AccountsBL
+#from DataAccess.AccountsFilehandling import AccountsFileHandling
 from PyQt5.QtWidgets import QApplication, QWidget, QMessageBox
 from PyQt5.uic import loadUi
 class Accounts(QWidget):
@@ -17,7 +18,8 @@ class Accounts(QWidget):
         loadUi('../UserInterface/Accounts.ui',self)
         self.loginMsg = QMessageBox()
         self.setWindowTitle('Room Reservation')
-        self.ahl = AccountsFileHandling()
+        self.ahl = AccountsBL()
+#        self.ahl = AccountsFileHandling()
         #Button Events
         self.pushButton_SaveChanges.clicked.connect(self.SaveChanges_Clicked)
         self.pushButton_ActivateEditMode.clicked.connect(self.ActivateEditMode_Clicked)
@@ -60,23 +62,11 @@ class Accounts(QWidget):
         #Activate the Line Edit for corrections
         self.DisableLineEdits(False)
     def Search_Clicked(self):
-        self.ahl.LoadDatabase()
-        value = self.ahl.GetDetailsByStudentNumber(self.lineEdit_StudentNumber.text())
-        if len(self.lineEdit_StudentNumber.text()) != 10:
-            self.DisableLineEdits(True)
-            self.pushButton_ActivateEditMode.setEnabled(False)
-            self.pushButton_RemoveAccount.setEnabled(False)
-            self.loginMsg.setText("Student number format error (10 characters)")            
-            self.loginMsg.exec_()
-            self.lineEdit_StudentNumber.clear()
-            #Clear Content
-            self.ClearLineEdit()
-            #Disable Save Changes button
-            self.pushButton_SaveChanges.setEnabled(False)
-            #Disable Line Edit
-            self.DisableLineEdits(True)
-            ###################################################################
-        elif value != -1:
+#        self.ahl.LoadDatabase()
+        studentNumber =self.lineEdit_StudentNumber.text()
+        value = []        
+        if self.ahl.studentNumberExists(studentNumber):
+            value = self.ahl.getDataByStudentNumber(studentNumber)
             self.DisableLineEdits(True)
             self.pushButton_ActivateEditMode.setEnabled(True)
             self.pushButton_RemoveAccount.setEnabled(True)
@@ -87,21 +77,21 @@ class Accounts(QWidget):
             self.lineEdit_UserID.setText(value[0][5])
             self.lineEdit_ContactNumber.setText(value[0][7])
             self.lineEdit_Organization.setText(value[0][4])
-            ###################################################################
             self.lineEdit_Password.setText(self.ahl.GetPasswordByEmail(value[0][3]))
-        else:            
+          
+        else:
             self.pushButton_ActivateEditMode.setEnabled(False)
             self.pushButton_RemoveAccount.setEnabled(False)
             #Clear Content
             self.ClearLineEdit()
+            self.pushButton_ActivateEditMode.setEnabled(False)
+            self.pushButton_RemoveAccount.setEnabled(False)
+            #Clear Content
             ##################################################################
             self.pushButton_SaveChanges.setEnabled(False) #Disable button
             ###################################################################
-            self.loginMsg.setText("Student number does not exist")
+            self.loginMsg.setText(self.ahl.showStateOfStudentNumber(self.lineEdit_StudentNumber.text()))            
             self.loginMsg.exec_()
-            self.lineEdit_StudentNumber.clear()
- 
-
         self.ahl.CloseDatabase()
     #Disables line Edits 
     def DisableLineEdits(self, state):
