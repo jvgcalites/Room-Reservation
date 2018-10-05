@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-    
 
-import sys
+
 from PyQt5.QtWidgets import QApplication, QDialog, QMessageBox
 from PyQt5.uic import loadUi
 import Accounts
@@ -17,17 +17,20 @@ class Admin(QDialog):
         
         
     def OpenAccounts(self):
-        acc = Accounts.Accounts()
-        acc.show()
-        
+         self.acc = Accounts.Accounts()
+         self.acc.show()
+         self.close()
+
     def OpenSchedule(self):
         ####################################################################
         print("Admin")
         #################################################################
 
 if __name__ == '__main__': 
+    import sys
     app = QApplication(sys.argv)
     widget = Admin()
     widget.show()
     sys.exit(app.exec_())
    
+20
