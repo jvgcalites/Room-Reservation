@@ -17,7 +17,40 @@ class UserBL:
          self.timeArray = ['7:30-9:00','9:00-10:30','10:30-12:00','12:00-13:30','13:30-15:00',
                         '15:00-16:30','16:30-18:00','18:00-19:30','19:30-21:30']
          self.lfh = FileHandling()
+         self.natureOfActivity = ""
+         self.organization = ""
+         self.room = ""
+         self.month = ""
+         self.day = 0
+         self.year = 0
+         self.timeIn = "" 
+         self.timeOut = ""
+         
 
+     def SetNatureOfActivity(self, natureOfActivity):
+         self.natureOfActivity = natureOfActivity
+        
+     def SetOrganization(self, organization):
+         self.organization = organization
+        
+     def SetRoom(self, room):
+         self.room = room
+        
+     def SetMonth(self, month):
+         self.month = month
+        
+     def SetDay(self, day):
+         self.day = day
+        
+     def SetYear(self, year):
+         self.year = year
+        
+     def SetTimeIn(self, time):
+         self.timeIn = time
+        
+     def SetTimeOut(self, time):
+         self.timeOut = time
+        
      #this function returns the vacant time
      #Year-integer, Month-String,Day-intege)
      def getAvailableTime(self, room, day, month, year):        
@@ -93,6 +126,7 @@ class UserBL:
         for x in range(self.timeStart.index(timeStart), self.timeEnd.index(timeEnd)+1):
             timeTaken.append(self.timeEnd[x])
         return timeTaken
+<<<<<<< HEAD
     
     #Returns the date format e.g Monday, Tuesday, and etc.
      def getDayFormat(self,date):#format 2018-02-18 Year,month,day
@@ -122,12 +156,67 @@ class UserBL:
          
              
         
+=======
+    #input - room and date
+    #return time available in list   
+    #input -
+    #return - 
+     def KeepReservation(self):
+        #Stores attributes to database
+        self.lfh.LoadDatabase()
+        self.lfh.AddReservation(self.natureOfActivity,
+                          self.organization,
+                          self.room,
+                          self.month,
+                          self.day,
+                          self.year,
+                          self.timeIn,
+                          self.timeOut)
+        self.lfh.CloseDatabase()
+    
+    #Gets the organization of the email
+     def GetOrganization(self, email):
+        self.lfh.LoadDatabase()
+        organization = self.lfh.GetOrganizationDatabase(email)
+        self.lfh.CloseDatabase
+        return organization
+    
+     def GetYear(self, date):
+        splitDate = []
+        splitDate = date.split('-') #splitDate = [YYYY,MM,DD]
+        year = splitDate[0]
+        return int(year)
+    
+     def GetMonth(self, date):
+        splitDate = []
+        splitDate = date.split('-')
+        month = splitDate[1]
+        return month
+
+     def GetDay(self, date):
+        splitDate = []
+        splitDate = date.split('-')
+        day = splitDate[2]
+        return int(day)
+    
+    #function that accepts date, room
+    #returns true if there is slots, false if no more slots
+    # def TimeAvailable(self, room, date):
+         
+     
+    
+
+    
+    
+    
+>>>>>>> master
             
+
     
 #Unit Test
 
-afh = UserBL()
-print(afh.getAvailableTime('AVR1',18,'July',2018))
+#afh = UserBL()
+#print(afh.getAvailableTime('AVR1',18,'July',2018))
 #print(afh.getAvaiableTimeEnd('AVR1',18,'July',2018))
 #print(afh.getAvailableTime('AVR1',18,'July',2018))
 
