@@ -67,11 +67,11 @@ class FileHandling:
     def checkEmailExists(self,email):
          with self.conn:
              self.c.execute("SELECT * FROM User WHERE EmailAddress=:EmailAddress",{'EmailAddress':email})            
-             if not self.c.fetchall():
+             data = self.c.fetchall()
+             if not data:
                  return ''
-             else: 
-                self.c.execute("SELECT * FROM User WHERE EmailAddress=:EmailAddress",{'EmailAddress':email})            
-                return self.c.fetchall()
+             else:                  
+                 return data
 
     def checkGivenNameExists(self, givenName):
         with self.conn:
@@ -79,11 +79,25 @@ class FileHandling:
             if not self.c.fetchall():
                 return ''
             else:
-                self.c.execute("SELECT * FROM User WHERE GivenName=:GivenName",{'GivenName':givenName})
-                return self.c.fetchone()[1]
-             
-        return self.c.fetchall()    
-    def UpdateDatabaseExists(self, lastName,givenName,middleName,emailAddress,password,
+                return 'value'             
+        return self.c.fetchall()  
+    def getUserIDByStudentNumber(self, studentNumber):
+        with self.conn:
+            self.c.execute("SELECT * FROM User WHERE StudentNumber=:StudentNumber",{'StudentNumber':studentNumber})
+            data = self.c.fetchall()
+            if not data:
+                return ''
+            else:
+                return data[0][5]
+    def getPasswordByUserID(self, userID):
+        with self.conn:
+            self.c.execute("SELECT * FROM Login WHERE UserID=:UserID",{'UserID':userID})
+            data = self.c.fetchall()
+            if not data:
+                return ''
+            else:
+                return data[0][1]
+    def UpdateDatabase(self, lastName,givenName,middleName,emailAddress,password,
                        organization,studentNumber,contactNumber,userID):
         with self.conn:
             self.c.execute('''UPDATE User SET 
@@ -105,15 +119,51 @@ class FileHandling:
                            Password=:Password, UserName=:UserName
                            WHERE UserID=:UserID''',{
                            'Password':password,'UserName':emailAddress,'UserID':userID})
+    
+    def getEmailAddressByStudentNumber(self, studentNumber):
+        with self.conn:
+            self.c.execute("SELECT * FROM User WHERE StudentNumber = :StudentNumber",
+                           {'StudentNumber':studentNumber})
+            data = self.c.fetchall()           
+            if not data:
+                return ''
+            else:
+                return data[0][3]
+            return 'value'
+        
+    def checkLastNameExists(self, lastName):
+        with self.conn:
+            self.c.execute("SELECT * FROM User WHERE LastName = :LastName",
+                               {'LastName':lastName})
+            if not self.c.fetchall():
+                return ''
+            else:
+                return 'value'
+            
     def RemoveAccount(self, userID):
         with self.conn:
             #Remove from User table
             self.c.execute("DELETE from User WHERE UserID =: UserID",{'UserID':userID})
             #Remove from Login table
             self.c.execute("DELETE from Login WHERE USerID =: UserID",{'UserID':userID})
-###############################################################################
-    
-##############################For Users#####################################
+###############################################################################    
+#################################For Users#####################################
+    def checkyEmailExists(self, email):
+        with self.conn:
+             self.c.execute("SELECT * FROM User WHERE EmailAddress=:EmailAddress",{'EmailAddress':email})        
+        if not self.c.fetchall():
+            return ''
+        else:
+            return 'Ok'
+
+    def checkNameExists(self, lastName,givenName):
+            with self.conn:
+                 self.c.execute('''SELECT * FROM User WHERE GivenName=:GivenName
+                                AND LastName =:LastName''',{'GivenName':givenName , 'LastName':lastName})        
+            if not self.c.fetchall():
+                return ''
+            else:
+                return 'something'        
     def getReservedTime(self, room, day, month, year):
         with self.conn: #if there is a connection to the database
             self.c.execute("SELECT * FROM Reservation WHERE Room = :Room AND Month = :Month AND Year =:Year AND Day= :Day ",

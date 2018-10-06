@@ -29,7 +29,7 @@ class Accounts(QWidget):
         
     def SaveChanges_Clicked(self):
         self.ahl.LoadDatabase()
-        if self.ahl.EmailExists(self.lineEdit_EmailAddress.text())==True:
+        if self.ahl.EmailExists(self.lineEdit_EmailAddress.text()):
             self.ahl.UpdateDatabase(self.lineEdit_Surname.text(),
                                     self.lineEdit_GivenName.text(),
                                     self.lineEdit_MiddleName.text(),
@@ -39,6 +39,7 @@ class Accounts(QWidget):
                                     self.lineEdit_StudentNumber.text(),
                                     self.lineEdit_ContactNumber.text(),
                                     self.lineEdit_UserID.text())
+            
             self.loginMsg.setText("Updated Sucessfully!")
             self.loginMsg.exec_()
             self.DisableLineEdits(True)
@@ -63,9 +64,10 @@ class Accounts(QWidget):
         self.DisableLineEdits(False)
     def Search_Clicked(self):
 #        self.ahl.LoadDatabase()
-        studentNumber =self.lineEdit_StudentNumber.text()
+        studentNumber = self.lineEdit_StudentNumber.text()
         value = []        
         if self.ahl.studentNumberExists(studentNumber):
+            self.lineEdit_StudentNumber.setText(studentNumber.replace(' ',''))
             value = self.ahl.getDataByStudentNumber(studentNumber)
             self.DisableLineEdits(True)
             self.pushButton_ActivateEditMode.setEnabled(True)
@@ -77,9 +79,10 @@ class Accounts(QWidget):
             self.lineEdit_UserID.setText(value[0][5])
             self.lineEdit_ContactNumber.setText(value[0][7])
             self.lineEdit_Organization.setText(value[0][4])
-            self.lineEdit_Password.setText(self.ahl.GetPasswordByEmail(value[0][3]))
+            self.lineEdit_Password.setText(self.ahl.getPasswordByStudentNumber(studentNumber))
           
         else:
+            self.lineEdit_StudentNumber.clear()
             self.pushButton_ActivateEditMode.setEnabled(False)
             self.pushButton_RemoveAccount.setEnabled(False)
             #Clear Content
@@ -92,7 +95,7 @@ class Accounts(QWidget):
             ###################################################################
             self.loginMsg.setText(self.ahl.showStateOfStudentNumber(self.lineEdit_StudentNumber.text()))            
             self.loginMsg.exec_()
-        self.ahl.CloseDatabase()
+     
     #Disables line Edits 
     def DisableLineEdits(self, state):
         self.lineEdit_Surname.setDisabled(state)
