@@ -131,3 +131,30 @@ class FileHandling:
         self.c.execute("SELECT * FROM Reservation WHERE Room = :Room AND Month = :Month AND Year =:Year AND Day= :Day ",
                            {'Room':room, 'Month':month,'Day':day,'Year':year})
         return self.c.fetchall()
+    
+    #Returns a string if the writing of file is successfull or not
+    def AddReservation(self,natureOfActivity, org, room, month, day, year, timeIn, timeOut):
+        with self.conn:
+            ##############################Write to Reservation Table##########################################
+            self.c.execute('INSERT INTO Reservation VALUES (?,?,?,?,?,?,?,?)', 
+                           (natureOfActivity,  org, room, month, day, year, timeIn, timeOut))
+            ###########################################################################################
+        return "File Successfully Written!"
+        
+    #Returns the organization         
+    def GetOrganizationDatabase(self, email):
+        with self.conn:            
+            self.c.execute("SELECT * FROM User WHERE EmailAddress=:EmailAddress",
+                           {'EmailAddress':email})
+            data = self.c.fetchone()[4]
+            if not data:
+                return ''
+            else:
+                return data
+            
+    
+user = FileHandling()  
+user.LoadDatabase()
+print(user.GetOrganizationDatabase("daynefradejas@gmail.com"))
+user.CloseDatabase()    
+    
