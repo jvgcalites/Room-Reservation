@@ -7,6 +7,8 @@ Created on Tue Oct  2 17:31:33 2018
 import sys
 sys.path.append('../')
 from DataAccess.FileHandling import FileHandling
+from datetime import datetime
+import calendar
 
 class UserBL:
      def __init__(self):
@@ -73,22 +75,53 @@ class UserBL:
                 timeTaken = timeTaken + self.getTimeEnd(time[x][6], time[x][7]) 
                 return sorted(list(set(self.timeEnd)-set(timeTaken)))
     
+     #Returns the array of the time between time start and timeEnd
      def getTimeTaken(self, timeStart, timeEnd):
         timeTaken = []
         for x in range(self.timeStart.index(timeStart), self.timeEnd.index(timeEnd)+1):
             timeTaken.append(self.timeStart[x]+'-'+self.timeEnd[x])
         return timeTaken
-    
+    #Returns the array of the time start between time start and timeEnd
      def getTimeStart(self,timeStart,timeEnd):
         timeTaken = []
         for x in range(self.timeStart.index(timeStart), self.timeEnd.index(timeEnd)+1):
             timeTaken.append(self.timeStart[x])
         return timeTaken
+    #Returns the array of the time end between time start and timeEnd
      def getTimeEnd(self,timeStart,timeEnd):
         timeTaken = []
         for x in range(self.timeStart.index(timeStart), self.timeEnd.index(timeEnd)+1):
             timeTaken.append(self.timeEnd[x])
         return timeTaken
+    
+    #Returns the date format e.g Monday, Tuesday, and etc.
+     def getDayFormat(self,date):#format 2018-02-18 Year,month,day
+         return calendar.day_name[(datetime.strptime(date, '%Y-%m-%d')).weekday()]
+     
+     def getTableColumn(self,day):
+         if day == 'Monday':
+             return 0
+         elif day =='Tuesday':
+             return 1
+         elif day == 'Wednesday':
+             return 2
+         elif day == 'Thursday':
+             return 3
+         elif day == 'Friday':
+             return 4
+         elif day == 'Saturday':
+             return 5
+         elif day == 'Sunday':
+             return 6
+         else:
+             print('fail')
+         
+            
+     #def getTableRow(self, time):
+                
+         
+             
+        
             
     
 #Unit Test

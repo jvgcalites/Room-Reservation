@@ -25,7 +25,11 @@
     </property>
     <layout class="QGridLayout" name="gridLayout_3">
      <item row="0" column="1">
-      <widget class="QCalendarWidget" name="calendarWidget"/>
+      <widget class="QCalendarWidget" name="calendarWidget">
+       <property name="firstDayOfWeek">
+        <enum>Qt::Monday</enum>
+       </property>
+      </widget>
      </item>
     </layout>
    </widget>
@@ -101,6 +105,11 @@
     <column>
      <property name="text">
       <string>Thu</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>Fri</string>
      </property>
     </column>
     <column>
@@ -507,23 +516,6 @@
      <string>Paper State:</string>
     </property>
    </widget>
-   <zorder>gridLayoutWidget</zorder>
-   <zorder>tableWidget_schedule</zorder>
-   <zorder>pushButton_Reserve</zorder>
-   <zorder>comboBox_NatureOfActivity</zorder>
-   <zorder>comboBox_timeEnd</zorder>
-   <zorder>comboBox_Room</zorder>
-   <zorder>label_2</zorder>
-   <zorder>label_room</zorder>
-   <zorder>lineEdit_Organization</zorder>
-   <zorder>comboBox_timeStart</zorder>
-   <zorder>label_3</zorder>
-   <zorder>label_5</zorder>
-   <zorder>label_organization</zorder>
-   <zorder>groupBox</zorder>
-   <zorder>label_4</zorder>
-   <zorder>calendarWidget</zorder>
-   <zorder>calendarWidget</zorder>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>
