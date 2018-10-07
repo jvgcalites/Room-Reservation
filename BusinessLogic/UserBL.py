@@ -67,7 +67,8 @@ class UserBL:
              for x in range (0,len(time)):
                  timeTaken = timeTaken + self.GetTimeTaken(time[x][6], time[x][7])                
          return sorted(list(set(self.timeArray) - set(timeTaken)))
-
+         
+              
      def GetReservedTime(self, room, day, month, year):
          timeTaken = []
          self.lfh.LoadDatabase()
