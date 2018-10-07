@@ -115,6 +115,9 @@
     </column>
    </widget>
    <widget class="QPushButton" name="pushButton_Reserve">
+    <property name="enabled">
+     <bool>true</bool>
+    </property>
     <property name="geometry">
      <rect>
       <x>730</x>
@@ -176,51 +179,6 @@
       <pointsize>10</pointsize>
      </font>
     </property>
-    <item>
-     <property name="text">
-      <string>9:00</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>10:30</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>12:00</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>13:30</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>15:00</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>16:30</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>18:00</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>19:30</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>21:00</string>
-     </property>
-    </item>
    </widget>
    <widget class="QComboBox" name="comboBox_Room">
     <property name="geometry">
@@ -335,51 +293,6 @@
       <pointsize>10</pointsize>
      </font>
     </property>
-    <item>
-     <property name="text">
-      <string>7:30</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>9:00</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>10:30</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>12:00</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>13:30</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>15:00</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>16:30</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>18:00</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>19:30</string>
-     </property>
-    </item>
    </widget>
    <widget class="QLabel" name="label_3">
     <property name="geometry">
@@ -507,23 +420,6 @@
      <string>Paper State:</string>
     </property>
    </widget>
-   <zorder>gridLayoutWidget</zorder>
-   <zorder>tableWidget_schedule</zorder>
-   <zorder>pushButton_Reserve</zorder>
-   <zorder>comboBox_NatureOfActivity</zorder>
-   <zorder>comboBox_timeEnd</zorder>
-   <zorder>comboBox_Room</zorder>
-   <zorder>label_2</zorder>
-   <zorder>label_room</zorder>
-   <zorder>lineEdit_Organization</zorder>
-   <zorder>comboBox_timeStart</zorder>
-   <zorder>label_3</zorder>
-   <zorder>label_5</zorder>
-   <zorder>label_organization</zorder>
-   <zorder>groupBox</zorder>
-   <zorder>label_4</zorder>
-   <zorder>calendarWidget</zorder>
-   <zorder>calendarWidget</zorder>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>

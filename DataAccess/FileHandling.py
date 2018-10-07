@@ -151,10 +151,22 @@ class FileHandling:
                 return ''
             else:
                 return data
+    def SchedAvailable(self, room, day, month, year):
+        availability = True
+        with self.conn:
+            #Scan the table, if room, month, day and year matches, schedule is not available
+            for row in self.c.execute("SELECT * FROM Reservation WHERE Room=? AND Month=? AND Day=? AND Year=?" , (room, month, day, year,)):
+                availability = False
+        return availability
             
     
 user = FileHandling()  
 user.LoadDatabase()
-print(user.GetOrganizationDatabase("daynefradejas@gmail.com"))
-user.CloseDatabase()    
-    
+print(user.GetOrganizationDatabase("daynefradejas@gmail.com"))  
+
+#print(user.getReservedTime("AVR1", 6, "10", 2018))
+#print(user.getTimeStart("Gym", 25, "10", 2018))
+#print(user.getTimeEnd("Gym", 25, "10", 2018))
+#rint(user.getTimeEnd("Gym", 25, "10", 2018))
+
+user.CloseDatabase()  

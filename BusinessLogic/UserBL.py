@@ -10,10 +10,10 @@ from DataAccess.FileHandling import FileHandling
 
 class UserBL:
      def __init__(self):
-         self.timeStart = ['7:30','9:00','10:30','12:00','13:30','15:00','16:30','18:00','19:30']
-         self.timeEnd = ['9:00','10:30','12:00','13:30','15:00','16:30','18:00','19:30']
-         self.timeArray = ['7:30-9:00','9:00-10:30','10:30-12:00','12:00-13:30','13:30-15:00',
-                        '15:00-16:30','16:30-18:00','18:00-19:30','19:30-21:30']
+         self.timeStart = ['07:30','09:00','10:30','12:00','13:30','15:00','16:30','18:00','19:30']
+         self.timeEnd = ['09:00','10:30','12:00','13:30','15:00','16:30','18:00','19:30', '21:00']
+         self.timeArray = ['07:30-9:00','09:00-10:30','10:30-12:00','12:00-13:30','13:30-15:00',
+                        '15:00-16:30','16:30-18:00','18:00-19:30','19:30-21:00']
          self.lfh = FileHandling()
          self.natureOfActivity = ""
          self.organization = ""
@@ -51,21 +51,24 @@ class UserBL:
         
      #this function returns the vacant time
      #Year-integer, Month-String,Day-intege)
-     def getAvailableTime(self, room, day, month, year):        
+     def GetAvailableTime(self, room, date):        
          timeTaken = []
+         
+         day = self.GetDay(date)
+         month = self.GetMonth(date)
+         year = self.GetYear(date)
+         
          self.lfh.LoadDatabase()
-         time = self.lfh.getReservedTime(room, day,month,year)
+         time = self.lfh.getReservedTime(room, day, month, year) 
          self.lfh.CloseDatabase()
          if not time:
              return timeTaken
          else:
              for x in range (0,len(time)):
-                 timeTaken = timeTaken + self.getTimeTaken(time[x][6], time[x][7])                
+                 timeTaken = timeTaken + self.GetTimeTaken(time[x][6], time[x][7])                
          return sorted(list(set(self.timeArray) - set(timeTaken)))
-         
-         
-     #Get the time interval reserved sample format timeArray
-     def getReservedTime(self, room, day, month, year):
+
+     def GetReservedTime(self, room, day, month, year):
          timeTaken = []
          self.lfh.LoadDatabase()
          time = self.lfh.getReservedTime(room,day,month,year)
@@ -75,59 +78,65 @@ class UserBL:
              return timeTaken
          else:
              for x in range (len(time)):
-                 self.getAvailableTime([x][6], time[x][7])                  
+                timeTaken = timeTaken + self.getTimeTaken([x][6], time[x][7])                  
              return timeTaken
-     
-     # Returns the available time start   
-     def getAvailableTimeStart(self, room, day, month, year):
+         
+     # Returns the available timeStart based on room and date
+     def GetAvailableTimeStart(self, room, date):
         timeTaken = []
+        
+        day = self.GetDay(date)
+        month = self.GetMonth(date)
+        year = self.GetYear(date)
+        
         self.lfh.LoadDatabase()
         time = self.lfh.getTimeStart(room,day,month,year)
-        self.getTimeStart()
         self.lfh.CloseDatabase()
         
-        if not time: #if contains nothing
-             return timeTaken
+        if not time: #if contains nothing, which means that no slots are reserved in that room and day, return all time
+             return self.timeStart
         else:
              for x in range (len(time)):
-                 timeTaken = timeTaken + self.getTimeStart([x][6], time[x][7])          
+                 timeTaken = timeTaken + self.GetTimeStart(time[x][6], time[x][7])          
              return sorted(list(set(self.timeStart)-set(timeTaken)))
-        
-     def getAvaiableTimeEnd(self, room, day, month, year):
+         
+     # Returns the available timeEnd based on room and date   
+     def GetAvailableTimeEnd(self, room, date):
         timeTaken = []
+        day = self.GetDay(date)
+        month = self.GetMonth(date)
+        year = self.GetYear(date)
+        
         self.lfh.LoadDatabase()
-
-        time = self.lfh.getTimeEnd(room, day, month, year)
+        time = self.lfh.getTimeEnd(room, day, month, year) # takes all the rows with the same room and date
+        print (time)
         self.lfh.CloseDatabase()
         if not time:
-            return timeTaken 
+            return self.timeEnd 
         else:
-            for x in range (len(time)):
-                timeTaken = timeTaken + self.getTimeEnd(time[x][6], time[x][7]) 
-                return sorted(list(set(self.timeEnd)-set(timeTaken)))
+            for x in range (len(time)): 
+                timeTaken = timeTaken + self.GetTimeEnd(time[x][6], time[x][7]) 
+            return sorted(list(set(self.timeEnd)-set(timeTaken)))
     
      #Returns the array of the time between time start and timeEnd
-     def getTimeTaken(self, timeStart, timeEnd):
+     def GetTimeTaken(self, timeStart, timeEnd):
         timeTaken = []
         for x in range(self.timeStart.index(timeStart), self.timeEnd.index(timeEnd)+1):
             timeTaken.append(self.timeStart[x]+'-'+self.timeEnd[x])
         return timeTaken
     #Returns the array of the time start between time start and timeEnd
-     def getTimeStart(self,timeStart,timeEnd):
+     def GetTimeStart(self,timeStart,timeEnd):
         timeTaken = []
         for x in range(self.timeStart.index(timeStart), self.timeEnd.index(timeEnd)+1):
             timeTaken.append(self.timeStart[x])
         return timeTaken
     #Returns the array of the time end between time start and timeEnd
-     def getTimeEnd(self,timeStart,timeEnd):
+     def GetTimeEnd(self,timeStart,timeEnd):
         timeTaken = []
         for x in range(self.timeStart.index(timeStart), self.timeEnd.index(timeEnd)+1):
             timeTaken.append(self.timeEnd[x])
         return timeTaken
-    #input - room and date
-    #return time available in list   
-    #input -
-    #return - 
+
      def KeepReservation(self):
         #Stores attributes to database
         self.lfh.LoadDatabase()
@@ -165,24 +174,36 @@ class UserBL:
         splitDate = date.split('-')
         day = splitDate[2]
         return int(day)
-    
-    #function that accepts date, room
-    #returns true if there is slots, false if no more slots
-    # def TimeAvailable(self, room, date):
-         
-     
-    
-
-    
-    
-    
-            
-
-    
+ 
 #Unit Test
 
-#afh = UserBL()
-#print(afh.getAvailableTime('AVR1',18,'July',2018))
-#print(afh.getAvaiableTimeEnd('AVR1',18,'July',2018))
-#print(afh.getAvailableTime('AVR1',18,'July',2018))
+afh = UserBL()
 
+#print(afh.getAvailableTime('AVR1',18,'July',2018))
+#print(afh.GetAvailableTimeEnd('Gym', "2018-10-25"))
+print(afh.GetAvailableTime('Gym', "2018-10-25"))
+#print(afh.GetAvailableTimeStart('Gym', "2018-10-25"))
+#print(afh.timeStart)
+#print(afh.GetTimeEnd('15:00', '16:30'))
+
+#print(afh.GetReservedTime("Gym", 25, "10", 2018))
+#print(afh.GetAvailableTime("Gym", 25, "10", 2018))
+#print(afh.GetAvailableTimeStart("Gym", "2018-10-15"))
+#print(afh.GetAvailableTimeEnd("Gym", "2018-10-15"))
+
+
+     #Get the time interval reserved sample format timeArray
+"""
+     def GetReservedTime(self, room, day, month, year):
+         timeTaken = []
+         self.lfh.LoadDatabase()
+         time = self.lfh.getReservedTime(room,day,month,year)
+         self.lfh.CloseDatabase()   
+         
+         if not time: #if contains nothing
+             return timeTaken
+         else:
+             for x in range (len(time)):
+                 self.getAvailableTime([x][6], time[x][7])                  
+             return timeTaken
+"""
