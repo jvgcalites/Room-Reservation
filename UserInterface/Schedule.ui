@@ -142,12 +142,12 @@
           <widget class="QComboBox" name="comboBox_timeStart">
            <item>
             <property name="text">
-             <string>7:30</string>
+             <string>07:30</string>
             </property>
            </item>
            <item>
             <property name="text">
-             <string>9:00</string>
+             <string>09:00</string>
             </property>
            </item>
            <item>
@@ -191,7 +191,7 @@
           <widget class="QComboBox" name="comboBox_timeEnd">
            <item>
             <property name="text">
-             <string>9:00</string>
+             <string>09:00</string>
             </property>
            </item>
            <item>
@@ -257,13 +257,6 @@
         </widget>
        </item>
       </layout>
-     </item>
-     <item>
-      <widget class="QPushButton" name="pushButton_generateSchedule">
-       <property name="text">
-        <string>Generate Schedule</string>
-       </property>
-      </widget>
      </item>
     </layout>
    </widget>

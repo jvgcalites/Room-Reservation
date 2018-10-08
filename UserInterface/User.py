@@ -1,11 +1,5 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'Login.ui'
-#
-# Created by: PyQt5 UI code generator 5.9.2
-#
-# WARNING! All changes made in this file will be lost! 
-
 import sys
 sys.path.append('../')
 from BusinessLogic.UserBL import UserBL
@@ -26,9 +20,12 @@ class User(QMainWindow):
         self.lineEdit_Organization.setText(self.userBL.GetOrganization(email))
         #When Date is Selected, show available timeStart and timeEnd
         self.calendarWidget.clicked.connect(lambda: self.ShowAvailableTime(User))
+        #When room comboBox is changed, show available timeStart and timeEnd
+        self.comboBox_Room.currentIndexChanged.connect(lambda: self.ShowAvailableTime(User))
         #Button Events
         self.pushButton_Reserve.clicked.connect(lambda: self.Reserve_Clicked())   
-        
+    
+    #This function makes the comboBox for timeStart and timeEnd to automatically show the available slots     
     def ShowAvailableTime(self,User):
         #Clears all contents of timeStart and timeEnd comboBox
         self.comboBox_timeStart.clear()
@@ -47,11 +44,24 @@ class User(QMainWindow):
         availableTimeEnd = self.userBL.GetAvailableTimeEnd(chosenRoom, chosenDate)
         for x in range(0, len(availableTimeEnd)):
             self.comboBox_timeEnd.addItem(availableTimeEnd[x])
+            
     # When Reserve Button is clicked, save to data base                
     def Reserve_Clicked(self):
-        self.ReservationInfo()
-        self.userBL.KeepReservation()
-        self.MessageBox("Schedule Reserved", "Success")
+        #variables
+        chosenDate = self.calendarWidget.selectedDate().toString(QtCore.Qt.ISODate)
+        chosenRoom = self.comboBox_room.currentText()
+        chosenTimeStart = self.comboBox_timeStart.currentText()
+        chosenTimeEnd = self.comboBox_timeEnd.currentText()
+        
+        #Scan the table if slot with room, date, timeStart, timeEnd already exists
+        if self.userBL.SchedExists(chosenRoom, chosenDate, chosenTimeStart, chosenTimeEnd) == False:
+            #if schedule does not exists, you can reserve
+            self.ReservationInfo()
+            self.userBL.KeepReservation()
+            self.MessageBox("Schedule Reserved", "Success")
+        else:
+            #else you can't xD
+            self.MessageBox("Schedule Already Exists. Please try Again", "Error")
         
     #Save data taken from user to UserBL class attributes    
     def ReservationInfo(self):

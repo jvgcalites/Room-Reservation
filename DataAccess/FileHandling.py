@@ -161,12 +161,12 @@ class FileHandling:
     ###############################################################################
     
     ##############################For Schedule#####################################
-    
+    #Removes schedule with the same room, day, month, year, timeStart, and timeEnd from the passed parameters
     def RemoveSchedule(self, room, day, month, year, timeStart, timeEnd):
         with self.conn: #if there is a connection to the database
             self.c.execute("DELETE from Reservation WHERE Room =:Room AND Month =:Month AND Year =:Year AND Day=:Day AND TimeStart=:TimeStart AND TimeEnd=:TimeEnd ",
                            {'Room':room, 'Month':month,'Day':day,'Year':year,'TimeStart':timeStart,'TimeEnd':timeEnd})
-    
+    #Returns true if schedule is found with the same room, day, month, year, timeStart, and timeEnd, else false
     def SchedExists(self,room, day, month, year, timeStart, timeEnd):
         doesExists = False
         with self.conn:

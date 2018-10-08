@@ -59,7 +59,7 @@ class UserBL:
          year = self.GetYear(date)
          
          self.lfh.LoadDatabase()
-         time = self.lfh.getReservedTime(room, day, month, year) 
+         time = self.lfh.getReservedTime(room, day, month, year) #contains a list with the same room and date
          self.lfh.CloseDatabase()
          if not time:
              return timeTaken
@@ -69,18 +69,22 @@ class UserBL:
          return sorted(list(set(self.timeArray) - set(timeTaken)))
          
               
-     def GetReservedTime(self, room, day, month, year):
+     def GetReservedTime(self, room, date):
          timeTaken = []
-         self.lfh.LoadDatabase()
-         time = self.lfh.getReservedTime(room,day,month,year)
-         self.lfh.CloseDatabase()   
          
-         if not time: #if contains nothing
+         day = self.GetDay(date)
+         month = self.GetMonth(date)
+         year = self.GetYear(date)
+         
+         self.lfh.LoadDatabase()
+         time = self.lfh.getReservedTime(room, day, month, year) #contains a list with the same room and date
+         self.lfh.CloseDatabase()
+         if not time:
              return timeTaken
          else:
              for x in range (len(time)):
-                timeTaken = timeTaken + self.getTimeTaken([x][6], time[x][7])                  
-             return timeTaken
+                 timeTaken = timeTaken + self.GetTimeTaken(time[x][6], time[x][7])       
+         return timeTaken
          
      # Returns the available timeStart based on room and date
      def GetAvailableTimeStart(self, room, date):
@@ -182,6 +186,7 @@ afh = UserBL()
 
 #print(afh.getAvailableTime('AVR1',18,'July',2018))
 #print(afh.GetAvailableTimeEnd('Gym', "2018-10-25"))
+print(afh.GetReservedTime('Gym', "2018-10-25"))
 print(afh.GetAvailableTime('Gym', "2018-10-25"))
 #print(afh.GetAvailableTimeStart('Gym', "2018-10-25"))
 #print(afh.timeStart)

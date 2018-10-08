@@ -2,21 +2,22 @@
 
 import sys
 sys.path.append('../')
-from DataAccess.FileHandling import FileHandling
 from BusinessLogic.UserBL import UserBL
 
 class ScheduleBL(UserBL):
     
+     #if room, date, timeStart, timeEnd matches, remove from database
      def RemoveSchedule(self, room, date, timeStart, timeEnd):
-         
+         #variables
          day = self.GetDay(date)
          month = self.GetMonth(date)
          year = self.GetYear(date)
-
+         
          self.lfh.LoadDatabase()
          self.lfh.RemoveSchedule(room, day, month, year, timeStart, timeEnd) 
          self.lfh.CloseDatabase()
          
+     #Returns true if schedule exists, false if does not exists  
      def SchedExists(self, room, date, timeStart, timeEnd):
          day = self.GetDay(date)
          month = self.GetMonth(date)
@@ -38,5 +39,9 @@ class ScheduleBL(UserBL):
          
 
     
-
+#Sample Unit Test
 afh = ScheduleBL()
+if afh.SchedExists("Gym","2018-10-25","19:30","21:00") == True:
+    print("YES")
+else:
+    print("NO")
