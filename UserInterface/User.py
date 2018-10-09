@@ -49,7 +49,7 @@ class User(QMainWindow):
     def Reserve_Clicked(self):
         #variables
         chosenDate = self.calendarWidget.selectedDate().toString(QtCore.Qt.ISODate)
-        chosenRoom = self.comboBox_room.currentText()
+        chosenRoom = self.comboBox_Room.currentText()
         chosenTimeStart = self.comboBox_timeStart.currentText()
         chosenTimeEnd = self.comboBox_timeEnd.currentText()
         
@@ -65,15 +65,15 @@ class User(QMainWindow):
         
     #Save data taken from user to UserBL class attributes    
     def ReservationInfo(self):
-        self.userBL.SetNatureOfActivity(self.comboBox_NatureOfActivity.currentText())
-        self.userBL.SetOrganization(self.lineEdit_Organization.text())
-        self.userBL.SetRoom(self.comboBox_Room.currentText())
+        self.userBL.natureOfActivity = self.comboBox_NatureOfActivity.currentText()
+        self.userBL.organization = self.lineEdit_Organization.text()
+        self.userBL.room = self.comboBox_Room.currentText()
         date = self.calendarWidget.selectedDate().toString(QtCore.Qt.ISODate) #date = "YYYY-MM-DD"
-        self.userBL.SetMonth(self.userBL.GetMonth(date))
-        self.userBL.SetDay(self.userBL.GetDay(date))
-        self.userBL.SetYear(self.userBL.GetYear(date))
-        self.userBL.SetTimeIn(self.comboBox_timeStart.currentText())
-        self.userBL.SetTimeOut(self.comboBox_timeEnd.currentText())
+        self.userBL.month = self.userBL.GetMonth(date)
+        self.userBL.day = self.userBL.GetDay(date)
+        self.userBL.year = self.userBL.GetYear(date)
+        self.userBL.timeIn = self.comboBox_timeStart.currentText()
+        self.userBL.timeOut = self.comboBox_timeEnd.currentText()
         
     #Creates message box    
     def MessageBox(self, message, windowTitle):
