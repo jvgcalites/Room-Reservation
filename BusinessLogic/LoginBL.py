@@ -10,7 +10,6 @@ class LoginBL:
         self.userName = ''
         self.password = ''
         self.lfh = FileHandling()
-        
     
     #return if account is valid tpye Bool
     def checkAccount(self, userNameUi, passwordUi):

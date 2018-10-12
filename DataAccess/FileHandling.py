@@ -58,28 +58,32 @@ class FileHandling:
                     ###########################################################################################
                     return "File Successfully Written!"
 ###############################################################################
-###################For Users################################################
+###################For Accounts################################################
     #Returns List of details through student number
     def GetDetailsByStudentNumber(self, studentNumber):
          with self.conn: #if there is a connection to the database
             self.c.execute("SELECT * FROM User WHERE StudentNumber=:StudentNumber",{'StudentNumber':studentNumber})
-            if not self.c.fetchall(): #if no value is returned
-                return -1
-            else:
-                self.c = self.conn.cursor()
-                self.c.execute("SELECT * FROM User WHERE StudentNumber=:StudentNumber",{'StudentNumber':studentNumber}) 
-                value = self.c.fetchall()
-                return value
-    def getEmail(self,email):
+            return self.c.fetchall()
+    def checkEmailExists(self,email):
          with self.conn:
              self.c.execute("SELECT * FROM User WHERE EmailAddress=:EmailAddress",{'EmailAddress':email})            
-             return self.c.fetchall()
+             if not self.c.fetchall():
+                 return ''
+             else: 
+                self.c.execute("SELECT * FROM User WHERE EmailAddress=:EmailAddress",{'EmailAddress':email})            
+                return self.c.fetchall()
 
-    def getGivenName(self, givenName):
+    def checkGivenNameExists(self, givenName):
         with self.conn:
-             self.c.execute("SELECT * FROM User WHERE GivenName=:GivenName",{'GivenName':givenName})
+            self.c.execute("SELECT * FROM User WHERE GivenName=:GivenName",{'GivenName':givenName})
+            if not self.c.fetchall():
+                return ''
+            else:
+                self.c.execute("SELECT * FROM User WHERE GivenName=:GivenName",{'GivenName':givenName})
+                return self.c.fetchone()[1]
+             
         return self.c.fetchall()    
-    def UpdateDatabase(self, lastName,givenName,middleName,emailAddress,password,
+    def UpdateDatabaseExists(self, lastName,givenName,middleName,emailAddress,password,
                        organization,studentNumber,contactNumber,userID):
         with self.conn:
             self.c.execute('''UPDATE User SET 
@@ -104,11 +108,12 @@ class FileHandling:
     def RemoveAccount(self, userID):
         with self.conn:
             #Remove from User table
-            self.ahl.c.execute("DELETE from User WHERE UserID =: UserID",{'UserID':userID})
+            self.c.execute("DELETE from User WHERE UserID =: UserID",{'UserID':userID})
             #Remove from Login table
-            self.ahl.c.execute("DELETE from Login WHERE USerID =: UserID",{'UserID':userID})
+            self.c.execute("DELETE from Login WHERE USerID =: UserID",{'UserID':userID})
 ###############################################################################
-##############################For Accounts#####################################
+    
+##############################For Users#####################################
     def getReservedTime(self, room, day, month, year):
         with self.conn: #if there is a connection to the database
             self.c.execute("SELECT * FROM Reservation WHERE Room = :Room AND Month = :Month AND Year =:Year AND Day= :Day ",
@@ -126,6 +131,3 @@ class FileHandling:
         self.c.execute("SELECT * FROM Reservation WHERE Room = :Room AND Month = :Month AND Year =:Year AND Day= :Day ",
                            {'Room':room, 'Month':month,'Day':day,'Year':year})
         return self.c.fetchall()
-#        for x in range (len(time)):
-#            timeTaken.append(time[x][7])   
-#        return sorted(list(set(self.timeEnd)-set(timeTaken)))

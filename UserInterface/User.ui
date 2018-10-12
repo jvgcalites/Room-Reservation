@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>977</width>
-    <height>738</height>
+    <width>1123</width>
+    <height>742</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -17,7 +17,7 @@
    <widget class="QWidget" name="gridLayoutWidget">
     <property name="geometry">
      <rect>
-      <x>30</x>
+      <x>90</x>
       <y>40</y>
       <width>471</width>
       <height>261</height>
@@ -34,19 +34,20 @@
     </layout>
    </widget>
    <widget class="QTableWidget" name="tableWidget_schedule">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
     <property name="geometry">
      <rect>
-      <x>30</x>
+      <x>50</x>
       <y>330</y>
-      <width>891</width>
+      <width>1011</width>
       <height>371</height>
      </rect>
     </property>
-    <row>
-     <property name="text">
-      <string/>
-     </property>
-    </row>
+    <property name="editTriggers">
+     <set>QAbstractItemView::NoEditTriggers</set>
+    </property>
     <row>
      <property name="text">
       <string>7:30 - 9:00 AM</string>
@@ -80,6 +81,11 @@
     <row>
      <property name="text">
       <string>4:30 - 6:00 PM</string>
+     </property>
+    </row>
+    <row>
+     <property name="text">
+      <string>6:00 - 7:30 PM</string>
      </property>
     </row>
     <row>
@@ -123,28 +129,10 @@
      </property>
     </column>
    </widget>
-   <widget class="QPushButton" name="pushButton_Reserve">
-    <property name="geometry">
-     <rect>
-      <x>730</x>
-      <y>260</y>
-      <width>125</width>
-      <height>41</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>10</pointsize>
-     </font>
-    </property>
-    <property name="text">
-     <string>Reserve</string>
-    </property>
-   </widget>
    <widget class="QComboBox" name="comboBox_NatureOfActivity">
     <property name="geometry">
      <rect>
-      <x>650</x>
+      <x>710</x>
       <y>130</y>
       <width>291</width>
       <height>22</height>
@@ -174,7 +162,7 @@
    <widget class="QComboBox" name="comboBox_timeEnd">
     <property name="geometry">
      <rect>
-      <x>760</x>
+      <x>820</x>
       <y>170</y>
       <width>81</width>
       <height>22</height>
@@ -234,7 +222,7 @@
    <widget class="QComboBox" name="comboBox_Room">
     <property name="geometry">
      <rect>
-      <x>650</x>
+      <x>710</x>
       <y>90</y>
       <width>291</width>
       <height>22</height>
@@ -279,7 +267,7 @@
    <widget class="QLabel" name="label_2">
     <property name="geometry">
      <rect>
-      <x>600</x>
+      <x>660</x>
       <y>170</y>
       <width>41</width>
       <height>21</height>
@@ -297,7 +285,7 @@
    <widget class="QLabel" name="label_room">
     <property name="geometry">
      <rect>
-      <x>590</x>
+      <x>650</x>
       <y>90</y>
       <width>51</width>
       <height>21</height>
@@ -318,7 +306,7 @@
     </property>
     <property name="geometry">
      <rect>
-      <x>650</x>
+      <x>710</x>
       <y>50</y>
       <width>291</width>
       <height>22</height>
@@ -333,7 +321,7 @@
    <widget class="QComboBox" name="comboBox_timeStart">
     <property name="geometry">
      <rect>
-      <x>650</x>
+      <x>710</x>
       <y>170</y>
       <width>81</width>
       <height>22</height>
@@ -393,7 +381,7 @@
    <widget class="QLabel" name="label_3">
     <property name="geometry">
      <rect>
-      <x>740</x>
+      <x>800</x>
       <y>170</y>
       <width>20</width>
       <height>21</height>
@@ -411,7 +399,7 @@
    <widget class="QLabel" name="label_5">
     <property name="geometry">
      <rect>
-      <x>510</x>
+      <x>570</x>
       <y>120</y>
       <width>141</width>
       <height>41</height>
@@ -429,7 +417,7 @@
    <widget class="QLabel" name="label_organization">
     <property name="geometry">
      <rect>
-      <x>540</x>
+      <x>600</x>
       <y>50</y>
       <width>101</width>
       <height>21</height>
@@ -444,77 +432,41 @@
      <string>Organization:</string>
     </property>
    </widget>
-   <widget class="QGroupBox" name="groupBox">
+   <widget class="QWidget" name="verticalLayoutWidget">
     <property name="geometry">
      <rect>
-      <x>650</x>
-      <y>210</y>
-      <width>301</width>
-      <height>41</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>10</pointsize>
-     </font>
-    </property>
-    <property name="title">
-     <string/>
-    </property>
-    <widget class="QRadioButton" name="radioButton_incomplete">
-     <property name="geometry">
-      <rect>
-       <x>10</x>
-       <y>10</y>
-       <width>181</width>
-       <height>20</height>
-      </rect>
-     </property>
-     <property name="font">
-      <font>
-       <pointsize>10</pointsize>
-      </font>
-     </property>
-     <property name="text">
-      <string>Without/Incomplete</string>
-     </property>
-    </widget>
-    <widget class="QRadioButton" name="radioButton_complete">
-     <property name="geometry">
-      <rect>
-       <x>200</x>
-       <y>10</y>
-       <width>101</width>
-       <height>21</height>
-      </rect>
-     </property>
-     <property name="font">
-      <font>
-       <pointsize>10</pointsize>
-      </font>
-     </property>
-     <property name="text">
-      <string>Complete</string>
-     </property>
-    </widget>
-   </widget>
-   <widget class="QLabel" name="label_4">
-    <property name="geometry">
-     <rect>
-      <x>550</x>
+      <x>710</x>
       <y>220</y>
-      <width>101</width>
-      <height>21</height>
+      <width>291</width>
+      <height>80</height>
      </rect>
     </property>
-    <property name="font">
-     <font>
-      <pointsize>10</pointsize>
-     </font>
-    </property>
-    <property name="text">
-     <string>Paper State:</string>
-    </property>
+    <layout class="QVBoxLayout" name="verticalLayout">
+     <item>
+      <widget class="QPushButton" name="pushButton_ShowReservation">
+       <property name="font">
+        <font>
+         <pointsize>10</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>Show Reservation</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pushButton_Reserve">
+       <property name="font">
+        <font>
+         <pointsize>10</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>Reserve</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
    </widget>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
