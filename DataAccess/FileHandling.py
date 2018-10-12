@@ -115,6 +115,7 @@ class FileHandling:
                             'Organization':organization, 
                             'ContactNumber':contactNumber,
                             'StudentNumber':studentNumber})
+    
             self.c.execute('''UPDATE Login SET
                            Password=:Password, UserName=:UserName
                            WHERE UserID=:UserID''',{
@@ -143,9 +144,10 @@ class FileHandling:
     def RemoveAccount(self, userID):
         with self.conn:
             #Remove from User table
-            self.c.execute("DELETE from User WHERE UserID =: UserID",{'UserID':userID})
+            self.c.execute("DELETE FROM User WHERE UserID = :UserID",{'UserID':userID})
             #Remove from Login table
-            self.c.execute("DELETE from Login WHERE USerID =: UserID",{'UserID':userID})
+            self.c.execute("DELETE FROM Login WHERE USerID = :UserID",{'UserID':userID})
+            self.conn.commit()
 ###############################################################################    
 #################################For Users#####################################
     def checkyEmailExists(self, email):
