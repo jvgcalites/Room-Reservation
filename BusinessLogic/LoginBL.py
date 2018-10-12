@@ -7,8 +7,6 @@ import numpy as np
 
 class LoginBL:
     def __init__(self):
-        self.userName = ''
-        self.password = ''
         self.lfh = FileHandling()
     
     #return if account is valid tpye Bool
@@ -33,7 +31,7 @@ class LoginBL:
             return False      
     #return if the account is a user or an admin    
     def getAccountType(self, userName):
-        userID = self.GenerateID(userName)
+        userID = self.lfh.getUserId(userName)
         _sum = sum(map(int,userID))
         if _sum == 50:
             return "Admin"
@@ -58,9 +56,9 @@ class LoginBL:
              
 
 l = LoginBL()
-"""
+
 print(l.checkAccount("daynefradejas@gmail.com","dayne123"))
-#print(l.loginState("",""))
-print(l.getAccountType("vsfabesamis@mymail.mapua.edu.ph"))
-"""
+print(l.loginState("",""))
+print(l.getAccountType("user"))
+
 

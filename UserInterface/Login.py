@@ -36,12 +36,12 @@ class Ui_Login(QDialog):
             self.loginMsg.exec_()  
             
             #Check if a user or an Admin
-            if self.login.getAccountType(self.username):
+            if self.login.getAccountType(self.username) == "Admin":
                 self.adminWindow = Admin.Admin()
                 self.adminWindow.show()
                 self.close()
             else:
-                self.userWindow = User.User()
+                self.userWindow = User.User(self.username)
                 self.userWindow.show()
                 self.close()
         else:

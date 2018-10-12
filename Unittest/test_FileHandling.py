@@ -31,28 +31,8 @@ class TestFileHandling(unittest.TestCase):
         username = 'daynefradejas@gmail.com'
         lastName = 'Fradejas'
         givenName = 'Dayne'
-        middleName = ''
-        emailAddress = 'daynefradejas@gmail.com'
-        password = 'dayne123'
-        organization = ''
-        studentNumber = ''
-        contactNumber = ''
-        userType = 'admin'
-        obj = FileHandling()
         self.assertEqual(obj.InsertAccount(lastName, givenName,middleName,username,emailAddress,password, organization,
                           studentNumber, contactNumber, userType),'File Successfully Written!')
-        
-    def test_GetDetailsByStudentNumber(self):
-        obj = FileHandling()
-        studentNumber = ' '
-        self.assertEquals(obj.GetDetailsByStudentNumber(studentNumber),-1)
-        
-    def test_getEmail(self):
-        obj = FileHandling()
-        email = 'daynefradejas@gmail.com'
-        self.assertEquals(obj.getEmail(email),'daynefradejas@gmail.com')
-        
-        
         
         
     
