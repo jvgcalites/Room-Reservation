@@ -164,25 +164,28 @@ class UserBL:
         self.lfh.CloseDatabase
         return organization
     
+    #Returns year, input date [YYYY,MM,DD]
     def GetYear(self, date):
         splitDate = []
         splitDate = date.split('-') #splitDate = [YYYY,MM,DD]
         year = splitDate[0]
         return int(year)
     
+    #Returns month, input date [YYYY,MM,DD]
     def GetMonth(self, date):
         splitDate = []
         splitDate = date.split('-')
         month = splitDate[1]
         return month
 
+    #Returns day, inpput date [YYYY,MM,DD]
     def GetDay(self, date):
         splitDate = []
         splitDate = date.split('-')
         day = splitDate[2]
         return int(day)
     
-         #Returns true if schedule exists, false if does not exists  
+    #Returns true if schedule exists, false if does not exists  
     def SchedExists(self, room, date, timeStart, timeEnd):
          day = self.GetDay(date)
          month = self.GetMonth(date)
@@ -197,7 +200,8 @@ class UserBL:
              return False
          else:
              return None
-         
+        
+    #Returns the first day of the week
     def returnToFirstColumn(self,dayOfWeek,day):
          if dayOfWeek == 'Monday':
              return day
@@ -222,6 +226,7 @@ class UserBL:
          else:
              print('fail')
              
+    #Sets the column for the table widget
     def getTableColumn(self,day):
          if day == 'Monday':
              return 0

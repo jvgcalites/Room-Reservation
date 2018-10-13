@@ -1,10 +1,12 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-    
 
-
+import sys
+sys.path.append('../')
 from PyQt5.QtWidgets import QApplication, QDialog, QMessageBox
 from PyQt5.uic import loadUi
 import Accounts
+import Schedule
 
 class Admin(QDialog):
     def __init__(self):
@@ -24,6 +26,9 @@ class Admin(QDialog):
     def OpenSchedule(self):
         ####################################################################
         print("Admin")
+        self.schedule = Schedule.Schedule()
+        self.schedule.show()
+        self.close()
         #################################################################
 
 if __name__ == '__main__': 

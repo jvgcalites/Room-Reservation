@@ -89,6 +89,7 @@ class User(QMainWindow):
         msg.setStandardButtons(QMessageBox.Ok)
         msg.exec_()           
     
+    #Shows the week schedule of selected date
     def showReservation(self,User):
         date = self.calendarWidget.selectedDate().toString(QtCore.Qt.ISODate)
         self.tableWidget_schedule.clearContents()
@@ -110,7 +111,7 @@ class User(QMainWindow):
         self.showWeekSchedule(self.weekSchedule,'******')
         
         
-    
+    #Iterates the column from the first day of the week
     def showWeekSchedule(self,weekSchedule,symbol):  
         dayColumn = 0
         for day in weekSchedule:
@@ -121,7 +122,7 @@ class User(QMainWindow):
                 self.populateTable(duration,dayColumn,symbol)
             dayColumn += 1
             
-                
+    #Sets symbols on reserved time schedule            
     def populateTable(self,duration,dayColumn,symbol): 
         if duration[0] == '07:30-09:00':
             row = 0
@@ -171,6 +172,7 @@ class User(QMainWindow):
         else:
                 return'Invalid Time input'
                 
+    #Show the selected schedule of the user
     def showReservation_Clicked(self):
         date = self.calendarWidget.selectedDate().toString(QtCore.Qt.ISODate)
         duration = self.userBL.GetTimeTaken(self.comboBox_timeStart.currentText(),self.comboBox_timeEnd.currentText())

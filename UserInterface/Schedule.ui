@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>MainWindow</class>
- <widget class="QMainWindow" name="MainWindow">
+ <class>MainWindow_User</class>
+ <widget class="QMainWindow" name="MainWindow_User">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1120</width>
-    <height>847</height>
+    <width>1123</width>
+    <height>742</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -17,263 +17,54 @@
    <widget class="QWidget" name="gridLayoutWidget">
     <property name="geometry">
      <rect>
-      <x>100</x>
-      <y>80</y>
+      <x>90</x>
+      <y>40</y>
       <width>471</width>
       <height>261</height>
      </rect>
     </property>
     <layout class="QGridLayout" name="gridLayout_3">
-     <item row="0" column="0">
-      <widget class="QCalendarWidget" name="calendarWidget"/>
-     </item>
-    </layout>
-   </widget>
-   <widget class="QWidget" name="verticalLayoutWidget">
-    <property name="geometry">
-     <rect>
-      <x>620</x>
-      <y>100</y>
-      <width>392</width>
-      <height>241</height>
-     </rect>
-    </property>
-    <layout class="QVBoxLayout" name="verticalLayout_5">
-     <item>
-      <layout class="QHBoxLayout" name="horizontalLayout_2">
-       <item>
-        <layout class="QVBoxLayout" name="verticalLayout_3">
-         <item>
-          <widget class="QLabel" name="label_4">
-           <property name="text">
-            <string>Organization:</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QLabel" name="label">
-           <property name="text">
-            <string>Room: </string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QLabel" name="label_5">
-           <property name="text">
-            <string>Nature of Activity:</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QLabel" name="label_2">
-           <property name="text">
-            <string>Time Start:</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QLabel" name="label_3">
-           <property name="text">
-            <string>Time End:</string>
-           </property>
-          </widget>
-         </item>
-        </layout>
-       </item>
-       <item>
-        <layout class="QVBoxLayout" name="verticalLayout_4">
-         <item>
-          <widget class="QLineEdit" name="lineEdit_organization"/>
-         </item>
-         <item>
-          <widget class="QComboBox" name="comboBox_room">
-           <item>
-            <property name="text">
-             <string>AVR1</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>AVR2</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>AVR3</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>Plenary Hall</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>Seminar Room</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>Gym</string>
-            </property>
-           </item>
-          </widget>
-         </item>
-         <item>
-          <widget class="QComboBox" name="comboBox_natureOfActivity">
-           <item>
-            <property name="text">
-             <string>Seminar</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>Orientation</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>Meeting</string>
-            </property>
-           </item>
-          </widget>
-         </item>
-         <item>
-          <widget class="QComboBox" name="comboBox_timeStart">
-           <item>
-            <property name="text">
-             <string>07:30</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>09:00</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>10:30</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>12:00</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>13:30</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>15:00</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>16:30</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>18:00</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>19:30</string>
-            </property>
-           </item>
-          </widget>
-         </item>
-         <item>
-          <widget class="QComboBox" name="comboBox_timeEnd">
-           <item>
-            <property name="text">
-             <string>09:00</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>10:30</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>12:00</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>13:30</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>15:00</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>16:30</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>18:00</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>19:30</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>21:00</string>
-            </property>
-           </item>
-          </widget>
-         </item>
-        </layout>
-       </item>
-      </layout>
-     </item>
-     <item>
-      <layout class="QHBoxLayout" name="horizontalLayout_4">
-       <item>
-        <widget class="QPushButton" name="pushButton_remove">
-         <property name="text">
-          <string>Remove</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QPushButton" name="pushButton_reserve">
-         <property name="text">
-          <string>Reserve</string>
-         </property>
-        </widget>
-       </item>
-      </layout>
+     <item row="0" column="1">
+      <widget class="QCalendarWidget" name="calendarWidget">
+       <property name="firstDayOfWeek">
+        <enum>Qt::Monday</enum>
+       </property>
+      </widget>
      </item>
     </layout>
    </widget>
    <widget class="QTableWidget" name="tableWidget_schedule">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
     <property name="geometry">
      <rect>
-      <x>100</x>
-      <y>380</y>
-      <width>911</width>
+      <x>50</x>
+      <y>330</y>
+      <width>1011</width>
       <height>371</height>
      </rect>
     </property>
-    <row>
-     <property name="text">
-      <string/>
-     </property>
-    </row>
+    <property name="font">
+     <font>
+      <stylestrategy>PreferDefault</stylestrategy>
+     </font>
+    </property>
+    <property name="layoutDirection">
+     <enum>Qt::LeftToRight</enum>
+    </property>
+    <property name="autoFillBackground">
+     <bool>true</bool>
+    </property>
+    <property name="verticalScrollBarPolicy">
+     <enum>Qt::ScrollBarAlwaysOff</enum>
+    </property>
+    <property name="horizontalScrollBarPolicy">
+     <enum>Qt::ScrollBarAlwaysOff</enum>
+    </property>
+    <property name="editTriggers">
+     <set>QAbstractItemView::NoEditTriggers</set>
+    </property>
     <row>
      <property name="text">
       <string>7:30 - 9:00 AM</string>
@@ -311,6 +102,11 @@
     </row>
     <row>
      <property name="text">
+      <string>6:00 - 7:30 PM</string>
+     </property>
+    </row>
+    <row>
+     <property name="text">
       <string>7:30 - 9:00 PM</string>
      </property>
     </row>
@@ -336,6 +132,11 @@
     </column>
     <column>
      <property name="text">
+      <string>Fri</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
       <string>Sat</string>
      </property>
     </column>
@@ -345,16 +146,359 @@
      </property>
     </column>
    </widget>
-   <widget class="QWidget" name="verticalLayoutWidget_4">
+   <widget class="QComboBox" name="comboBox_NatureOfActivity">
     <property name="geometry">
      <rect>
-      <x>100</x>
-      <y>380</y>
-      <width>160</width>
-      <height>80</height>
+      <x>710</x>
+      <y>130</y>
+      <width>291</width>
+      <height>22</height>
      </rect>
     </property>
-    <layout class="QVBoxLayout" name="verticalLayout_6"/>
+    <property name="font">
+     <font>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <item>
+     <property name="text">
+      <string>Seminar</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Orientation</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Meeting</string>
+     </property>
+    </item>
+   </widget>
+   <widget class="QComboBox" name="comboBox_timeEnd">
+    <property name="geometry">
+     <rect>
+      <x>820</x>
+      <y>170</y>
+      <width>81</width>
+      <height>22</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <item>
+     <property name="text">
+      <string>9:00</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>10:30</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>12:00</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>13:30</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>15:00</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>16:30</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>18:00</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>19:30</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>21:00</string>
+     </property>
+    </item>
+   </widget>
+   <widget class="QComboBox" name="comboBox_Room">
+    <property name="geometry">
+     <rect>
+      <x>710</x>
+      <y>90</y>
+      <width>291</width>
+      <height>22</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <item>
+     <property name="text">
+      <string>AVR1</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>AVR2</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>AVR3</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Plenary Hall</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Seminar Room</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Gym</string>
+     </property>
+    </item>
+   </widget>
+   <widget class="QLabel" name="label_2">
+    <property name="geometry">
+     <rect>
+      <x>660</x>
+      <y>170</y>
+      <width>41</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>Time:</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_room">
+    <property name="geometry">
+     <rect>
+      <x>650</x>
+      <y>90</y>
+      <width>51</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>Room: </string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="lineEdit_Organization">
+    <property name="enabled">
+     <bool>true</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>710</x>
+      <y>50</y>
+      <width>291</width>
+      <height>22</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+   </widget>
+   <widget class="QComboBox" name="comboBox_timeStart">
+    <property name="geometry">
+     <rect>
+      <x>710</x>
+      <y>170</y>
+      <width>81</width>
+      <height>22</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <item>
+     <property name="text">
+      <string>7:30</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>9:00</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>10:30</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>12:00</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>13:30</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>15:00</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>16:30</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>18:00</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>19:30</string>
+     </property>
+    </item>
+   </widget>
+   <widget class="QLabel" name="label_3">
+    <property name="geometry">
+     <rect>
+      <x>800</x>
+      <y>170</y>
+      <width>20</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>to</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_5">
+    <property name="geometry">
+     <rect>
+      <x>570</x>
+      <y>120</y>
+      <width>141</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>Nature of Activity:</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_organization">
+    <property name="geometry">
+     <rect>
+      <x>600</x>
+      <y>50</y>
+      <width>101</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>Organization:</string>
+    </property>
+   </widget>
+   <widget class="QWidget" name="verticalLayoutWidget">
+    <property name="geometry">
+     <rect>
+      <x>710</x>
+      <y>210</y>
+      <width>291</width>
+      <height>91</height>
+     </rect>
+    </property>
+    <layout class="QVBoxLayout" name="verticalLayout">
+     <item>
+      <widget class="QPushButton" name="pushButton_ShowReservation">
+       <property name="enabled">
+        <bool>true</bool>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>10</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>Show Reservation</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pushButton_Remove">
+       <property name="font">
+        <font>
+         <pointsize>10</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>Remove</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pushButton_Reserve">
+       <property name="font">
+        <font>
+         <pointsize>10</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>Reserve</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
    </widget>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
