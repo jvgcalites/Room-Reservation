@@ -8,10 +8,10 @@
 import sys
 sys.path.append('../')
 from BusinessLogic.AccountsBL import AccountsBL
-from PyQt5.QtWidgets import QApplication, QWidget, QMessageBox
+from PyQt5.QtWidgets import QApplication, QDialog, QMessageBox
 from PyQt5.uic import loadUi
 
-class Accounts(QWidget):
+class Accounts(QDialog):
     
     def __init__(self):
         super(Accounts, self).__init__()
@@ -25,31 +25,50 @@ class Accounts(QWidget):
         self.pushButton_ActivateEditMode.clicked.connect(self.ActivateEditMode_Clicked)
         self.pushButton_Search.clicked.connect(self.Search_Clicked)
         self.pushButton_RemoveAccount.clicked.connect(self.RemoveAccount_Clicked)
-        
-        
+        self.pushButton_manageSchedule.clicked.connect(self.ManageSchedule_Clicked)
+        self.commandLinkButton_signOut.clicked.connect(self.Signout_Clicked)
+    
+    def Signout_Clicked (self):
+        import Login
+        self.log = Login.Ui_Login()
+        self.log.show()
+        self.close()
+    def ManageSchedule_Clicked(self):
+        #Lagtan later
+        print("ManageSchedule")
     def SaveChanges_Clicked(self):
-        self.ahl.initializeVariables(self.lineEdit_Surname.text(),
-                                    self.lineEdit_GivenName.text(),
-                                    self.lineEdit_MiddleName.text(),
-                                    self.lineEdit_EmailAddress.text(),
-                                    self.lineEdit_Password.text(),
-                                    self.lineEdit_Organization.text(),
-                                    self.lineEdit_StudentNumber.text(),
-                                    self.lineEdit_ContactNumber.text(),
-                                    self.lineEdit_UserID.text())
-       
-        if self.ahl.checkDataState():
-            self.loginMsg.setText(self.ahl.updateInfoStatus())
-            self.loginMsg.exec_()
-            self.DisableLineEdits(True)
-            self.ClearLineEdit()
-            self.lineEdit_StudentNumber.clear()
-            self.pushButton_SaveChanges.setDisabled(True)
+        ret = self.msg.question(self,'Reservation', "Are you sure save changes?", self.msg.Yes | self.msg.No)
+        if ret == self.msg.Yes: 
+            state = True
         else:
-            self.loginMsg.setText(self.ahl.updateInfoStatus())
-            self.loginMsg.exec_()
-        self.ahl.CloseDatabase()
-        
+            state = False    
+            
+        if state:
+            self.ahl.initializeVariables(self.lineEdit_Surname.text(),
+                                        self.lineEdit_GivenName.text(),
+                                        self.lineEdit_MiddleName.text(),
+                                        self.lineEdit_EmailAddress.text(),
+                                        self.lineEdit_Password.text(),
+                                        self.lineEdit_Organization.text(),
+                                        self.lineEdit_StudentNumber.text(),
+                                        self.lineEdit_ContactNumber.text(),
+                                        self.lineEdit_UserID.text())
+           
+            if self.ahl.checkDataState():
+                self.loginMsg.information(self,"Reservation",self.ahl.updateInfoStatus())
+                self.DisableLineEdits(True)
+                self.ClearLineEdit()
+                self.lineEdit_StudentNumber.clear()
+                self.pushButton_SaveChanges.setDisabled(True)
+                
+            else:
+                self.loginMsg.setText(self.ahl.updateInfoStatus())
+                self.loginMsg.exec_()
+                
+        else:
+            self.loginMsg.information(self,"Reservation","Saving data cancelled")
+            self.DisableLineEdits(True)
+            self.pushButton_SaveChanges.setEnabled(False)
     def RemoveAccount_Clicked(self):
         ret = self.msg.question(self,'Reservation', "Are you sure you want to remove this account?", self.msg.Yes | self.msg.No)
         if ret == self.msg.Yes: 
@@ -78,7 +97,7 @@ class Accounts(QWidget):
             self.lineEdit_UserID.setText(value[0][5])
             self.lineEdit_ContactNumber.setText(value[0][7])
             self.lineEdit_Organization.setText(value[0][4])
-            self.loginMsg.information(self, 'Reservation',self.ahl.getPasswordByStudentNumber(studentNumber))
+            self.lineEdit_Password.setText(self.ahl.getPasswordByStudentNumber(studentNumber))
           
         else:
             self.pushButton_ActivateEditMode.setEnabled(False)
@@ -91,7 +110,7 @@ class Accounts(QWidget):
             ##################################################################
             self.pushButton_SaveChanges.setEnabled(False) #Disable button
             ###################################################################       
-            self.loginMsg.information(self.ahl.showStateOfStudentNumber(self.lineEdit_StudentNumber.text()))
+            self.loginMsg.information(self,"Reservation",self.ahl.showStateOfStudentNumber(self.lineEdit_StudentNumber.text()))
             self.lineEdit_StudentNumber.clear()
      
     #Disables line Edits 
