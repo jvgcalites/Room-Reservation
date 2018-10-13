@@ -34,8 +34,13 @@ class Accounts(QDialog):
         self.log.show()
         self.close()
     def ManageSchedule_Clicked(self):
-        #Lagtan later
-        print("ManageSchedule")
+        #PLease Lagyan ng UI for ADMIN SCHEDULE
+        #
+        #
+        #
+        #
+        #
+        ###########################################
     def SaveChanges_Clicked(self):
         ret = self.msg.question(self,'Reservation', "Are you sure save changes?", self.msg.Yes | self.msg.No)
         if ret == self.msg.Yes: 

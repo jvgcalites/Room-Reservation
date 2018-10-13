@@ -39,9 +39,10 @@ class Ui_Login(QMainWindow):
                 self.accounts.show()
                 self.close()
             else:
-                self.userWindow = User.User()
-                self.userWindow.show()
-                self.close()
+                ###############################################################
+                ###################Please Palagyan para sa Users###############
+                ###############################################################
+                print("Wala")
         else:
             self.label_status.setText(self.login.checkAccount(self.username,self.password))
             self.lineEdit_userName.setText('')
