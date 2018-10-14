@@ -112,8 +112,17 @@ class FileHandling:
             #Remove from Login table
             self.c.execute("DELETE FROM Login WHERE UserID=:UserID",{'UserID':userID})
             self.conn.commit()
-###############################################################################
+    def getPasswordByUserID(self, userID):
+        with self.conn:
+            self.c.execute("SELECT * FROM Login WHERE UserID=:UserID",{'UserID':userID})
+            return self.c.fetchone()[1]
+        
+    def getUserIDByStudentNumber(self,studentnumber):
+        with self.conn:
+            self.c.execute("SELECT * FROM User WHERE StudentNumber=:StudentNumber",{'StudentNumber': studentnumber})
+            return self.c.fetchone()[5]
     
+###############################################################################  
 ##############################For Users#####################################
     def getReservedTime(self, room, day, month, year):
         with self.conn: #if there is a connection to the database
