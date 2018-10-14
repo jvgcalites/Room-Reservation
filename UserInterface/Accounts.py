@@ -38,7 +38,7 @@ class Accounts(QDialog):
         #
         #
         #
-        #
+        print("value")
         #
         ###########################################
     def SaveChanges_Clicked(self):

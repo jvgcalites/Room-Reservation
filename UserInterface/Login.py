@@ -11,8 +11,7 @@ from BusinessLogic.LoginBL import LoginBL
 from PyQt5.QtWidgets import QApplication, QMainWindow, QMessageBox
 from PyQt5.uic import loadUi
 import User, Accounts,signUp
-class Ui_Login(QMainWindow):
-    
+class Ui_Login(QMainWindow):  
     def __init__(self):
         super(Ui_Login, self).__init__()
         loadUi('../UserInterface/Login.ui',self)
