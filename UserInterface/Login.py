@@ -18,23 +18,20 @@ class Ui_Login(QMainWindow):
         self.loginMsg = QMessageBox()
         self.setWindowTitle('Login')      
         self.login = LoginBL()
-        
+        self.msg = QMessageBox()
         self.username = ''
         self.password = ''
         #Button Events
         self.pushButton_login.clicked.connect(self.Login_Clicked)
         self.actionCreate_Account.triggered.connect(self.SignUp_Clicked)
     def Login_Clicked(self):
-        
-        
+         
         self.username = self.lineEdit_userName.text()
         self.password = self.lineEdit_password.text()
         
         #Checks if the username and password is valid
         if self.login.loginState(self.username, self.password):
-            self.loginMsg.setText(self.login.checkAccount(self.username,self.password))
-            self.loginMsg.exec_()  
-            
+            self.msg.information(self,'Reservation',self.login.checkAccount(self.username,self.password))            
             #Check if a user or an Admin
             if self.login.getAccountType(self.username) == 'Admin':
                 self.accounts = Accounts.Accounts()
@@ -52,10 +49,7 @@ class Ui_Login(QMainWindow):
     def SignUp_Clicked(self):
         self.ui = signUp.Ui_SignUp()
         self.ui.show()
-        self.user.show()
-        
-               
-              
+
 
     
 if __name__ == "__main__":

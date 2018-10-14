@@ -7,7 +7,7 @@ from BusinessLogic.UserBL import UserBL
 class ScheduleBL(UserBL):
     
      #if room, date, timeStart, timeEnd matches, remove from database
-     def RemoveSchedule(self, room, date, timeStart, timeEnd):
+    def RemoveSchedule(self, room, date, timeStart, timeEnd):
          #variables
          day = self.GetDay(date)
          month = self.GetMonth(date)
@@ -16,3 +16,5 @@ class ScheduleBL(UserBL):
          self.lfh.LoadDatabase()
          self.lfh.RemoveSchedule(room, day, month, year, timeStart, timeEnd) 
          self.lfh.CloseDatabase()
+         
+#    

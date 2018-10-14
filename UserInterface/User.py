@@ -20,6 +20,8 @@ class User(QMainWindow):
         self.lineEdit_Organization.setText(self.userBL.GetOrganization(email))
         #When Date is Selected, show available timeStart and timeEnd
         self.calendarWidget.clicked.connect(lambda: self.ShowAvailableTime(User))
+        #When room is changed, show taken schedule in tableWidget_Schedule
+        self.comboBox_Room.currentIndexChanged.connect(lambda: self.showReservation(User))
         #When Date is Selected, show taken schedule in tableWidget_Schedule
         self.calendarWidget.clicked.connect(lambda: self.showReservation(User))
         #When room comboBox is changed, show available timeStart and timeEnd
@@ -53,9 +55,6 @@ class User(QMainWindow):
         availableTimeEnd = self.userBL.GetAvailableTimeEnd(chosenRoom, chosenDate)
         for x in range(0, len(availableTimeEnd)):
             self.comboBox_timeEnd.addItem(availableTimeEnd[x])
-            
-        #show taken schedule in tableWidget_Schedule    
-        #self.showReservation(self,User)
             
     # When Reserve Button is clicked, save to data base                
     def Reserve_Clicked(self):
@@ -183,14 +182,13 @@ class User(QMainWindow):
         date = self.calendarWidget.selectedDate().toString(QtCore.Qt.ISODate)
         duration = self.userBL.GetTimeTaken(self.comboBox_timeStart.currentText(),self.comboBox_timeEnd.currentText())
         dayOfWeek =self.userBL.GetDayFormat(date)
-        print('day of week ' + dayOfWeek)
         dayColumn = self.userBL.getTableColumn(dayOfWeek)
         self.tableWidget_schedule.clearContents()
         self.showWeekSchedule(self.weekSchedule,'******')
         self.populateTable(duration,dayColumn,'-------')
-
-if __name__ == "__main__":
-    app = QApplication(sys.argv)
-    widget = User("user")
-    widget.show()
-    sys.exit(app.exec_())
+#
+#if __name__ == "__main__":
+#    app = QApplication(sys.argv)
+#    widget = User("user")
+#    widget.show()
+#    sys.exit(app.exec_())

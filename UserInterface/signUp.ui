@@ -32,66 +32,6 @@
    <property name="title">
     <string>Sign Up</string>
    </property>
-   <widget class="QComboBox" name="comboBox_organization">
-    <property name="geometry">
-     <rect>
-      <x>50</x>
-      <y>270</y>
-      <width>521</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <item>
-     <property name="text">
-      <string>Select Organization</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>Honor Society of Mapua (HSM)</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>Mapua Institute of Technology Student Catholic Actions (MITSCA)</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>Junior Philippine Computer Society - Mapua University (JPCS - MIT)</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>Institute of Electronics Engineers of the Philippines - Mapua Univeristy Chapter (IECEP-MIT)</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>Mapua Integrated Computer Organization (MICRO)</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>Engineering Through Imagination and Research - Academic Society (EIR-AS)</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>Philippine Institute of Civil Engineers (PICE)</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>American Concrete Institute (ACI)</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>New Item</string>
-     </property>
-    </item>
-   </widget>
    <widget class="QLineEdit" name="lineEdit_emailAddress">
     <property name="geometry">
      <rect>
@@ -277,6 +217,241 @@
      <string>Username</string>
     </property>
    </widget>
+   <widget class="QComboBox" name="comboBox_organization">
+    <property name="geometry">
+     <rect>
+      <x>50</x>
+      <y>270</y>
+      <width>521</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <item>
+     <property name="text">
+      <string>Select Organization</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>HSM</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>MITSCA</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>JPCS-MIT</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>IECEP-MIT</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>MICRO</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>EIR-AS</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>PICE</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>ACI</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>IEEE-MIT</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>PSME</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>PICHE-JCMIT</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>CHE-CHM Thinkers</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>IIEE-MIT</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>PROMAP</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>UAPSA</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>CCC</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>ORSP</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>MIT-MC</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>EECE-Thinkers</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>MEMO</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>MatES-MIT</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>YFC</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>ENC</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>PIIE</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>ICPMA-MSC</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>PSM</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>EASTS-TSSP MSC</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>ASHRAE</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>AGGEM</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>G-CLUB</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>PSSE</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>SAE</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>CBI</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>CYA</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>CEGE Thinkers</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>ASME</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>CHEMSOC</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>MNS</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>J-ZONE</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>BIOLOGIC</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>MPS</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>SME</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>MAD</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Mapua-ICpEP-SE</string>
+     </property>
+    </item>
+   </widget>
   </widget>
  </widget>
  <tabstops>
@@ -287,7 +462,6 @@
   <tabstop>lineEdit_password</tabstop>
   <tabstop>lineEdit_studentNumber</tabstop>
   <tabstop>lineEdit_contactNum</tabstop>
-  <tabstop>comboBox_organization</tabstop>
   <tabstop>radioButton_User</tabstop>
   <tabstop>radioButton_admin</tabstop>
   <tabstop>pushButton_signUp</tabstop>

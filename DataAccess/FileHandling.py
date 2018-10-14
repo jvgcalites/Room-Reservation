@@ -37,8 +37,7 @@ class FileHandling:
         with self.conn:
             self.c.execute("SELECT * FROM Login WHERE UserName=:UserName",
                            {'UserName':userName})
-            userID = self.c.fetchone()[2]
-        return userID
+            return self.c.fetchone()[2]
 
     def getEmailByUserID(self, userID):
         with self.conn:
@@ -49,9 +48,8 @@ class FileHandling:
 ###############################################################################
 ###############For Signup###################################################### 
     def InsertAccount(self,lastName, givenName,middleName,username,emailAddress,password, organization,
-                          studentNumber, contactNumber, userType):
+                          studentNumber, contactNumber, userID):
                 with self.conn:
-                    userID = self.GenerateID(userType) 
                     ##############################Write to User Table##########################################
                     self.c.execute('INSERT INTO User VALUES (?,?,?,?,?,?,?,?)',(lastName, givenName,middleName,
                                    emailAddress, organization,userID, studentNumber, contactNumber))
@@ -110,9 +108,10 @@ class FileHandling:
     def RemoveAccount(self, userID):
         with self.conn:
             #Remove from User table
-            self.c.execute("DELETE from User WHERE UserID =: UserID",{'UserID':userID})
+            self.c.execute("DELETE FROM User WHERE UserID=:UserID",{'UserID':userID})
             #Remove from Login table
-            self.c.execute("DELETE from Login WHERE USerID =: UserID",{'UserID':userID})
+            self.c.execute("DELETE FROM Login WHERE UserID=:UserID",{'UserID':userID})
+            self.conn.commit()
 ###############################################################################
     
 ##############################For Users#####################################

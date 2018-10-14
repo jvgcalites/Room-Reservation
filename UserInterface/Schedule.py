@@ -3,7 +3,7 @@
 import sys
 sys.path.append('../')
 from BusinessLogic.ScheduleBL import ScheduleBL
-from PyQt5.QtWidgets import QApplication, QMessageBox, QMainWindow
+from PyQt5.QtWidgets import QApplication, QMessageBox, QMainWindow, QTableWidgetItem
 from PyQt5 import QtCore
 from PyQt5.uic import loadUi
 
@@ -16,15 +16,18 @@ class Schedule(QMainWindow):
         
         #instantiate userBL obj
         self.schedBL = ScheduleBL()
-        #When Date is Selected, show available timeStart and timeEnd
-        self.calendarWidget.clicked.connect(lambda: self.ShowAvailableTime(Schedule))
-        #When room comboBox is changed, show available timeStart and timeEnd
-        self.comboBox_room.currentIndexChanged.connect(lambda: self.ShowAvailableTime(Schedule))
+        #When Date and Room is Selected, show taken schedule in tableWidget_Schedule
+        self.calendarWidget.clicked.connect(lambda: self.showReservation(Schedule))
+        self.comboBox_room.currentIndexChanged.connect(lambda: self.showReservation(Schedule))
+        
+        
         #Button Events
         #When Reserve Button is clicked
         self.pushButton_reserve.clicked.connect(lambda: self.Reserve_Clicked())
         #When Remove Buttons is clicked
         self.pushButton_remove.clicked.connect(lambda: self.Remove_Clicked())
+         #When Show Reservation Button is clicked
+        self.pushButton_ShowReservation.clicked.connect(lambda: self.showReservation_Clicked())
         
         self.pushButton_manageAccounts.clicked.connect(self.ManageAccounts_Clicked)
         self.commandLinkButton_signOut.clicked.connect(self.Signout_Clicked)
@@ -39,24 +42,6 @@ class Schedule(QMainWindow):
         self.acc = Accounts.Accounts()
         self.acc.show()
         self.close()
-    def ShowAvailableTime(self,Schedule):
-        #Clears all contents of timeStart and timeEnd comboBox
-        self.comboBox_timeStart.clear()
-        self.comboBox_timeEnd.clear()
-        
-        #variables 
-        chosenDate = self.calendarWidget.selectedDate().toString(QtCore.Qt.ISODate)
-        chosenRoom = self.comboBox_room.currentText()
-
-        #Show list of available timeStart in comboBox_timeStart
-        availableTimeStart = self.schedBL.GetAvailableTimeStart(chosenRoom, chosenDate) # returns available timeStart from database
-        for x in range(0, len(availableTimeStart)):
-            self.comboBox_timeStart.addItem(availableTimeStart[x]) #place available timeStart in the timeStart comboBox
-            
-        #Show list of available time end in comboBox_timeEnd
-        availableTimeEnd = self.schedBL.GetAvailableTimeEnd(chosenRoom, chosenDate) # returns available timeEnd from database
-        for x in range(0, len(availableTimeEnd)):
-            self.comboBox_timeEnd.addItem(availableTimeEnd[x]) #place available timeEnd in the timeEnd comboBox
         
     # When Reserve Button is clicked, save to data base                
     def Reserve_Clicked(self):
@@ -74,11 +59,10 @@ class Schedule(QMainWindow):
             #else you can't xD
             self.MessageBox("Schedule Already Exists. Please try Again", "Error")
             
-        
     #Save data taken from user to UserBL class attributes    
     def ReservationInfo(self):
-        self.schedBL.SetNatureOfActivity(self.comboBox_natureOfActivity.currentText())
-        self.schedBL.SetOrganization(self.lineEdit_organization.text())
+        self.schedBL.SetNatureOfActivity(self.comboBox_NatureOfActivity.currentText())
+        self.schedBL.SetOrganization(self.lineEdit_Organization.text())
         self.schedBL.SetRoom(self.comboBox_room.currentText())
         date = self.calendarWidget.selectedDate().toString(QtCore.Qt.ISODate) #date = "YYYY-MM-DD"
         self.schedBL.SetMonth(self.schedBL.GetMonth(date))
@@ -94,6 +78,101 @@ class Schedule(QMainWindow):
         msg.setWindowTitle(windowTitle)
         msg.setStandardButtons(QMessageBox.Ok)
         msg.exec_()   
+        
+      #Shows the week schedule of selected date    
+    def showReservation(self,User):
+        date = self.calendarWidget.selectedDate().toString(QtCore.Qt.ISODate)
+        self.tableWidget_schedule.clearContents()
+        room = self.comboBox_room.currentText()
+        dayOfWeek =self.schedBL.GetDayFormat(date)
+        firstDay = self.schedBL.returnToFirstColumn(dayOfWeek,self.schedBL.GetDay(date))
+        month = self.schedBL.GetMonth(date)
+        year = self.schedBL.GetYear(date)
+        day = firstDay
+        
+        self.weekSchedule = []
+        for x in range(0,7):
+            reserve = self.schedBL.GetReservedTime(room, day, month, year)
+            if reserve == []:
+                reserve = [' ']
+            self.weekSchedule.append(reserve)
+            day += 1
+        print(self.weekSchedule)
+        self.showWeekSchedule(self.weekSchedule,'TAKEN')
+        
+        
+    #Iterates the column from the first day of the week
+    def showWeekSchedule(self,weekSchedule,symbol):  
+        dayColumn = 0
+        for day in weekSchedule:
+            duration = day
+            if duration[0] ==' ':
+                duration = []
+            else:
+                self.populateTable(duration,dayColumn,symbol)
+            dayColumn += 1
+            
+    #Sets symbols on reserved time schedule              
+    def populateTable(self,duration,dayColumn,symbol): 
+        if duration[0] == '07:30-09:00':
+            row = 0
+            for x in range(0,len(duration)):
+                self.tableWidget_schedule.setItem(row,dayColumn,QTableWidgetItem(symbol))
+                row = row + 1
+        elif duration[0] =='09:00-10:30':
+            row = 1
+            for x in range(0,len(duration)):
+                self.tableWidget_schedule.setItem(row,dayColumn,QTableWidgetItem(symbol))
+                row = row + 1
+        elif duration[0] == '10:30-12:00':
+            row = 2
+            for x in range(0,len(duration)):
+                self.tableWidget_schedule.setItem(row,dayColumn,QTableWidgetItem(symbol))
+                row = row + 1
+        elif duration[0] == '12:00-13:30':
+            row = 3
+            for x in range(0,len(duration)):
+                self.tableWidget_schedule.setItem(row,dayColumn,QTableWidgetItem(symbol))
+                row = row + 1
+        elif duration[0] == '13:30-15:00':
+            row = 4
+            for x in range(0,len(duration)):
+                self.tableWidget_schedule.setItem(row,dayColumn,QTableWidgetItem(symbol))
+                row = row + 1
+        elif duration[0] == '15:00-16:30':
+            row = 5
+            for x in range(0,len(duration)):
+                self.tableWidget_schedule.setItem(row,dayColumn,QTableWidgetItem(symbol))
+                row = row + 1
+        elif duration[0] == '16:30-18:00':
+            row = 6
+            for x in range(0,len(duration)):
+                self.tableWidget_schedule.setItem(row,dayColumn,QTableWidgetItem(symbol))
+                row = row + 1
+        elif duration[0] == '18:00-19:30':
+            row = 7
+            for x in range(0,len(duration)):
+                self.tableWidget_schedule.setItem(row,dayColumn,QTableWidgetItem(symbol))
+                row = row + 1
+        elif duration[0] == '19:30-21:00':
+            row = 8
+            for x in range(0,len(duration)):
+                self.tableWidget_schedule.setItem(row,dayColumn,QTableWidgetItem(symbol))
+                row = row + 1
+        else:
+                return'Invalid Time input'
+               
+    #Show the selected schedule of the user            
+    def showReservation_Clicked(self):
+        date = self.calendarWidget.selectedDate().toString(QtCore.Qt.ISODate)
+        duration = self.schedBL.GetTimeTaken(self.comboBox_timeStart.currentText(),self.comboBox_timeEnd.currentText())
+        dayOfWeek =self.schedBL.GetDayFormat(date)
+        print('day of week ' + dayOfWeek)
+        dayColumn = self.schedBL.getTableColumn(dayOfWeek)
+        self.tableWidget_schedule.clearContents()
+        self.showReservation(Schedule)
+        #self.showWeekSchedule(self.weekSchedule,'TAKEN')
+        self.populateTable(duration,dayColumn,'VACANT')
         
     ##########################FEATURES FOR ADMIN############################################
     def Remove_Clicked(self):

@@ -3,6 +3,7 @@
 import re
 import sys
 sys.path.append('../')
+import numpy as np
 
 from DataAccess.FileHandling import FileHandling
 
@@ -76,7 +77,7 @@ class SignupBL:
                          self.organization,
                          self.studentNumber,
                          self.contactNumber,
-                         self.userType)
+                         self.GenerateID(self.userType))
         fh.CloseDatabase()
     def redunduncyState(self, username, studentnumber, emailAddress):
         fh = FileHandling()
@@ -101,7 +102,29 @@ class SignupBL:
         else:
             return 'Saved Successfully'
         fh.CloseDatabase()
+        
+        # This function generates 10 random numbers 
+        # If userType is admin, the sum of the 10 random numbers is 50
+        # If userType is user, the sum of the 10 random numbers is 51
+    def GenerateID(self, userType):
+            #Identify if userType is admin or user
+            if userType == "Admin":
+                _sum = 50
+            else:
+                _sum = 51
+            #Generates 10 random numbers
+            n = 10
+            rnd_id = 0
+            while len(str(rnd_id)) != 10:
+                rnd_array = np.random.multinomial(_sum, np.ones(n)/n, size = 1)[0]
+                rnd_id = ''.join(str(x) for x in rnd_array)
+            return rnd_id
+        
 """       
 s = SignupBL()
 print(s.checkRedunduncy('useri','admin@gmail.com','Joshuja Vincent'))
+
+s = SignupBL()
+print(s.GenerateID("Admin"))
+print(s.GenerateID(""))
 """

@@ -9,7 +9,7 @@ from PyQt5.uic import loadUi
 class Ui_SignUp(QDialog):
     def __init__(self):
         super(Ui_SignUp, self).__init__()
-        loadUi('../UserInterface/SignUp.ui', self)
+        loadUi('../UserInterface/signUp.ui', self)
         self.setWindowTitle('Sign Up')
         #Button Event
         self.pushButton_signUp.clicked.connect(self.SignUp_Done)
@@ -30,11 +30,13 @@ class Ui_SignUp(QDialog):
             self.MessageBox("New Account Created Successfully", "Success")
             self.newUser.StoreInfo() #Store to Database
             self.CloseWindow()
+            
               
     def PassUserInfo(self):
         self.newUser.lastName = self.lineEdit_lastName.text()
         self.newUser.givenName =self.lineEdit_givenName.text()
         self.newUser.middleName = self.lineEdit_middleName.text()
+        self.newUser.userName = self.lineEdit_userName.text()
         self.newUser.emailAddress = self.lineEdit_emailAddress.text()
         self.newUser.password = self.lineEdit_password.text()
         self.newUser.organization = str(self.comboBox_organization.currentText())
@@ -44,9 +46,9 @@ class Ui_SignUp(QDialog):
     
     def UserType(self):
         if self.radioButton_admin.isChecked() == True:
-            return self.radioButton_admin.text()
+            return "Admin"
         elif self.radioButton_User.isChecked() == True:
-            return self.radioButton_User.text()
+            return "User"
         else:
             return ""
         
