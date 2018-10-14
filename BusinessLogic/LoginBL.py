@@ -7,6 +7,8 @@ import numpy as np
 
 class LoginBL:
     def __init__(self):
+        self.userName = ''
+        self.password = ''
         self.lfh = FileHandling()
     
     #return if account is valid tpye Bool
@@ -33,12 +35,14 @@ class LoginBL:
         self.lfh.CloseDatabase()
     #return if the account is a user or an admin    
     def getAccountType(self, userName):
+        self.lfh.LoadDatabase()
         userID = self.lfh.getUserId(userName)
         _sum = sum(map(int,userID))
         if _sum == 50:
             return "Admin"
         else:
             return "User"
+        self.lfh.CloseDatabase()
         # This function generates 10 random numbers 
         # If userType is admin, the sum of the 10 random numbers is 50
         # If userType is user, the sum of the 10 random numbers is 51
@@ -63,14 +67,11 @@ class LoginBL:
         return email
     
 
-<<<<<<< HEAD
-l = LoginBL()
-
-=======
 """
->>>>>>> FRADEJAS
 print(l.checkAccount("daynefradejas@gmail.com","dayne123"))
-print(l.loginState("",""))
-print(l.getAccountType("user"))
-
+#print(l.loginState("",""))
+print(l.getAccountType("vsfabesamis@mymail.mapua.edu.ph"))
+"""
+#l = LoginBL()
+#print(l.getAccountType("jvgcalitesssss"))
 

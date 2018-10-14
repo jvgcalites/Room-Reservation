@@ -25,8 +25,7 @@ class Ui_Login(QMainWindow):
         self.pushButton_login.clicked.connect(self.Login_Clicked)
         self.actionCreate_Account.triggered.connect(self.SignUp_Clicked)
     def Login_Clicked(self):
-        
-        
+         
         self.username = self.lineEdit_userName.text()
         self.password = self.lineEdit_password.text()
         
@@ -36,16 +35,6 @@ class Ui_Login(QMainWindow):
             self.loginMsg.exec_()  
             
             #Check if a user or an Admin
-<<<<<<< HEAD
-            if self.login.getAccountType(self.username) == "Admin":
-                self.adminWindow = Admin.Admin()
-                self.adminWindow.show()
-                self.close()
-            else:
-                print('user')
-                self.userWindow = User.User(self.username)
-                self.userWindow.show()
-=======
             if self.login.getAccountType(self.username) == 'Admin':
                 self.accounts = Accounts.Accounts()
                 self.accounts.show()
@@ -53,7 +42,6 @@ class Ui_Login(QMainWindow):
             else:
                 self.user = User.User(self.login.getEmailByUserName(self.lineEdit_userName.text()))
                 self.user.show()
->>>>>>> FRADEJAS
                 self.close()
         else:
             self.label_status.setText(self.login.checkAccount(self.username,self.password))
@@ -64,9 +52,6 @@ class Ui_Login(QMainWindow):
         self.ui = signUp.Ui_SignUp()
         self.ui.show()
         self.user.show()
-        
-               
-              
 
     
 if __name__ == "__main__":

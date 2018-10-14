@@ -20,21 +20,8 @@ class User(QMainWindow):
         self.lineEdit_Organization.setText(self.userBL.GetOrganization(email))
         #When Date is Selected, show available timeStart and timeEnd
         self.calendarWidget.clicked.connect(lambda: self.ShowAvailableTime(User))
-<<<<<<< HEAD
+        #When room is changed, show taken schedule in tableWidget_Schedule
         self.comboBox_Room.currentIndexChanged.connect(lambda: self.showReservation(User))
-        
-        #When Date is Selected, show taken schedule in tableWidget_Schedule
-        self.calendarWidget.clicked.connect(lambda: self.showReservation(User))
-
-        #When room comboBox is changed, show available timeStart and timeEnd
-        self.comboBox_Room.currentIndexChanged.connect(lambda: self.ShowAvailableTime(User))
-        #Button Events
-        self.pushButton_Reserve.clicked.connect(lambda: self.Reserve_Clicked())   
-
-        self.pushButton_ShowReservation.clicked.connect(lambda: self.showReservation_Clicked())
-
-    
-=======
         #When Date is Selected, show taken schedule in tableWidget_Schedule
         self.calendarWidget.clicked.connect(lambda: self.showReservation(User))
         #When room comboBox is changed, show available timeStart and timeEnd
@@ -49,37 +36,11 @@ class User(QMainWindow):
         self.log.show()
         self.close()
         
->>>>>>> FRADEJAS
     #This function makes the comboBox for timeStart and timeEnd to automatically show the available slots     
     def ShowAvailableTime(self,User):
         #Clears all contents of timeStart and timeEnd comboBox
         self.comboBox_timeStart.clear()
         self.comboBox_timeEnd.clear()
-<<<<<<< HEAD
-        
-        #variables 
-        chosenDate = self.calendarWidget.selectedDate().toString(QtCore.Qt.ISODate)
-        chosenRoom = self.comboBox_Room.currentText()
-
-        #Show list of available timeStart in comboBox_timeStart
-        availableTimeStart = self.userBL.GetAvailableTimeStart(chosenRoom, chosenDate)
-        for x in range(0, len(availableTimeStart)):
-            self.comboBox_timeStart.addItem(availableTimeStart[x]) 
-            
-        #Show list of available time end in comboBox_timeEnd
-        availableTimeEnd = self.userBL.GetAvailableTimeEnd(chosenRoom, chosenDate)
-        for x in range(0, len(availableTimeEnd)):
-            self.comboBox_timeEnd.addItem(availableTimeEnd[x])
-
-    # When Reserve Button is clicked, save to data base                
-    def Reserve_Clicked(self):
-        #variables
-        chosenDate = self.calendarWidget.selectedDate().toString(QtCore.Qt.ISODate)
-        chosenRoom = self.comboBox_Room.currentText()
-        chosenTimeStart = self.comboBox_timeStart.currentText()
-        chosenTimeEnd = self.comboBox_timeEnd.currentText()
-        
-=======
         
         #variables 
         chosenDate = self.calendarWidget.selectedDate().toString(QtCore.Qt.ISODate)
@@ -95,9 +56,6 @@ class User(QMainWindow):
         for x in range(0, len(availableTimeEnd)):
             self.comboBox_timeEnd.addItem(availableTimeEnd[x])
             
-        #show taken schedule in tableWidget_Schedule    
-        #self.showReservation(self,User)
-            
     # When Reserve Button is clicked, save to data base                
     def Reserve_Clicked(self):
         #variables
@@ -106,7 +64,6 @@ class User(QMainWindow):
         chosenTimeStart = self.comboBox_timeStart.currentText()
         chosenTimeEnd = self.comboBox_timeEnd.currentText()
         
->>>>>>> FRADEJAS
         #Scan the table if slot with room, date, timeStart, timeEnd already exists
         if self.userBL.SchedExists(chosenRoom, chosenDate, chosenTimeStart, chosenTimeEnd) == False:
             #if schedule does not exists, you can reserve
@@ -230,13 +187,9 @@ class User(QMainWindow):
         self.tableWidget_schedule.clearContents()
         self.showWeekSchedule(self.weekSchedule,'******')
         self.populateTable(duration,dayColumn,'-------')
-
-<<<<<<< HEAD
-
-=======
->>>>>>> FRADEJAS
-if __name__ == "__main__":
-    app = QApplication(sys.argv)
-    widget = User("user")
-    widget.show()
-    sys.exit(app.exec_())
+#
+#if __name__ == "__main__":
+#    app = QApplication(sys.argv)
+#    widget = User("user")
+#    widget.show()
+#    sys.exit(app.exec_())

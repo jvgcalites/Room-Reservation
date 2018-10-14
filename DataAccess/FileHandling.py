@@ -37,8 +37,7 @@ class FileHandling:
         with self.conn:
             self.c.execute("SELECT * FROM Login WHERE UserName=:UserName",
                            {'UserName':userName})
-            userID = self.c.fetchone()[2]
-        return userID
+            return self.c.fetchone()[2]
 
     def getEmailByUserID(self, userID):
         with self.conn:
@@ -49,9 +48,8 @@ class FileHandling:
 ###############################################################################
 ###############For Signup###################################################### 
     def InsertAccount(self,lastName, givenName,middleName,username,emailAddress,password, organization,
-                          studentNumber, contactNumber, userType):
+                          studentNumber, contactNumber, userID):
                 with self.conn:
-                    userID = self.GenerateID(userType) 
                     ##############################Write to User Table##########################################
                     self.c.execute('INSERT INTO User VALUES (?,?,?,?,?,?,?,?)',(lastName, givenName,middleName,
                                    emailAddress, organization,userID, studentNumber, contactNumber))
@@ -160,11 +158,7 @@ class FileHandling:
             for row in self.c.execute("SELECT * FROM Reservation WHERE Room=? AND Month=? AND Day=? AND Year=?" , (room, month, day, year,)):
                 availability = False
         return availability
-<<<<<<< HEAD
-    ###############################################################################
-=======
 
->>>>>>> FRADEJAS
     
     ##############################For Schedule#####################################
     #Removes schedule with the same room, day, month, year, timeStart, and timeEnd from the passed parameters
@@ -182,18 +176,3 @@ class FileHandling:
              
             
     
-<<<<<<< HEAD
-user = FileHandling()  
-user.LoadDatabase()
-print(user.GetOrganizationDatabase("daynefradejas@gmail.com"))  
-
-print(user.SchedExists("AVR1", 6, "10", 2018, "7:30", "9:00"))
-
-#print(user.getReservedTime("AVR1", 6, "10", 2018))
-#print(user.getTimeStart("Gym", 25, "10", 2018))
-#print(user.getTimeEnd("Gym", 25, "10", 2018))
-#rint(user.getTimeEnd("Gym", 25, "10", 2018))
-
-user.CloseDatabase()  
-=======
->>>>>>> FRADEJAS
