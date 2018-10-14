@@ -125,7 +125,6 @@ class AccountsBL:
         self.fh.CloseDatabase()
        
        
-ah = AccountsBL()
 #fh.LoadDatabase()
 #fh.UpdateDatabase('Fradejas','Dayne','Noche','daynefradejas@gmail.com','dayne123','ICPEP.SE','2015100896','09994507140','3464757375') 
 #fh.CloseDatabase()
