@@ -3,30 +3,20 @@
 import sys
 sys.path.append('../')
 from BusinessLogic.UserBL import UserBL
-<<<<<<< HEAD
-=======
 import calendar
 from datetime import datetime
->>>>>>> REYES
 
 class ScheduleBL(UserBL):
     
      #if room, date, timeStart, timeEnd matches, remove from database
-<<<<<<< HEAD
-     def RemoveSchedule(self, room, date, timeStart, timeEnd):
-=======
+
     def RemoveSchedule(self, room, date, timeStart, timeEnd):
->>>>>>> REYES
+
          #variables
          day = self.GetDay(date)
          month = self.GetMonth(date)
          year = self.GetYear(date)
          
-<<<<<<< HEAD
-         self.lfh.LoadDatabase()  
-         self.lfh.RemoveSchedule(room, day, month, year, timeStart, timeEnd)
-         self.lfh.CloseDatabase()
-=======
          self.lfh.LoadDatabase()
          self.lfh.RemoveSchedule(room, day, month, year, timeStart, timeEnd) 
          self.lfh.CloseDatabase()
@@ -182,7 +172,6 @@ class ScheduleBL(UserBL):
              return 6
          else:
              print('fail')
->>>>>>> REYES
 
          
          

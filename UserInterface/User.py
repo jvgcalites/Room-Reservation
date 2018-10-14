@@ -20,19 +20,18 @@ class User(QMainWindow):
         self.lineEdit_Organization.setText(self.userBL.GetOrganization(email))
         #When Date is Selected, show available timeStart and timeEnd
         self.calendarWidget.clicked.connect(lambda: self.ShowAvailableTime(User))
-<<<<<<< HEAD
-=======
+        self.comboBox_Room.currentIndexChanged.connect(lambda: self.showReservation(User))
+        
         #When Date is Selected, show taken schedule in tableWidget_Schedule
         self.calendarWidget.clicked.connect(lambda: self.showReservation(User))
->>>>>>> REYES
+
         #When room comboBox is changed, show available timeStart and timeEnd
         self.comboBox_Room.currentIndexChanged.connect(lambda: self.ShowAvailableTime(User))
         #Button Events
         self.pushButton_Reserve.clicked.connect(lambda: self.Reserve_Clicked())   
-<<<<<<< HEAD
-=======
+
         self.pushButton_ShowReservation.clicked.connect(lambda: self.showReservation_Clicked())
->>>>>>> REYES
+
     
     #This function makes the comboBox for timeStart and timeEnd to automatically show the available slots     
     def ShowAvailableTime(self,User):
@@ -53,13 +52,7 @@ class User(QMainWindow):
         availableTimeEnd = self.userBL.GetAvailableTimeEnd(chosenRoom, chosenDate)
         for x in range(0, len(availableTimeEnd)):
             self.comboBox_timeEnd.addItem(availableTimeEnd[x])
-            
-<<<<<<< HEAD
-=======
-        #show taken schedule in tableWidget_Schedule    
-        #self.showReservation(self,User)
-            
->>>>>>> REYES
+
     # When Reserve Button is clicked, save to data base                
     def Reserve_Clicked(self):
         #variables
@@ -97,8 +90,6 @@ class User(QMainWindow):
         msg.setWindowTitle(windowTitle)
         msg.setStandardButtons(QMessageBox.Ok)
         msg.exec_()           
-<<<<<<< HEAD
-=======
     
     #Shows the week schedule of selected date
     def showReservation(self,User):
@@ -193,7 +184,7 @@ class User(QMainWindow):
         self.tableWidget_schedule.clearContents()
         self.showWeekSchedule(self.weekSchedule,'******')
         self.populateTable(duration,dayColumn,'-------')
->>>>>>> REYES
+
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
