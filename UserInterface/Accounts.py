@@ -37,7 +37,8 @@ class Accounts(QDialog):
         self.sch = Schedule.Schedule()
         self.sch.show()
         self.close()
-
+        #
+        ###########################################
     def SaveChanges_Clicked(self):
         ret = self.msg.question(self,'Reservation', "Are you sure save changes?", self.msg.Yes | self.msg.No)
         if ret == self.msg.Yes: 

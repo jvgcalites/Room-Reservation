@@ -147,6 +147,51 @@
      <pointsize>10</pointsize>
     </font>
    </property>
+   <item>
+    <property name="text">
+     <string>07:30</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>09:00</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>10:30</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>12:00</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>13:30</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>15:00</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>16:30</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>18:00</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>19:30</string>
+    </property>
+   </item>
   </widget>
   <widget class="QLabel" name="label_room">
    <property name="geometry">
@@ -327,6 +372,51 @@
      <pointsize>10</pointsize>
     </font>
    </property>
+   <item>
+    <property name="text">
+     <string>09:00</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>10:30</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>12:00</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>13:30</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>15:00</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>16:30</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>18:00</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>19:30</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>21:00</string>
+    </property>
+   </item>
   </widget>
   <widget class="QPushButton" name="pushButton_remove">
    <property name="geometry">

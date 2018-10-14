@@ -67,11 +67,11 @@ class FileHandling:
     def checkEmailExists(self,email):
          with self.conn:
              self.c.execute("SELECT * FROM User WHERE EmailAddress=:EmailAddress",{'EmailAddress':email})            
-             data = self.c.fetchall()
-             if not data:
+             if not self.c.fetchall():
                  return ''
-             else:                  
-                 return data
+             else: 
+                self.c.execute("SELECT * FROM User WHERE EmailAddress=:EmailAddress",{'EmailAddress':email})            
+                return self.c.fetchall()
 
     def checkGivenNameExists(self, givenName):
         with self.conn:
@@ -79,25 +79,11 @@ class FileHandling:
             if not self.c.fetchall():
                 return ''
             else:
-                return 'value'             
-        return self.c.fetchall()  
-    def getUserIDByStudentNumber(self, studentNumber):
-        with self.conn:
-            self.c.execute("SELECT * FROM User WHERE StudentNumber=:StudentNumber",{'StudentNumber':studentNumber})
-            data = self.c.fetchall()
-            if not data:
-                return ''
-            else:
-                return data[0][5]
-    def getPasswordByUserID(self, userID):
-        with self.conn:
-            self.c.execute("SELECT * FROM Login WHERE UserID=:UserID",{'UserID':userID})
-            data = self.c.fetchall()
-            if not data:
-                return ''
-            else:
-                return data[0][1]
-    def UpdateDatabase(self, lastName,givenName,middleName,emailAddress,password,
+                self.c.execute("SELECT * FROM User WHERE GivenName=:GivenName",{'GivenName':givenName})
+                return self.c.fetchone()[1]
+             
+        return self.c.fetchall()    
+    def UpdateDatabaseExists(self, lastName,givenName,middleName,emailAddress,password,
                        organization,studentNumber,contactNumber,userID):
         with self.conn:
             self.c.execute('''UPDATE User SET 
@@ -115,57 +101,19 @@ class FileHandling:
                             'Organization':organization, 
                             'ContactNumber':contactNumber,
                             'StudentNumber':studentNumber})
-    
             self.c.execute('''UPDATE Login SET
                            Password=:Password, UserName=:UserName
                            WHERE UserID=:UserID''',{
                            'Password':password,'UserName':emailAddress,'UserID':userID})
-    
-    def getEmailAddressByStudentNumber(self, studentNumber):
-        with self.conn:
-            self.c.execute("SELECT * FROM User WHERE StudentNumber = :StudentNumber",
-                           {'StudentNumber':studentNumber})
-            data = self.c.fetchall()           
-            if not data:
-                return ''
-            else:
-                return data[0][3]
-            return 'value'
-        
-    def checkLastNameExists(self, lastName):
-        with self.conn:
-            self.c.execute("SELECT * FROM User WHERE LastName = :LastName",
-                               {'LastName':lastName})
-            if not self.c.fetchall():
-                return ''
-            else:
-                return 'value'
-            
     def RemoveAccount(self, userID):
         with self.conn:
             #Remove from User table
-            self.c.execute("DELETE FROM User WHERE UserID = :UserID",{'UserID':userID})
+            self.c.execute("DELETE from User WHERE UserID =: UserID",{'UserID':userID})
             #Remove from Login table
-            self.c.execute("DELETE FROM Login WHERE USerID = :UserID",{'UserID':userID})
-            self.conn.commit()
-###############################################################################    
-#################################For Users#####################################
-    def checkyEmailExists(self, email):
-        with self.conn:
-             self.c.execute("SELECT * FROM User WHERE EmailAddress=:EmailAddress",{'EmailAddress':email})        
-        if not self.c.fetchall():
-            return ''
-        else:
-            return 'Ok'
-
-    def checkNameExists(self, lastName,givenName):
-            with self.conn:
-                 self.c.execute('''SELECT * FROM User WHERE GivenName=:GivenName
-                                AND LastName =:LastName''',{'GivenName':givenName , 'LastName':lastName})        
-            if not self.c.fetchall():
-                return ''
-            else:
-                return 'something'        
+            self.c.execute("DELETE from Login WHERE USerID =: UserID",{'UserID':userID})
+###############################################################################
+    
+##############################For Users#####################################
     def getReservedTime(self, room, day, month, year):
         with self.conn: #if there is a connection to the database
             self.c.execute("SELECT * FROM Reservation WHERE Room = :Room AND Month = :Month AND Year =:Year AND Day= :Day ",
@@ -183,3 +131,48 @@ class FileHandling:
         self.c.execute("SELECT * FROM Reservation WHERE Room = :Room AND Month = :Month AND Year =:Year AND Day= :Day ",
                            {'Room':room, 'Month':month,'Day':day,'Year':year})
         return self.c.fetchall()
+    
+    #Returns a string if the writing of file is successfull or not
+    def AddReservation(self,natureOfActivity, org, room, month, day, year, timeIn, timeOut):
+        with self.conn:
+            ##############################Write to Reservation Table##########################################
+            self.c.execute('INSERT INTO Reservation VALUES (?,?,?,?,?,?,?,?)', 
+                           (natureOfActivity,  org, room, month, day, year, timeIn, timeOut))
+            ###########################################################################################
+        return "File Successfully Written!"
+        
+    #Returns the organization         
+    def GetOrganizationDatabase(self, email):
+        with self.conn:            
+            self.c.execute("SELECT * FROM User WHERE EmailAddress=:EmailAddress",
+                           {'EmailAddress':email})
+            data = self.c.fetchone()[4]
+            if not data:
+                return ''
+            else:
+                return data
+    def SchedAvailable(self, room, day, month, year):
+        availability = True
+        with self.conn:
+            #Scan the table, if room, month, day and year matches, schedule is not available
+            for row in self.c.execute("SELECT * FROM Reservation WHERE Room=? AND Month=? AND Day=? AND Year=?" , (room, month, day, year,)):
+                availability = False
+        return availability
+
+    
+    ##############################For Schedule#####################################
+    #Removes schedule with the same room, day, month, year, timeStart, and timeEnd from the passed parameters
+    def RemoveSchedule(self, room, day, month, year, timeStart, timeEnd):
+        with self.conn: #if there is a connection to the database
+            self.c.execute("DELETE from Reservation WHERE Room =:Room AND Month =:Month AND Year =:Year AND Day=:Day AND TimeStart=:TimeStart AND TimeEnd=:TimeEnd ",
+                           {'Room':room, 'Month':month,'Day':day,'Year':year,'TimeStart':timeStart,'TimeEnd':timeEnd})
+    #Returns true if schedule is found with the same room, day, month, year, timeStart, and timeEnd, else false
+    def SchedExists(self,room, day, month, year, timeStart, timeEnd):
+        doesExists = False
+        with self.conn:
+            for row in self.c.execute("SELECT * FROM Reservation WHERE Room=? AND Month=? AND Day=? AND Year=? AND TimeStart=? AND TimeEnd=?" , (room, month, day, year, timeStart, timeEnd,)):
+                 doesExists = True
+        return doesExists
+             
+            
+    
