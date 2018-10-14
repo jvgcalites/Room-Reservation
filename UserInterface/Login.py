@@ -18,12 +18,15 @@ class Ui_Login(QMainWindow):
         self.loginMsg = QMessageBox()
         self.setWindowTitle('Login')      
         self.login = LoginBL()
+        
         self.username = ''
         self.password = ''
         #Button Events
         self.pushButton_login.clicked.connect(self.Login_Clicked)
         self.actionCreate_Account.triggered.connect(self.SignUp_Clicked)
     def Login_Clicked(self):
+        
+        
         self.username = self.lineEdit_userName.text()
         self.password = self.lineEdit_password.text()
         
@@ -33,15 +36,14 @@ class Ui_Login(QMainWindow):
             self.loginMsg.exec_()  
             
             #Check if a user or an Admin
-            if self.login.getAccountType(self.username):
+            if self.login.getAccountType(self.username) == 'Admin':
                 self.accounts = Accounts.Accounts()
                 self.accounts.show()
                 self.close()
             else:
-                ###############################################################
-                ###################Please Palagyan para sa Users###############
-                ###############################################################
-                print("Wala")
+                self.user = User.User(self.login.getEmailByUserName(self.lineEdit_userName.text()))
+                self.user.show()
+                self.close()
         else:
             self.label_status.setText(self.login.checkAccount(self.username,self.password))
             self.lineEdit_userName.setText('')
@@ -50,6 +52,7 @@ class Ui_Login(QMainWindow):
     def SignUp_Clicked(self):
         self.ui = signUp.Ui_SignUp()
         self.ui.show()
+        self.user.show()
         
                
               

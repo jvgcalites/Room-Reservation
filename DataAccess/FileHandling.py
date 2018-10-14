@@ -25,7 +25,6 @@ class FileHandling:
 ##############################################################################
 ###############For Login######################################################        
     def getPasswordByUserName(self, userName):
-        self.LoadDatabase()
         with self.conn: #if there is a connection to the database
             self.c.execute("SELECT * FROM Login WHERE UserName=:UserName",{'UserName':userName})
             if not self.c.fetchall(): #if no value is returned
@@ -33,17 +32,20 @@ class FileHandling:
             else:
                 self.c.execute("SELECT * FROM Login WHERE UserName=:UserName",{'UserName':userName})
                 return self.c.fetchone()[1]
-        self.CloseDatabase()
     #Returns a value if the user is an Admin or a User
     def getUserId(self, userName):
-        self.LoadDatabase()
         with self.conn:
             self.c.execute("SELECT * FROM Login WHERE UserName=:UserName",
                            {'UserName':userName})
             userID = self.c.fetchone()[2]
         return userID
-        self.CloseDatabase()
-    
+
+    def getEmailByUserID(self, userID):
+        with self.conn:
+            self.c.execute("SELECT * FROM User WHERE UserID=:UserID",
+                          {'UserID':userID})
+        return self.c.fetchone()[3]
+            
 ###############################################################################
 ###############For Signup###################################################### 
     def InsertAccount(self,lastName, givenName,middleName,username,emailAddress,password, organization,

@@ -25,12 +25,14 @@ class LoginBL:
         self.lfh.CloseDatabase()
         
     def loginState(self, userNameUi, passwordUi):
+        self.lfh.LoadDatabase()
         if self.lfh.getPasswordByUserName(userNameUi) == '':
             return False
         elif self.lfh.getPasswordByUserName(userNameUi) == passwordUi:
             return True
         else:
-            return False      
+            return False   
+        self.lfh.CloseDatabase()
     #return if the account is a user or an admin    
     def getAccountType(self, userName):
         userID = self.GenerateID(userName)
@@ -56,8 +58,13 @@ class LoginBL:
                 rnd_id = ''.join(str(x) for x in rnd_array)
             return rnd_id
             
+    def getEmailByUserName(self, userName):
+        self.lfh.LoadDatabase()
+        email = self.lfh.getEmailByUserID(self.lfh.getUserId(userName))  
+        self.lfh.CloseDatabase()
+        return email
+    
 
-l = LoginBL()
 """
 print(l.checkAccount("daynefradejas@gmail.com","dayne123"))
 #print(l.loginState("",""))
