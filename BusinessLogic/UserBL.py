@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 """
 Created on Tue Oct  2 17:31:33 2018
-
 @author: Dayne Fradejas
 """
 import sys
@@ -11,9 +10,13 @@ import calendar
 from datetime import datetime
 
 class UserBL:
+<<<<<<< HEAD
 
     def __init__(self):
 
+=======
+    def __init__(self):
+>>>>>>> FRADEJAS
          self.timeStart = ['07:30','09:00','10:30','12:00','13:30','15:00','16:30','18:00','19:30']
          self.timeEnd = ['09:00','10:30','12:00','13:30','15:00','16:30','18:00','19:30', '21:00']
          self.timeArray = ['07:30-9:00','09:00-10:30','10:30-12:00','12:00-13:30','13:30-15:00',
@@ -26,7 +29,12 @@ class UserBL:
          self.day = 0
          self.year = 0
          self.timeIn = "" 
+<<<<<<< HEAD
          self.timeOut = ""        
+=======
+         self.timeOut = ""
+         
+>>>>>>> FRADEJAS
 
     def SetNatureOfActivity(self, natureOfActivity):
          self.natureOfActivity = natureOfActivity
@@ -71,7 +79,11 @@ class UserBL:
                  timeTaken = timeTaken + self.GetTimeTaken(time[x][6], time[x][7])                
          return sorted(list(set(self.timeArray) - set(timeTaken)))
          
+<<<<<<< HEAD
     
+=======
+              
+>>>>>>> FRADEJAS
     def GetReservedTime(self, room, day, month, year):
          timeTaken = []
          
@@ -105,9 +117,13 @@ class UserBL:
              return sorted(list(set(self.timeStart)-set(timeTaken)))
          
      # Returns the available timeEnd based on room and date   
+<<<<<<< HEAD
 
     def GetAvailableTimeEnd(self, room, date):
 
+=======
+    def GetAvailableTimeEnd(self, room, date):
+>>>>>>> FRADEJAS
         timeTaken = []
         day = self.GetDay(date)
         month = self.GetMonth(date)
@@ -125,31 +141,46 @@ class UserBL:
             return sorted(list(set(self.timeEnd)-set(timeTaken)))
     
      #Returns the array of the time between time start and timeEnd
+<<<<<<< HEAD
 
     def GetTimeTaken(self, timeStart, timeEnd):
 
+=======
+    def GetTimeTaken(self, timeStart, timeEnd):
+>>>>>>> FRADEJAS
         timeTaken = []
         for x in range(self.timeStart.index(timeStart), self.timeEnd.index(timeEnd)+1):
             timeTaken.append(self.timeStart[x]+'-'+self.timeEnd[x])
         return timeTaken
     #Returns the array of the time start between time start and timeEnd
+<<<<<<< HEAD
 
     def GetTimeStart(self,timeStart,timeEnd):
 
+=======
+    def GetTimeStart(self,timeStart,timeEnd):
+>>>>>>> FRADEJAS
         timeTaken = []
         for x in range(self.timeStart.index(timeStart), self.timeEnd.index(timeEnd)+1):
             timeTaken.append(self.timeStart[x])
         return timeTaken
     #Returns the array of the time end between time start and timeEnd
+<<<<<<< HEAD
 
     def GetTimeEnd(self,timeStart,timeEnd):
 
+=======
+    def GetTimeEnd(self,timeStart,timeEnd):
+>>>>>>> FRADEJAS
         timeTaken = []
         for x in range(self.timeStart.index(timeStart), self.timeEnd.index(timeEnd)+1):
             timeTaken.append(self.timeEnd[x])
         return timeTaken
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> FRADEJAS
     #Returns the date format e.g Monday, Tuesday, and etc.
     def GetDayFormat(self,date):#format 2018-02-18 Year,month,day
          return calendar.day_name[(datetime.strptime(date, '%Y-%m-%d')).weekday()]
@@ -173,6 +204,7 @@ class UserBL:
         organization = self.lfh.GetOrganizationDatabase(email)
         self.lfh.CloseDatabase
         return organization
+<<<<<<< HEAD
     
     #Returns year, input date [YYYY,MM,DD]
     def GetYear(self, date):
@@ -198,6 +230,32 @@ class UserBL:
     #Returns true if schedule exists, false if does not exists  
     def SchedExists(self, room, date, timeStart, timeEnd):
 
+=======
+    
+    #Returns year, input date [YYYY,MM,DD]
+    def GetYear(self, date):
+        splitDate = []
+        splitDate = date.split('-') #splitDate = [YYYY,MM,DD]
+        year = splitDate[0]
+        return int(year)
+    
+    #Returns month, input date [YYYY,MM,DD]
+    def GetMonth(self, date):
+        splitDate = []
+        splitDate = date.split('-')
+        month = splitDate[1]
+        return month
+
+    #Returns day, inpput date [YYYY,MM,DD]
+    def GetDay(self, date):
+        splitDate = []
+        splitDate = date.split('-')
+        day = splitDate[2]
+        return int(day)
+    
+    #Returns true if schedule exists, false if does not exists  
+    def SchedExists(self, room, date, timeStart, timeEnd):
+>>>>>>> FRADEJAS
          day = self.GetDay(date)
          month = self.GetMonth(date)
          year = self.GetYear(date)
@@ -267,6 +325,7 @@ afh = UserBL()
 #print(afh.GetAvailableTimeStart('Gym', "2018-10-25"))
 #print(afh.timeStart)
 #print(afh.GetTimeEnd('15:00', '16:30'))
+<<<<<<< HEAD
 
 #print(afh.GetReservedTime("Gym", 25, "10", 2018))
 #print(afh.GetAvailableTime("Gym", 25, "10", 2018))
@@ -275,3 +334,27 @@ afh = UserBL()
 
 
 #Get the time interval reserved sample format timeArray
+=======
+
+#print(afh.GetReservedTime("Gym", 25, "10", 2018))
+#print(afh.GetAvailableTime("Gym", 25, "10", 2018))
+#print(afh.GetAvailableTimeStart("Gym", "2018-10-15"))
+#print(afh.GetAvailableTimeEnd("Gym", "2018-10-15"))
+
+
+     #Get the time interval reserved sample format timeArray
+"""
+     def GetReservedTime(self, room, day, month, year):
+         timeTaken = []
+         self.lfh.LoadDatabase()
+         time = self.lfh.getReservedTime(room,day,month,year)
+         self.lfh.CloseDatabase()   
+         
+         if not time: #if contains nothing
+             return timeTaken
+         else:
+             for x in range (len(time)):
+                 self.getAvailableTime([x][6], time[x][7])                  
+             return timeTaken
+"""
+>>>>>>> FRADEJAS

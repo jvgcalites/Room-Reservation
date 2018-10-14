@@ -3,15 +3,22 @@
 import sys
 sys.path.append('../')
 from BusinessLogic.UserBL import UserBL
+<<<<<<< HEAD
 import calendar
 from datetime import datetime
+=======
+>>>>>>> FRADEJAS
 
 class ScheduleBL(UserBL):
     
      #if room, date, timeStart, timeEnd matches, remove from database
+<<<<<<< HEAD
 
     def RemoveSchedule(self, room, date, timeStart, timeEnd):
 
+=======
+     def RemoveSchedule(self, room, date, timeStart, timeEnd):
+>>>>>>> FRADEJAS
          #variables
          day = self.GetDay(date)
          month = self.GetMonth(date)
@@ -19,6 +26,7 @@ class ScheduleBL(UserBL):
          
          self.lfh.LoadDatabase()
          self.lfh.RemoveSchedule(room, day, month, year, timeStart, timeEnd) 
+<<<<<<< HEAD
          self.lfh.CloseDatabase()
          
     #this function returns the vacant time
@@ -185,3 +193,6 @@ if afh.SchedExists("Gym","2018-10-25","19:30","21:00") == True:
     print("YES")
 else:
     print("NO")
+=======
+         self.lfh.CloseDatabase()
+>>>>>>> FRADEJAS

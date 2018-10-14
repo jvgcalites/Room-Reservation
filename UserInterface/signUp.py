@@ -32,16 +32,16 @@ class Ui_SignUp(QDialog):
             self.CloseWindow()
               
     def PassUserInfo(self):
-        self.newUser.SetLastName(self.lineEdit_lastName.text())
-        self.newUser.SetGivenName(self.lineEdit_givenName.text())
-        self.newUser.SetMiddleName(self.lineEdit_middleName.text())
-        self.newUser.SetEmailAddress(self.lineEdit_emailAddress.text())
-        self.newUser.SetPassword(self.lineEdit_password.text())
-        self.newUser.SetOrganization(str(self.comboBox_organization.currentText()))
-        self.newUser.SetStudentNumber(self.lineEdit_studentNumber.text())
-        self.newUser.SetContactNumber(self.lineEdit_contactNum.text())
-        self.newUser.SetUserType(self.UserType())
-
+        self.newUser.lastName = self.lineEdit_lastName.text()
+        self.newUser.givenName =self.lineEdit_givenName.text()
+        self.newUser.middleName = self.lineEdit_middleName.text()
+        self.newUser.emailAddress = self.lineEdit_emailAddress.text()
+        self.newUser.password = self.lineEdit_password.text()
+        self.newUser.organization = str(self.comboBox_organization.currentText())
+        self.newUser.studentNumber = self.lineEdit_studentNumber.text()
+        self.newUser.contactNumber = self.lineEdit_contactNum.text()
+        self.newUser.userType = self.UserType()
+    
     def UserType(self):
         if self.radioButton_admin.isChecked() == True:
             return self.radioButton_admin.text()

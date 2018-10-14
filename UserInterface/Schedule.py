@@ -3,7 +3,11 @@
 import sys
 sys.path.append('../')
 from BusinessLogic.ScheduleBL import ScheduleBL
+<<<<<<< HEAD
 from PyQt5.QtWidgets import QApplication, QMessageBox, QMainWindow, QTableWidget,QTableWidgetItem
+=======
+from PyQt5.QtWidgets import QApplication, QMessageBox, QMainWindow
+>>>>>>> FRADEJAS
 from PyQt5 import QtCore
 from PyQt5.uic import loadUi
 
@@ -13,6 +17,7 @@ class Schedule(QMainWindow):
         loadUi('../UserInterface/Schedule.ui', self)
         self.setWindowTitle('Manage Schedule')
         self.loginMsg = QMessageBox()
+<<<<<<< HEAD
         #instantiate ScheduleBL obj
         self.schedBL = ScheduleBL()
         #When Date is Selected, show taken schedule in tableWidget_Schedule
@@ -25,11 +30,61 @@ class Schedule(QMainWindow):
         self.pushButton_Remove.clicked.connect(lambda: self.Remove_Clicked())
         #When Show Reservation Button is clicked
         self.pushButton_ShowReservation.clicked.connect(lambda: self.showReservation_Clicked())
+=======
+        
+        #instantiate userBL obj
+        self.schedBL = ScheduleBL()
+        #When Date is Selected, show available timeStart and timeEnd
+        self.calendarWidget.clicked.connect(lambda: self.ShowAvailableTime(Schedule))
+        #When room comboBox is changed, show available timeStart and timeEnd
+        self.comboBox_room.currentIndexChanged.connect(lambda: self.ShowAvailableTime(Schedule))
+        #Button Events
+        #When Reserve Button is clicked
+        self.pushButton_reserve.clicked.connect(lambda: self.Reserve_Clicked())
+        #When Remove Buttons is clicked
+        self.pushButton_remove.clicked.connect(lambda: self.Remove_Clicked())
+        
+        self.pushButton_manageAccounts.clicked.connect(self.ManageAccounts_Clicked)
+        self.commandLinkButton_signOut.clicked.connect(self.Signout_Clicked)
+     
+    def Signout_Clicked (self):
+        import Login
+        self.log = Login.Ui_Login()
+        self.log.show()
+        self.close()
+    def ManageAccounts_Clicked(self):
+        import Accounts
+        self.acc = Accounts.Accounts()
+        self.acc.show()
+        self.close()
+    def ShowAvailableTime(self,Schedule):
+        #Clears all contents of timeStart and timeEnd comboBox
+        self.comboBox_timeStart.clear()
+        self.comboBox_timeEnd.clear()
+        
+        #variables 
+        chosenDate = self.calendarWidget.selectedDate().toString(QtCore.Qt.ISODate)
+        chosenRoom = self.comboBox_room.currentText()
+
+        #Show list of available timeStart in comboBox_timeStart
+        availableTimeStart = self.schedBL.GetAvailableTimeStart(chosenRoom, chosenDate) # returns available timeStart from database
+        for x in range(0, len(availableTimeStart)):
+            self.comboBox_timeStart.addItem(availableTimeStart[x]) #place available timeStart in the timeStart comboBox
+            
+        #Show list of available time end in comboBox_timeEnd
+        availableTimeEnd = self.schedBL.GetAvailableTimeEnd(chosenRoom, chosenDate) # returns available timeEnd from database
+        for x in range(0, len(availableTimeEnd)):
+            self.comboBox_timeEnd.addItem(availableTimeEnd[x]) #place available timeEnd in the timeEnd comboBox
+>>>>>>> FRADEJAS
         
     # When Reserve Button is clicked, save to data base                
     def Reserve_Clicked(self):
         chosenDate = self.calendarWidget.selectedDate().toString(QtCore.Qt.ISODate)
+<<<<<<< HEAD
         chosenRoom = self.comboBox_Room.currentText()
+=======
+        chosenRoom = self.comboBox_room.currentText()
+>>>>>>> FRADEJAS
         chosenTimeStart = self.comboBox_timeStart.currentText()
         chosenTimeEnd = self.comboBox_timeEnd.currentText()
         #Scan the table if slot with room, date, timeStart, timeEnd already exists
@@ -42,18 +97,31 @@ class Schedule(QMainWindow):
             #else you can't xD
             self.MessageBox("Schedule Already Exists. Please try Again", "Error")
             
+<<<<<<< HEAD
     #Save data taken from user to ScheduleBL class attributes    
     def ReservationInfo(self):
         self.schedBL.SetNatureOfActivity(self.comboBox_NatureOfActivity.currentText())
         self.schedBL.SetOrganization(self.lineEdit_Organization.text())
         self.schedBL.SetRoom(self.comboBox_Room.currentText())
+=======
+        
+    #Save data taken from user to UserBL class attributes    
+    def ReservationInfo(self):
+        self.schedBL.SetNatureOfActivity(self.comboBox_natureOfActivity.currentText())
+        self.schedBL.SetOrganization(self.lineEdit_organization.text())
+        self.schedBL.SetRoom(self.comboBox_room.currentText())
+>>>>>>> FRADEJAS
         date = self.calendarWidget.selectedDate().toString(QtCore.Qt.ISODate) #date = "YYYY-MM-DD"
         self.schedBL.SetMonth(self.schedBL.GetMonth(date))
         self.schedBL.SetDay(self.schedBL.GetDay(date))
         self.schedBL.SetYear(self.schedBL.GetYear(date))
         self.schedBL.SetTimeIn(self.comboBox_timeStart.currentText())
         self.schedBL.SetTimeOut(self.comboBox_timeEnd.currentText())
+<<<<<<< HEAD
 
+=======
+        
+>>>>>>> FRADEJAS
         #Creates message box    
     def MessageBox(self, message, windowTitle):
         msg = QMessageBox()
@@ -61,6 +129,7 @@ class Schedule(QMainWindow):
         msg.setWindowTitle(windowTitle)
         msg.setStandardButtons(QMessageBox.Ok)
         msg.exec_()   
+<<<<<<< HEAD
     
     #Shows the week schedule of selected date    
     def showReservation(self,User):
@@ -155,11 +224,17 @@ class Schedule(QMainWindow):
         self.tableWidget_schedule.clearContents()
         self.showWeekSchedule(self.weekSchedule,'******')
         self.populateTable(duration,dayColumn,'-------')
+=======
+>>>>>>> FRADEJAS
         
     ##########################FEATURES FOR ADMIN############################################
     def Remove_Clicked(self):
         #variables
+<<<<<<< HEAD
         chosenRoom = self.comboBox_Room.currentText()
+=======
+        chosenRoom = self.comboBox_room.currentText()
+>>>>>>> FRADEJAS
         chosenDate = self.calendarWidget.selectedDate().toString(QtCore.Qt.ISODate)
         chosenTimeStart = self.comboBox_timeStart.currentText()
         chosenTimeEnd = self.comboBox_timeEnd.currentText()
