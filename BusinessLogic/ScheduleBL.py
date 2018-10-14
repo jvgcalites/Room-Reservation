@@ -13,8 +13,8 @@ class ScheduleBL(UserBL):
          month = self.GetMonth(date)
          year = self.GetYear(date)
          
-         self.lfh.LoadDatabase()
-         self.lfh.RemoveSchedule(room, day, month, year, timeStart, timeEnd) 
+         self.lfh.LoadDatabase()  
+         self.lfh.RemoveSchedule(room, day, month, year, timeStart, timeEnd)
          self.lfh.CloseDatabase()
 
          

@@ -23,31 +23,6 @@ class UserBL:
          self.year = 0
          self.timeIn = "" 
          self.timeOut = ""
-         
-
-     def SetNatureOfActivity(self, natureOfActivity):
-         self.natureOfActivity = natureOfActivity
-        
-     def SetOrganization(self, organization):
-         self.organization = organization
-        
-     def SetRoom(self, room):
-         self.room = room
-        
-     def SetMonth(self, month):
-         self.month = month
-        
-     def SetDay(self, day):
-         self.day = day
-        
-     def SetYear(self, year):
-         self.year = year
-        
-     def SetTimeIn(self, time):
-         self.timeIn = time
-        
-     def SetTimeOut(self, time):
-         self.timeOut = time
         
      #this function returns the vacant time
      #Year-integer, Month-String,Day-intege)
@@ -214,18 +189,4 @@ print(afh.GetAvailableTime('Gym', "2018-10-25"))
 #print(afh.GetAvailableTimeEnd("Gym", "2018-10-15"))
 
 
-     #Get the time interval reserved sample format timeArray
-"""
-     def GetReservedTime(self, room, day, month, year):
-         timeTaken = []
-         self.lfh.LoadDatabase()
-         time = self.lfh.getReservedTime(room,day,month,year)
-         self.lfh.CloseDatabase()   
-         
-         if not time: #if contains nothing
-             return timeTaken
-         else:
-             for x in range (len(time)):
-                 self.getAvailableTime([x][6], time[x][7])                  
-             return timeTaken
-"""
+#Get the time interval reserved sample format timeArray

@@ -62,7 +62,7 @@ class Schedule(QMainWindow):
             self.MessageBox("Schedule Already Exists. Please try Again", "Error")
             
         
-    #Save data taken from user to UserBL class attributes    
+        #Save data taken from user to UserBL class attributes    
     def ReservationInfo(self):
         self.schedBL.SetNatureOfActivity(self.comboBox_natureOfActivity.currentText())
         self.schedBL.SetOrganization(self.lineEdit_organization.text())
