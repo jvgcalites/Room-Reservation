@@ -25,7 +25,6 @@ class FileHandling:
 ##############################################################################
 ###############For Login######################################################        
     def getPasswordByUserName(self, userName):
-        self.LoadDatabase()
         with self.conn: #if there is a connection to the database
             self.c.execute("SELECT * FROM Login WHERE UserName=:UserName",{'UserName':userName})
             if not self.c.fetchall(): #if no value is returned
@@ -33,17 +32,20 @@ class FileHandling:
             else:
                 self.c.execute("SELECT * FROM Login WHERE UserName=:UserName",{'UserName':userName})
                 return self.c.fetchone()[1]
-        self.CloseDatabase()
     #Returns a value if the user is an Admin or a User
     def getUserId(self, userName):
-        self.LoadDatabase()
         with self.conn:
             self.c.execute("SELECT * FROM Login WHERE UserName=:UserName",
                            {'UserName':userName})
             userID = self.c.fetchone()[2]
         return userID
-        self.CloseDatabase()
-    
+
+    def getEmailByUserID(self, userID):
+        with self.conn:
+            self.c.execute("SELECT * FROM User WHERE UserID=:UserID",
+                          {'UserID':userID})
+        return self.c.fetchone()[3]
+            
 ###############################################################################
 ###############For Signup###################################################### 
     def InsertAccount(self,lastName, givenName,middleName,username,emailAddress,password, organization,
@@ -131,3 +133,48 @@ class FileHandling:
         self.c.execute("SELECT * FROM Reservation WHERE Room = :Room AND Month = :Month AND Year =:Year AND Day= :Day ",
                            {'Room':room, 'Month':month,'Day':day,'Year':year})
         return self.c.fetchall()
+    
+    #Returns a string if the writing of file is successfull or not
+    def AddReservation(self,natureOfActivity, org, room, month, day, year, timeIn, timeOut):
+        with self.conn:
+            ##############################Write to Reservation Table##########################################
+            self.c.execute('INSERT INTO Reservation VALUES (?,?,?,?,?,?,?,?)', 
+                           (natureOfActivity,  org, room, month, day, year, timeIn, timeOut))
+            ###########################################################################################
+        return "File Successfully Written!"
+        
+    #Returns the organization         
+    def GetOrganizationDatabase(self, email):
+        with self.conn:            
+            self.c.execute("SELECT * FROM User WHERE EmailAddress=:EmailAddress",
+                           {'EmailAddress':email})
+            data = self.c.fetchone()[4]
+            if not data:
+                return ''
+            else:
+                return data
+    def SchedAvailable(self, room, day, month, year):
+        availability = True
+        with self.conn:
+            #Scan the table, if room, month, day and year matches, schedule is not available
+            for row in self.c.execute("SELECT * FROM Reservation WHERE Room=? AND Month=? AND Day=? AND Year=?" , (room, month, day, year,)):
+                availability = False
+        return availability
+
+    
+    ##############################For Schedule#####################################
+    #Removes schedule with the same room, day, month, year, timeStart, and timeEnd from the passed parameters
+    def RemoveSchedule(self, room, day, month, year, timeStart, timeEnd):
+        with self.conn: #if there is a connection to the database
+            self.c.execute("DELETE from Reservation WHERE Room =:Room AND Month =:Month AND Year =:Year AND Day=:Day AND TimeStart=:TimeStart AND TimeEnd=:TimeEnd ",
+                           {'Room':room, 'Month':month,'Day':day,'Year':year,'TimeStart':timeStart,'TimeEnd':timeEnd})
+    #Returns true if schedule is found with the same room, day, month, year, timeStart, and timeEnd, else false
+    def SchedExists(self,room, day, month, year, timeStart, timeEnd):
+        doesExists = False
+        with self.conn:
+            for row in self.c.execute("SELECT * FROM Reservation WHERE Room=? AND Month=? AND Day=? AND Year=? AND TimeStart=? AND TimeEnd=?" , (room, month, day, year, timeStart, timeEnd,)):
+                 doesExists = True
+        return doesExists
+             
+            
+    

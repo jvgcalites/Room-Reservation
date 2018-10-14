@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>Form</class>
- <widget class="QWidget" name="Form">
+ <class>Form_AccountHandler</class>
+ <widget class="QWidget" name="Form_AccountHandler">
   <property name="enabled">
    <bool>true</bool>
   </property>
@@ -16,14 +16,44 @@
   <property name="windowTitle">
    <string>Form</string>
   </property>
+  <widget class="QPushButton" name="pushButton_manageAccounts">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
+   <property name="geometry">
+    <rect>
+     <x>30</x>
+     <y>70</y>
+     <width>161</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>12</pointsize>
+     <weight>50</weight>
+     <bold>false</bold>
+     <underline>true</underline>
+    </font>
+   </property>
+   <property name="mouseTracking">
+    <bool>false</bool>
+   </property>
+   <property name="text">
+    <string>Search Accounts</string>
+   </property>
+   <property name="flat">
+    <bool>true</bool>
+   </property>
+  </widget>
   <widget class="QPushButton" name="pushButton_manageSchedule">
    <property name="enabled">
     <bool>false</bool>
    </property>
    <property name="geometry">
     <rect>
-     <x>30</x>
-     <y>60</y>
+     <x>20</x>
+     <y>140</y>
      <width>181</width>
      <height>41</height>
     </rect>
@@ -35,7 +65,7 @@
     </font>
    </property>
    <property name="text">
-    <string>Show Schedule</string>
+    <string>Show Schedules</string>
    </property>
    <property name="flat">
     <bool>true</bool>
@@ -117,6 +147,51 @@
      <pointsize>10</pointsize>
     </font>
    </property>
+   <item>
+    <property name="text">
+     <string>07:30</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>09:00</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>10:30</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>12:00</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>13:30</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>15:00</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>16:30</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>18:00</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>19:30</string>
+    </property>
+   </item>
   </widget>
   <widget class="QLabel" name="label_room">
    <property name="geometry">
@@ -220,7 +295,7 @@
     </font>
    </property>
   </widget>
-  <widget class="QComboBox" name="comboBox_Room">
+  <widget class="QComboBox" name="comboBox_room">
    <property name="geometry">
     <rect>
      <x>360</x>
@@ -297,13 +372,76 @@
      <pointsize>10</pointsize>
     </font>
    </property>
+   <item>
+    <property name="text">
+     <string>09:00</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>10:30</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>12:00</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>13:30</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>15:00</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>16:30</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>18:00</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>19:30</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>21:00</string>
+    </property>
+   </item>
   </widget>
-  <widget class="QPushButton" name="pushButton_Reserve">
+  <widget class="QPushButton" name="pushButton_remove">
    <property name="geometry">
     <rect>
      <x>360</x>
      <y>220</y>
      <width>291</width>
+     <height>30</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>10</pointsize>
+    </font>
+   </property>
+   <property name="text">
+    <string>Remove</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton_reserve">
+   <property name="geometry">
+    <rect>
+     <x>510</x>
+     <y>180</y>
+     <width>141</width>
      <height>30</height>
     </rect>
    </property>
@@ -324,7 +462,7 @@
     <rect>
      <x>360</x>
      <y>180</y>
-     <width>291</width>
+     <width>141</width>
      <height>30</height>
     </rect>
    </property>
