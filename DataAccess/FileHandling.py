@@ -112,6 +112,16 @@ class FileHandling:
             #Remove from Login table
             self.c.execute("DELETE from Login WHERE UserID=:UserID",{'UserID':userID})
             self.conn.commit()
+            
+    def getPasswordByUserID(self, userID):
+        with self.conn:
+            self.c.execute("SELECT * FROM Login WHERE UserID=:UserID",{'UserID':userID})
+            return self.c.fetchone()[1]
+        
+    def getUserIDByStudentNumber(self,studentnumber):
+        with self.conn:
+            self.c.execute("SELECT * FROM User WHERE StudentNumber=:StudentNumber",{'StudentNumber': studentnumber})
+            return self.c.fetchone()[5]
 ###############################################################################
     
 ##############################For Users#####################################
@@ -167,6 +177,7 @@ class FileHandling:
         with self.conn: #if there is a connection to the database
             self.c.execute("DELETE from Reservation WHERE Room =:Room AND Month =:Month AND Year =:Year AND Day=:Day AND TimeStart=:TimeStart AND TimeEnd=:TimeEnd ",
                            {'Room':room, 'Month':month,'Day':day,'Year':year,'TimeStart':timeStart,'TimeEnd':timeEnd})
+            self.conn.commit()
     #Returns true if schedule is found with the same room, day, month, year, timeStart, and timeEnd, else false
     def SchedExists(self,room, day, month, year, timeStart, timeEnd):
         doesExists = False
@@ -174,6 +185,5 @@ class FileHandling:
             for row in self.c.execute("SELECT * FROM Reservation WHERE Room=? AND Month=? AND Day=? AND Year=? AND TimeStart=? AND TimeEnd=?" , (room, month, day, year, timeStart, timeEnd,)):
                  doesExists = True
         return doesExists
-             
             
     

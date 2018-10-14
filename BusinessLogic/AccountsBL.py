@@ -124,16 +124,3 @@ class AccountsBL:
         return "Student number erased successfully!"
         self.fh.CloseDatabase()
        
-       
-ah = AccountsBL()
-#fh.LoadDatabase()
-#fh.UpdateDatabase('Fradejas','Dayne','Noche','daynefradejas@gmail.com','dayne123','ICPEP.SE','2015100896','09994507140','3464757375') 
-#fh.CloseDatabase()
-#print(ah.updateInfo('Fradejas','Dayne3','Noche','daynefradejas@gmail.com','dayne12','ICPEP.SE','2015100895','09994507140','3464757375'))    
-#if ah.checkstate('Dayne3','Fradejas','daynefradejas@gmail.com','2015100895'):
-#    print ("Dayne")
-#else:
-#    print("Fradejas")
-#ah.initializeVariables('Fradejas','Pea','Noche','daynefradejas@gmail.com','dayne123','ICPEP.SE','2015100895','09994507140','3464757375')
-#print(ah.checkDataState())
-#print(ah.removeAccount('2015104531'))

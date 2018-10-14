@@ -26,6 +26,14 @@ class TestAccounts(unittest.TestCase):
         acct = AccountsBL()
         self.assertEqual(acct.removeAccount('6525734676'),"Student number erased successfully!")
         
+    def test_getPasswordByStudentNumber(self):
+        acct = AccountsBL()
+        self.assertEqual(acct.getPasswordByStudentNumber('2015104500'),'User12345')
+        
+    def test_getPasswordByStudentNumber1(self):
+        acct = AccountsBL()
+        self.assertNotEqual(acct.getPasswordByStudentNumber('2015104503'),'Mapua12345')
+        
 
         
 if __name__ == '__main__':

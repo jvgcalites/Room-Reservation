@@ -13,7 +13,7 @@ class UserBL:
     def __init__(self):
          self.timeStart = ['07:30','09:00','10:30','12:00','13:30','15:00','16:30','18:00','19:30']
          self.timeEnd = ['09:00','10:30','12:00','13:30','15:00','16:30','18:00','19:30', '21:00']
-         self.timeArray = ['07:30-9:00','09:00-10:30','10:30-12:00','12:00-13:30','13:30-15:00',
+         self.timeArray = ['07:30-09:00','09:00-10:30','10:30-12:00','12:00-13:30','13:30-15:00',
                         '15:00-16:30','16:30-18:00','18:00-19:30','19:30-21:00']
          self.lfh = FileHandling()
          self.natureOfActivity = ""
@@ -244,36 +244,3 @@ class UserBL:
          else:
              print('fail')
  
-#Unit Test
-
-afh = UserBL()
-
-#print(afh.getAvailableTime('AVR1',18,'July',2018))
-#print(afh.GetAvailableTimeEnd('Gym', "2018-10-25"))
-#print(afh.GetReservedTime('Gym', "2018-10-25"))
-#print(afh.GetAvailableTime('Gym', "2018-10-25"))
-#print(afh.GetAvailableTimeStart('Gym', "2018-10-25"))
-#print(afh.timeStart)
-#print(afh.GetTimeEnd('15:00', '16:30'))
-
-#print(afh.GetReservedTime("Gym", 25, "10", 2018))
-#print(afh.GetAvailableTime("Gym", 25, "10", 2018))
-#print(afh.GetAvailableTimeStart("Gym", "2018-10-15"))
-#print(afh.GetAvailableTimeEnd("Gym", "2018-10-15"))
-
-
-     #Get the time interval reserved sample format timeArray
-"""
-     def GetReservedTime(self, room, day, month, year):
-         timeTaken = []
-         self.lfh.LoadDatabase()
-         time = self.lfh.getReservedTime(room,day,month,year)
-         self.lfh.CloseDatabase()   
-         
-         if not time: #if contains nothing
-             return timeTaken
-         else:
-             for x in range (len(time)):
-                 self.getAvailableTime([x][6], time[x][7])                  
-             return timeTaken
-"""

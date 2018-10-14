@@ -67,11 +67,4 @@ class LoginBL:
         return email
     
 
-"""
-print(l.checkAccount("daynefradejas@gmail.com","dayne123"))
-#print(l.loginState("",""))
-print(l.getAccountType("vsfabesamis@mymail.mapua.edu.ph"))
-"""
-#l = LoginBL()
-#print(l.getAccountType("jvgcalitesssss"))
 

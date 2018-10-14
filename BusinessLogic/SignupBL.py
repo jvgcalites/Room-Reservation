@@ -81,6 +81,7 @@ class SignupBL:
         fh.CloseDatabase()
     def redunduncyState(self, username, studentnumber, emailAddress):
         fh = FileHandling()
+        fh.LoadDatabase()
         if fh.getPasswordByUserName(username) == '':
             return True
         elif fh.getEmail(emailAddress) == '':
@@ -88,11 +89,12 @@ class SignupBL:
         elif fh.GetDetailsByStudentNumber(studentnumber) =='':
             return True
         else:
-            return True
+            return False
         fh.CloseDatabase()
         
     def checkRedunduncy(self,username, emailAddress, givenName):
         fh = FileHandling()
+        fh.LoadDatabase()
         if fh.getPasswordByUserName(username): 
             return 'Username already taken'
         elif fh.getEmail(emailAddress): 
@@ -119,12 +121,3 @@ class SignupBL:
                 rnd_array = np.random.multinomial(_sum, np.ones(n)/n, size = 1)[0]
                 rnd_id = ''.join(str(x) for x in rnd_array)
             return rnd_id
-        
-"""       
-s = SignupBL()
-print(s.checkRedunduncy('useri','admin@gmail.com','Joshuja Vincent'))
-
-s = SignupBL()
-print(s.GenerateID("Admin"))
-print(s.GenerateID(""))
-"""

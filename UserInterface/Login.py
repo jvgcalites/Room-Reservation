@@ -51,7 +51,6 @@ class Ui_Login(QMainWindow):
     def SignUp_Clicked(self):
         self.ui = signUp.Ui_SignUp()
         self.ui.show()
-        self.user.show()
 
     
 if __name__ == "__main__":
