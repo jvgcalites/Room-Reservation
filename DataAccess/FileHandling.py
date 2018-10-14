@@ -37,7 +37,7 @@ class FileHandling:
         with self.conn:
             self.c.execute("SELECT * FROM Login WHERE UserName=:UserName",
                            {'UserName':userName})
-            return self.c.fetchone()[2]
+        return self.c.fetchone()[2]
 
     def getEmailByUserID(self, userID):
         with self.conn:
@@ -56,7 +56,7 @@ class FileHandling:
                     ###########################Write to Login Table############################################
                     self.c.execute('INSERT INTO Login VALUES (?,?,?)',(username,password,userID))
                     ###########################################################################################
-                    return "File Successfully Written!"
+                return "File Successfully Written!"
 ###############################################################################
 ###################For Accounts################################################
     #Returns List of details through student number
@@ -110,7 +110,7 @@ class FileHandling:
             #Remove from User table
             self.c.execute("DELETE from User WHERE UserID =: UserID",{'UserID':userID})
             #Remove from Login table
-            self.c.execute("DELETE from Login WHERE USerID =: UserID",{'UserID':userID})
+            self.c.execute("DELETE from Login WHERE UserID =: UserID",{'UserID':userID})
 ###############################################################################
     
 ##############################For Users#####################################
