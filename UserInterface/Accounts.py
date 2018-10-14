@@ -10,7 +10,6 @@ sys.path.append('../')
 from BusinessLogic.AccountsBL import AccountsBL
 from PyQt5.QtWidgets import QApplication, QDialog, QMessageBox
 from PyQt5.uic import loadUi
-
 class Accounts(QDialog):
     
     def __init__(self):
@@ -34,13 +33,11 @@ class Accounts(QDialog):
         self.log.show()
         self.close()
     def ManageSchedule_Clicked(self):
-        #PLease Lagyan ng UI for ADMIN SCHEDULE
-        #
-        #
-        #
-        print("value")
-        #
-        ###########################################
+        import Schedule
+        self.sch = Schedule.Schedule()
+        self.sch.show()
+        self.close()
+
     def SaveChanges_Clicked(self):
         ret = self.msg.question(self,'Reservation', "Are you sure save changes?", self.msg.Yes | self.msg.No)
         if ret == self.msg.Yes: 
