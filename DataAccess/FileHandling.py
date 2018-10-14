@@ -108,9 +108,10 @@ class FileHandling:
     def RemoveAccount(self, userID):
         with self.conn:
             #Remove from User table
-            self.c.execute("DELETE from User WHERE UserID =: UserID",{'UserID':userID})
+            self.c.execute("DELETE from User WHERE UserID=:UserID",{'UserID':userID})
             #Remove from Login table
-            self.c.execute("DELETE from Login WHERE UserID =: UserID",{'UserID':userID})
+            self.c.execute("DELETE from Login WHERE UserID=:UserID",{'UserID':userID})
+            self.conn.commit()
 ###############################################################################
     
 ##############################For Users#####################################

@@ -22,11 +22,9 @@ class TestAccounts(unittest.TestCase):
         self.assertEqual(acct.showStateOfStudentNumber('20151040'),'Invalid Student number format')
         self.assertEqual(acct.showStateOfStudentNumber(''),'Please input a student number')
         
-#    def test_checkDataState(self):
-#        acct = AccountsBL()
-#        fh = FileHandling()
-#        fh.LoadDatabase()
-#        self.assertEqual(acct.removeAccount('6525734676'),"Student number erased successfully!")
+    def test_checkDataState(self):
+        acct = AccountsBL()
+        self.assertEqual(acct.removeAccount('6525734676'),"Student number erased successfully!")
         
 
         
