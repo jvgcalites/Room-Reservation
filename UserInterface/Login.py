@@ -41,6 +41,7 @@ class Ui_Login(QDialog):
                 self.adminWindow.show()
                 self.close()
             else:
+                print('user')
                 self.userWindow = User.User(self.username)
                 self.userWindow.show()
                 self.close()
